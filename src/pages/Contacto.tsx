@@ -246,14 +246,17 @@ const Contacto = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="bg-muted rounded-lg h-64 flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin className="h-12 w-12 text-golden mx-auto mb-4" />
-                    <p className="text-muted-foreground">
-                      Mapa interactivo<br />
-                      Calle Fusión 123, Madrid
-                    </p>
-                  </div>
+                <div className="rounded-lg overflow-hidden h-64 shadow-elegant">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.1234567890123!2d-3.7037901999999997!3d40.4167754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDI1JzAwLjQiTiAzwrA0MicxMy42Ilc!5e0!3m2!1ses!2ses!4v1234567890123!5m2!1ses!2ses"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Ubicación de Casa de Dosa"
+                  ></iframe>
                 </div>
                 <div className="mt-4 space-y-2 text-sm text-muted-foreground">
                   <p><strong>Metro:</strong> Línea 1, Estación Sol (5 min a pie)</p>
