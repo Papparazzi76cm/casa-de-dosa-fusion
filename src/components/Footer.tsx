@@ -62,7 +62,7 @@ const Footer = () => {
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 text-golden" />
                 <span className="text-blue-grey-light text-sm">
-                  Calle Fusión 123, Madrid
+                  Paseo de Zorrilla 23, Valladolid
                 </span>
               </div>
               <div className="flex items-center space-x-2">

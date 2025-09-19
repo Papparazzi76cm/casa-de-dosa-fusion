@@ -43,11 +43,11 @@ const Contacto = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-lg text-muted-foreground mb-4">
-                  Calle Fusión 123<br />
-                  28001 Madrid, España
+                  Paseo de Zorrilla 23<br />
+                  47007 Valladolid, España
                 </p>
                 <p className="text-muted-foreground">
-                  Ubicados en el corazón de Madrid, fácilmente accesible en 
+                  Ubicados en el corazón de Valladolid, fácilmente accesible en 
                   transporte público y con parking cercano.
                 </p>
               </CardContent>
@@ -248,20 +248,26 @@ const Contacto = () => {
               <CardContent>
                 <div className="rounded-lg overflow-hidden h-64 shadow-elegant">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.1234567890123!2d-3.7037901999999997!3d40.4167754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDI1JzAwLjQiTiAzwrA0MicxMy42Ilc!5e0!3m2!1ses!2ses!4v1234567890123!5m2!1ses!2ses"
+                    src="https://maps.app.goo.gl/oYEf94mHPyUTp7EL6"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="Ubicación de Casa de Dosa"
+                    title="Ubicación de Casa de Dosa - Paseo de Zorrilla 23, Valladolid"
                   ></iframe>
                 </div>
+                  <div className="text-center">
+                    <MapPin className="h-12 w-12 text-golden mx-auto mb-4" />
+                    <p className="text-muted-foreground">
+                      Paseo de Zorrilla 23, Valladolid
+                    </p>
+                  </div>
                 <div className="mt-4 space-y-2 text-sm text-muted-foreground">
-                  <p><strong>Metro:</strong> Línea 1, Estación Sol (5 min a pie)</p>
-                  <p><strong>Autobús:</strong> Líneas 3, 17, 25</p>
-                  <p><strong>Parking:</strong> Parking público a 100m</p>
+                  <p><strong>Autobús:</strong> Líneas urbanas cercanas</p>
+                  <p><strong>Tren:</strong> Estación Valladolid Campo Grande (10 min)</p>
+                  <p><strong>Parking:</strong> Parking público disponible</p>
                 </div>
               </CardContent>
             </Card>
