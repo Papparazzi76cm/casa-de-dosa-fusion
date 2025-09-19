@@ -9,53 +9,53 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Casa de Dosa - Blue-grey and gold design system */
-    --background: 210 20% 98%;
-    --foreground: 210 15% 15%;
+    --background: 210 30% 15%;
+    --foreground: 210 20% 95%;
 
-    --card: 210 25% 96%;
-    --card-foreground: 210 15% 20%;
+    --card: 210 25% 20%;
+    --card-foreground: 210 20% 95%;
 
-    --popover: 210 25% 96%;
-    --popover-foreground: 210 15% 20%;
+    --popover: 210 25% 20%;
+    --popover-foreground: 210 20% 95%;
 
     /* Blue-grey primary */
-    --primary: 210 25% 35%;
-    --primary-foreground: 210 20% 98%;
+    --primary: 45 75% 55%;
+    --primary-foreground: 210 30% 15%;
 
     /* Golden secondary */
     --secondary: 45 65% 75%;
     --secondary-foreground: 210 25% 25%;
 
-    --muted: 210 20% 92%;
-    --muted-foreground: 210 15% 45%;
+    --muted: 210 25% 25%;
+    --muted-foreground: 210 20% 75%;
 
     /* Golden accent */
     --accent: 45 75% 55%;
-    --accent-foreground: 210 25% 15%;
+    --accent-foreground: 210 30% 15%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 210 20% 85%;
-    --input: 210 20% 90%;
+    --border: 210 25% 30%;
+    --input: 210 25% 25%;
     --ring: 45 75% 55%;
 
     /* Custom golden and blue-grey colors */
     --golden: 45 75% 55%;
     --golden-light: 45 65% 75%;
     --golden-dark: 45 85% 45%;
-    --blue-grey: 210 25% 35%;
-    --blue-grey-light: 210 20% 55%;
-    --blue-grey-dark: 210 30% 25%;
+    --blue-grey: 210 20% 75%;
+    --blue-grey-light: 210 15% 85%;
+    --blue-grey-dark: 210 30% 15%;
 
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--blue-grey-dark)), hsl(var(--blue-grey)));
+    /* Gradients - updated for dark theme */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--blue-grey-dark)), hsl(210 25% 20%));
     --gradient-golden: linear-gradient(135deg, hsl(var(--golden-light)), hsl(var(--golden)));
-    --gradient-elegant: linear-gradient(135deg, hsl(var(--blue-grey) / 0.9), hsl(var(--golden) / 0.1));
+    --gradient-elegant: linear-gradient(135deg, hsl(210 30% 10% / 0.9), hsl(var(--golden) / 0.2));
 
-    /* Shadows */
-    --shadow-elegant: 0 8px 32px hsl(var(--blue-grey) / 0.15);
-    --shadow-golden: 0 4px 16px hsl(var(--golden) / 0.25);
+    /* Shadows - adjusted for dark theme */
+    --shadow-elegant: 0 8px 32px hsl(0 0% 0% / 0.3);
+    --shadow-golden: 0 4px 16px hsl(var(--golden) / 0.4);
 
     --radius: 0.75rem;
 

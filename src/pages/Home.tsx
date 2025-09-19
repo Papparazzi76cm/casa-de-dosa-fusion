@@ -50,10 +50,10 @@ const Home = () => {
       </section>
 
       {/* Destacados Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-foreground mb-4">
+            <h2 className="text-4xl font-display font-bold text-card-foreground mb-4">
               Nuestros Platos Destacados
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -73,7 +73,7 @@ const Home = () => {
                       className="w-24 h-24 object-cover rounded-lg"
                     />
                     <div>
-                      <h3 className="text-xl font-display font-semibold text-foreground mb-2">
+                      <h3 className="text-xl font-display font-semibold text-card-foreground mb-2">
                         Dosa Ibérico
                       </h3>
                       <p className="text-muted-foreground mb-2">
@@ -102,7 +102,7 @@ const Home = () => {
                       className="w-24 h-24 object-cover rounded-lg"
                     />
                     <div>
-                      <h3 className="text-xl font-display font-semibold text-foreground mb-2">
+                      <h3 className="text-xl font-display font-semibold text-card-foreground mb-2">
                         Paella Curry
                       </h3>
                       <p className="text-muted-foreground mb-2">
@@ -124,7 +124,7 @@ const Home = () => {
             </div>
 
             <div className="text-center md:text-left">
-              <h3 className="text-3xl font-display font-bold text-foreground mb-6">
+              <h3 className="text-3xl font-display font-bold text-card-foreground mb-6">
                 Sabores que Cuentan Historias
               </h3>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">

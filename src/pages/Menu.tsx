@@ -132,7 +132,7 @@ const Menu = () => {
     : menuItems.filter(item => item.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-background py-20">
+    <div className="min-h-screen py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -170,7 +170,7 @@ const Menu = () => {
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-2">
-                      <h3 className="text-xl font-display font-semibold text-foreground">
+                      <h3 className="text-xl font-display font-semibold text-card-foreground">
                         {item.name}
                       </h3>
                       <div className="flex space-x-1">
@@ -194,7 +194,7 @@ const Menu = () => {
                     <div className="flex items-center space-x-3">
                       <div className="flex items-center space-x-1">
                         <Star className="h-4 w-4 fill-golden text-golden" />
-                        <span className="text-sm font-medium text-foreground">
+                        <span className="text-sm font-medium text-card-foreground">
                           {item.rating}
                         </span>
                       </div>
