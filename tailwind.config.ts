@@ -47,6 +47,17 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Casa de Dosa custom colors
+        golden: {
+          DEFAULT: "hsl(var(--golden))",
+          light: "hsl(var(--golden-light))",
+          dark: "hsl(var(--golden-dark))",
+        },
+        "blue-grey": {
+          DEFAULT: "hsl(var(--blue-grey))",
+          light: "hsl(var(--blue-grey-light))",
+          dark: "hsl(var(--blue-grey-dark))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -57,6 +68,19 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+      },
+      backgroundImage: {
+        "gradient-hero": "var(--gradient-hero)",
+        "gradient-golden": "var(--gradient-golden)",
+        "gradient-elegant": "var(--gradient-elegant)",
+      },
+      boxShadow: {
+        elegant: "var(--shadow-elegant)",
+        golden: "var(--shadow-golden)",
+      },
+      fontFamily: {
+        elegant: ["Inter", "system-ui", "sans-serif"],
+        display: ["Playfair Display", "serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

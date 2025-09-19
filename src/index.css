@@ -8,35 +8,56 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Casa de Dosa - Blue-grey and gold design system */
+    --background: 210 20% 98%;
+    --foreground: 210 15% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 210 25% 96%;
+    --card-foreground: 210 15% 20%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 210 25% 96%;
+    --popover-foreground: 210 15% 20%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Blue-grey primary */
+    --primary: 210 25% 35%;
+    --primary-foreground: 210 20% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Golden secondary */
+    --secondary: 45 65% 75%;
+    --secondary-foreground: 210 25% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 20% 92%;
+    --muted-foreground: 210 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Golden accent */
+    --accent: 45 75% 55%;
+    --accent-foreground: 210 25% 15%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 210 20% 85%;
+    --input: 210 20% 90%;
+    --ring: 45 75% 55%;
 
-    --radius: 0.5rem;
+    /* Custom golden and blue-grey colors */
+    --golden: 45 75% 55%;
+    --golden-light: 45 65% 75%;
+    --golden-dark: 45 85% 45%;
+    --blue-grey: 210 25% 35%;
+    --blue-grey-light: 210 20% 55%;
+    --blue-grey-dark: 210 30% 25%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--blue-grey-dark)), hsl(var(--blue-grey)));
+    --gradient-golden: linear-gradient(135deg, hsl(var(--golden-light)), hsl(var(--golden)));
+    --gradient-elegant: linear-gradient(135deg, hsl(var(--blue-grey) / 0.9), hsl(var(--golden) / 0.1));
+
+    /* Shadows */
+    --shadow-elegant: 0 8px 32px hsl(var(--blue-grey) / 0.15);
+    --shadow-golden: 0 4px 16px hsl(var(--golden) / 0.25);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,33 +77,40 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 210 30% 8%;
+    --foreground: 210 20% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 210 25% 12%;
+    --card-foreground: 210 20% 90%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 210 25% 12%;
+    --popover-foreground: 210 20% 90%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 45 75% 55%;
+    --primary-foreground: 210 30% 15%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 210 25% 20%;
+    --secondary-foreground: 45 65% 75%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 210 25% 15%;
+    --muted-foreground: 210 15% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 45 65% 75%;
+    --accent-foreground: 210 30% 15%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 210 25% 20%;
+    --input: 210 25% 18%;
+    --ring: 45 75% 55%;
+
+    --golden: 45 75% 55%;
+    --golden-light: 45 65% 75%;
+    --golden-dark: 45 85% 45%;
+    --blue-grey: 210 20% 65%;
+    --blue-grey-light: 210 15% 75%;
+    --blue-grey-dark: 210 25% 45%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -100,6 +128,31 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-elegant;
+    scroll-behavior: smooth;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Smooth transitions for interactive elements */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Hover effects */
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: var(--gradient-golden);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }

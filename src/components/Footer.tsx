@@ -1,0 +1,111 @@
+import { Link } from "react-router-dom";
+import { MapPin, Phone, Mail, Instagram, Facebook, Twitter } from "lucide-react";
+
+const Footer = () => {
+  return (
+    <footer className="bg-blue-grey-dark text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Logo y descripción */}
+          <div className="col-span-1 md:col-span-2">
+            <div className="text-2xl font-display font-bold text-golden mb-4">
+              Casa de Dosa
+            </div>
+            <p className="text-blue-grey-light mb-4 max-w-md">
+              Fusión culinaria única que combina los sabores tradicionales de la India 
+              con la esencia gastronómica española.
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" className="text-golden hover:text-golden-light transition-colors">
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-golden hover:text-golden-light transition-colors">
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-golden hover:text-golden-light transition-colors">
+                <Twitter className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Enlaces rápidos */}
+          <div>
+            <h3 className="text-lg font-semibold text-golden mb-4">Enlaces Rápidos</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/" className="text-blue-grey-light hover:text-golden transition-colors">
+                  Inicio
+                </Link>
+              </li>
+              <li>
+                <Link to="/menu" className="text-blue-grey-light hover:text-golden transition-colors">
+                  Menú
+                </Link>
+              </li>
+              <li>
+                <Link to="/reservas" className="text-blue-grey-light hover:text-golden transition-colors">
+                  Reservas
+                </Link>
+              </li>
+              <li>
+                <Link to="/sobre-nosotros" className="text-blue-grey-light hover:text-golden transition-colors">
+                  Sobre Nosotros
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contacto */}
+          <div>
+            <h3 className="text-lg font-semibold text-golden mb-4">Contacto</h3>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-2">
+                <MapPin className="h-4 w-4 text-golden" />
+                <span className="text-blue-grey-light text-sm">
+                  Calle Fusión 123, Madrid
+                </span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Phone className="h-4 w-4 text-golden" />
+                <span className="text-blue-grey-light text-sm">
+                  +34 912 345 678
+                </span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Mail className="h-4 w-4 text-golden" />
+                <span className="text-blue-grey-light text-sm">
+                  info@casadedosa.es
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-golden font-medium mb-2">Horarios</h4>
+              <p className="text-blue-grey-light text-sm">
+                Lun - Dom: 13:00 - 16:00, 20:00 - 00:00
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-blue-grey mt-8 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-blue-grey-light text-sm">
+              © 2024 Casa de Dosa. Todos los derechos reservados.
+            </p>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <a href="#" className="text-blue-grey-light hover:text-golden text-sm transition-colors">
+                Política de Privacidad
+              </a>
+              <a href="#" className="text-blue-grey-light hover:text-golden text-sm transition-colors">
+                Términos de Servicio
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
