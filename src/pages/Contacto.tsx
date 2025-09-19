@@ -248,7 +248,7 @@ const Contacto = () => {
               <CardContent>
                 <div className="rounded-lg overflow-hidden h-64 shadow-elegant">
                   <iframe
-                    src="https://maps.app.goo.gl/oYEf94mHPyUTp7EL6"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2981.6206085486256!2d-4.738958023447393!3d41.642331380142046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd476de06e03a9c5%3A0xbc60a71328f15b10!2sCasa%20De%20Dosa!5e0!3m2!1ses!2ses!4v1758300230056!5m2!1ses!2ses"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
