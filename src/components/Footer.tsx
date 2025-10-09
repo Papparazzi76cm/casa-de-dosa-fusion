@@ -71,13 +71,13 @@ const Footer = () => {
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-golden" />
                 <span className="text-blue-grey-light text-sm">
-                  +34 912 345 678
+                  983 64 23 92
                 </span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-golden" />
                 <span className="text-blue-grey-light text-sm">
-                  info@casadedosa.es
+                  reservas@casadedosa.es
                 </span>
               </div>
             </div>

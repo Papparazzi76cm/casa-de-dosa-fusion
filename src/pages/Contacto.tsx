@@ -62,7 +62,7 @@ const Contacto = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-lg text-muted-foreground mb-2">
-                  +34 912 345 678
+                  983 64 23 92
                 </p>
                 <p className="text-muted-foreground">
                   Lunes a Domingo: 12:00 - 00:30<br />
@@ -81,16 +81,8 @@ const Contacto = () => {
               <CardContent>
                 <div className="space-y-3">
                   <div>
-                    <p className="font-medium text-foreground">General</p>
-                    <p className="text-muted-foreground">info@casadedosa.es</p>
-                  </div>
-                  <div>
-                    <p className="font-medium text-foreground">Reservas</p>
+                    <p className="font-medium text-foreground">Reservas y General</p>
                     <p className="text-muted-foreground">reservas@casadedosa.es</p>
-                  </div>
-                  <div>
-                    <p className="font-medium text-foreground">Eventos</p>
-                    <p className="text-muted-foreground">eventos@casadedosa.es</p>
                   </div>
                 </div>
               </CardContent>
