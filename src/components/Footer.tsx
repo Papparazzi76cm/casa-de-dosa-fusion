@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Instagram, Facebook, Twitter } from "lucide-react";
+import logo from "@/assets/logo-casa-de-dosa.jpg";
 
 const Footer = () => {
   return (
@@ -8,9 +9,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo y descripción */}
           <div className="col-span-1 md:col-span-2">
-            <div className="text-2xl font-display font-bold text-golden mb-4">
-              Casa de Dosa
-            </div>
+            <img 
+              src={logo} 
+              alt="Casa de Dosa" 
+              className="h-16 w-auto object-contain mb-4"
+            />
             <p className="text-blue-grey-light mb-4 max-w-md">
               Fusión culinaria única que combina los sabores tradicionales de la India 
               con la esencia gastronómica española.
