@@ -107,8 +107,8 @@ const menuItems: MenuItem[] = [
   },
   {
     id: 11,
-    name: "Gyosa de Ropa Vieja",
-    description: "Gyosa con relleno de ropa vieja y jugo vegetal",
+    name: "Gyoza de Ropa Vieja",
+    description: "Gyoza con relleno de ropa vieja y jugo vegetal",
     price: 0,
     category: "Fast Food",
     rating: 4.8,
@@ -132,7 +132,7 @@ const menuItems: MenuItem[] = [
     rating: 4.9,
   },
 
-  // Del Mar
+  // Del Mar y los ríos
   {
     id: 14,
     name: "Tartar de Atún Rojo",
@@ -330,7 +330,7 @@ const menuItems: MenuItem[] = [
   },
 ];
 
-const categories = ["Todos", "Desayunos", "Embutidos y Quesos", "Fast Food", "Carne", "Del Mar", "Arroz", "Guarniciones", "Postres"];
+const categories = ["Todos", "Desayunos", "Embutidos y Quesos", "Fast Food", "Carne", "Del Mar y los ríos", "Arroz", "Guarniciones", "Postres"];
 
 const Menu = () => {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
