@@ -208,9 +208,129 @@ const menuItems: MenuItem[] = [
     isVegetarian: true,
     rating: 4.7,
   },
+
+  // Desayunos - Croissant
+  {
+    id: 22,
+    name: "Croissant con Mermelada y Mantequilla",
+    description: "Incluye café y zumo natural",
+    price: 3.50,
+    category: "Desayunos",
+    isVegetarian: true,
+    rating: 4.6,
+  },
+  {
+    id: 23,
+    name: "Croissant con Bacon y Queso",
+    description: "Incluye café y zumo natural",
+    price: 4.50,
+    category: "Desayunos",
+    rating: 4.7,
+  },
+  {
+    id: 24,
+    name: "Croissant con Jamón York/Serrano y Queso",
+    description: "Incluye café y zumo natural",
+    price: 4.50,
+    category: "Desayunos",
+    rating: 4.7,
+  },
+  {
+    id: 25,
+    name: "Croissant con Nutella",
+    description: "Incluye café y zumo natural",
+    price: 3.60,
+    category: "Desayunos",
+    isVegetarian: true,
+    rating: 4.5,
+  },
+
+  // Desayunos - Tostadas
+  {
+    id: 26,
+    name: "Tostada con Tomate, Aceite y Sal",
+    description: "Incluye café y zumo natural",
+    price: 3.90,
+    category: "Desayunos",
+    isVegetarian: true,
+    rating: 4.5,
+  },
+  {
+    id: 27,
+    name: "Tostada con Jamón York/Serrano, Tomate y Aceite",
+    description: "Incluye café y zumo natural",
+    price: 4.50,
+    category: "Desayunos",
+    rating: 4.6,
+  },
+  {
+    id: 28,
+    name: "Tostada con Aguacate, Tomate y Jamón York/Serrano",
+    description: "Incluye café y zumo natural",
+    price: 5.30,
+    category: "Desayunos",
+    rating: 4.8,
+  },
+  {
+    id: 29,
+    name: "Tostada con Tumaca",
+    description: "Jamón serrano, tomate y orégano. Incluye café y zumo natural",
+    price: 4.50,
+    category: "Desayunos",
+    rating: 4.7,
+  },
+  {
+    id: 30,
+    name: "Tostada con Burrata y Mermelada",
+    description: "Incluye café y zumo natural",
+    price: 5.50,
+    category: "Desayunos",
+    isVegetarian: true,
+    rating: 4.8,
+  },
+
+  // Desayunos - Pancakes
+  {
+    id: 31,
+    name: "Pancakes con Sirope de Chocolate, Miel y Plátano",
+    description: "Incluye café y zumo natural",
+    price: 5.50,
+    category: "Desayunos",
+    isVegetarian: true,
+    rating: 4.8,
+  },
+  {
+    id: 32,
+    name: "Napolitano",
+    description: "Incluye café y zumo natural",
+    price: 3.00,
+    category: "Desayunos",
+    isVegetarian: true,
+    rating: 4.5,
+  },
+
+  // Desayunos - Otros
+  {
+    id: 33,
+    name: "Pincho de Tortilla",
+    description: "Incluye café y zumo natural",
+    price: 3.50,
+    category: "Desayunos",
+    isVegetarian: true,
+    rating: 4.6,
+  },
+  {
+    id: 34,
+    name: "Omelette (Indian Tortilla)",
+    description: "Tortilla india con cebolla y cilantro. Incluye café y zumo natural",
+    price: 4.00,
+    category: "Desayunos",
+    isVegetarian: true,
+    rating: 4.7,
+  },
 ];
 
-const categories = ["Todos", "Embutidos y Quesos", "Fast Food", "Carne", "Del Mar", "Arroz", "Guarniciones", "Postres"];
+const categories = ["Todos", "Desayunos", "Embutidos y Quesos", "Fast Food", "Carne", "Del Mar", "Arroz", "Guarniciones", "Postres"];
 
 const Menu = () => {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
