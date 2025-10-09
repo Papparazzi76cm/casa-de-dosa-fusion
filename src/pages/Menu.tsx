@@ -17,112 +17,200 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-  // Entrantes
+  // Embutidos y Quesos
   {
     id: 1,
-    name: "Samosas de Jamón Ibérico",
-    description: "Crujientes samosas rellenas de jamón ibérico y cebolla caramelizada con chutney de tomate",
-    price: 12,
-    category: "Entrantes",
-    rating: 4.8,
+    name: "Jamón Ibérico",
+    description: "Jamón ibérico de bellota cortado a mano",
+    price: 0,
+    category: "Embutidos y Quesos",
+    rating: 4.9,
   },
   {
     id: 2,
-    name: "Pappadums con Tapenade",
-    description: "Pappadums caseros servidos con tapenade de aceitunas españolas y hummus de garbanzos",
-    price: 8,
-    category: "Entrantes",
+    name: "Selección de Ibéricos",
+    description: "Variedad de embutidos ibéricos premium",
+    price: 0,
+    category: "Embutidos y Quesos",
+    rating: 4.8,
+  },
+  {
+    id: 3,
+    name: "Selección de Quesos",
+    description: "Tabla de quesos artesanales con mermeladas",
+    price: 0,
+    category: "Embutidos y Quesos",
+    isVegetarian: true,
+    rating: 4.7,
+  },
+
+  // Fast Food
+  {
+    id: 4,
+    name: "Hamburguesa de Buey",
+    description: "Hamburguesa de carne de buey premium con guarnición",
+    price: 0,
+    category: "Fast Food",
+    rating: 4.8,
+  },
+  {
+    id: 5,
+    name: "Patatas Bravas",
+    description: "Patatas crujientes con salsa brava casera",
+    price: 0,
+    category: "Fast Food",
+    isSpicy: true,
+    isVegetarian: true,
+    rating: 4.6,
+  },
+  {
+    id: 6,
+    name: "Mini Burger",
+    description: "Mini hamburguesas perfectas para compartir",
+    price: 0,
+    category: "Fast Food",
+    rating: 4.5,
+  },
+  {
+    id: 7,
+    name: "Torrenzo de Soria",
+    description: "Especialidad tradicional de Soria",
+    price: 0,
+    category: "Fast Food",
+    rating: 4.7,
+  },
+  {
+    id: 8,
+    name: "Croquetas de Pollo Curry Mali",
+    description: "Croquetas cremosas de pollo con especias curry",
+    price: 0,
+    category: "Fast Food",
+    rating: 4.8,
+  },
+  {
+    id: 9,
+    name: "Croquetas de Kimchi y Mango",
+    description: "Fusión única de sabores orientales y tropicales",
+    price: 0,
+    category: "Fast Food",
+    isVegetarian: true,
+    rating: 4.7,
+  },
+  {
+    id: 10,
+    name: "Samosas Vegetales",
+    description: "Samosas crujientes rellenas de verduras frescas",
+    price: 0,
+    category: "Fast Food",
+    isVegetarian: true,
+    rating: 4.6,
+  },
+  {
+    id: 11,
+    name: "Gyosa de Ropa Vieja",
+    description: "Gyosa con relleno de ropa vieja y jugo vegetal",
+    price: 0,
+    category: "Fast Food",
+    rating: 4.8,
+  },
+
+  // Carne
+  {
+    id: 12,
+    name: "Onglet de Angus",
+    description: "Onglet de angus con irish champ y jugo de carne",
+    price: 0,
+    category: "Carne",
+    rating: 4.9,
+  },
+  {
+    id: 13,
+    name: "Rulo de Lechazo",
+    description: "Rulo de lechazo con boletus y jugo de granada",
+    price: 0,
+    category: "Carne",
+    rating: 4.9,
+  },
+
+  // Del Mar
+  {
+    id: 14,
+    name: "Tartar de Atún Rojo",
+    description: "Tartar de atún rojo, sandía y ponzu de tomate",
+    price: 0,
+    category: "Del Mar",
+    rating: 4.8,
+  },
+  {
+    id: 15,
+    name: "Rodaballo",
+    description: "Rodaballo con puré de coliflor y salsa ponzu",
+    price: 0,
+    category: "Del Mar",
+    rating: 4.9,
+  },
+
+  // Arroz
+  {
+    id: 16,
+    name: "Arroz de Marisco",
+    description: "Arroz con una selección de mariscos frescos",
+    price: 0,
+    category: "Arroz",
+    rating: 4.8,
+  },
+
+  // Guarniciones
+  {
+    id: 17,
+    name: "Patatas Fritas",
+    description: "Patatas fritas crujientes",
+    price: 0,
+    category: "Guarniciones",
     isVegetarian: true,
     rating: 4.5,
   },
   {
-    id: 3,
-    name: "Croquetas de Curry",
-    description: "Croquetas cremosas de pollo al curry con salsa de yogur y menta",
-    price: 10,
-    category: "Entrantes",
-    rating: 4.7,
-  },
-  
-  // Principales
-  {
-    id: 4,
-    name: "Dosa Ibérico",
-    description: "Dosa tradicional relleno de jamón ibérico, queso manchego y chutney de pimiento del piquillo",
-    price: 18,
-    category: "Principales",
-    rating: 4.9,
-  },
-  {
-    id: 5,
-    name: "Paella Curry",
-    description: "Arroz basmati con azafrán, mariscos del Mediterráneo y especias de Mumbai",
-    price: 24,
-    category: "Principales",
-    isSpicy: true,
-    rating: 4.8,
-  },
-  {
-    id: 6,
-    name: "Cordero Tandoor Andaluz",
-    description: "Cordero marinado en yogur y especias, asado en tandoor con salsa romesco",
-    price: 26,
-    category: "Principales",
-    isSpicy: true,
-    rating: 4.9,
-  },
-  {
-    id: 7,
-    name: "Biryani Valenciano",
-    description: "Arroz basmati aromático con verduras de temporada, azafrán y almendras",
-    price: 16,
-    category: "Principales",
+    id: 18,
+    name: "Boniato Frito",
+    description: "Boniato frito con toque dulce",
+    price: 0,
+    category: "Guarniciones",
     isVegetarian: true,
     rating: 4.6,
   },
 
   // Postres
   {
-    id: 8,
-    name: "Gulab Jamun con Crema Catalana",
-    description: "Dulce tradicional indio bañado en almíbar con crema catalana y pistachos",
-    price: 8,
+    id: 19,
+    name: "Tarta de Quesos",
+    description: "Tarta de queso cremosa con base de galleta",
+    price: 0,
+    category: "Postres",
+    isVegetarian: true,
+    rating: 4.8,
+  },
+  {
+    id: 20,
+    name: "Torrija con Espuma de Vainilla",
+    description: "Torrija tradicional con espuma de vainilla",
+    price: 0,
     category: "Postres",
     isVegetarian: true,
     rating: 4.7,
   },
   {
-    id: 9,
-    name: "Kulfi de Turrón",
-    description: "Helado tradicional indio con sabor a turrón de Jijona y miel de azahar",
-    price: 7,
+    id: 21,
+    name: "Pannacotta con Chutney de Mango",
+    description: "Pannacotta suave con chutney de mango fresco",
+    price: 0,
     category: "Postres",
     isVegetarian: true,
-    rating: 4.5,
-  },
-
-  // Bebidas
-  {
-    id: 10,
-    name: "Lassi de Sangría",
-    description: "Bebida refrescante de yogur con frutas de temporada y un toque de vino tinto",
-    price: 6,
-    category: "Bebidas",
-    isVegetarian: true,
-    rating: 4.4,
-  },
-  {
-    id: 11,
-    name: "Chai Andaluz",
-    description: "Té especiado tradicional con leche de almendras y miel de azahar",
-    price: 4,
-    category: "Bebidas",
-    isVegetarian: true,
-    rating: 4.6,
+    rating: 4.7,
   },
 ];
 
-const categories = ["Todos", "Entrantes", "Principales", "Postres", "Bebidas"];
+const categories = ["Todos", "Embutidos y Quesos", "Fast Food", "Carne", "Del Mar", "Arroz", "Guarniciones", "Postres"];
 
 const Menu = () => {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
@@ -140,8 +228,7 @@ const Menu = () => {
             Nuestra <span className="text-golden">Carta</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Descubre una experiencia gastronómica única donde la tradición culinaria 
-            india se fusiona armoniosamente con los sabores auténticos de España
+            Descubre nuestra selección de platos elaborados con productos de primera calidad
           </p>
         </div>
 
@@ -203,11 +290,13 @@ const Menu = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="text-right ml-4">
-                    <div className="text-3xl font-bold text-golden">
-                      {item.price}€
+                  {item.price > 0 && (
+                    <div className="text-right ml-4">
+                      <div className="text-3xl font-bold text-golden">
+                        {item.price}€
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
