@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Instagram, Facebook, Twitter } from "lucide-react";
-import logo from "@/assets/logo-casa-de-dosa.png";
+import logo from "@/assets/logo-casa-de-dosa.jpg";
 
 const Footer = () => {
   return (
