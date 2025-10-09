@@ -5,6 +5,7 @@ import { ArrowRight, Star, Utensils, MapPin } from "lucide-react";
 import heroImage from "@/assets/hero-restaurant.jpg";
 import fusionDosa from "@/assets/fusion-dosa.jpg";
 import curryPaella from "@/assets/curry-paella.jpg";
+import logo from "@/assets/logo-casa-de-dosa.png";
 
 const Home = () => {
   return (
@@ -16,9 +17,11 @@ const Home = () => {
       >
         <div className="absolute inset-0 bg-gradient-elegant"></div>
         <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
-          <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 leading-tight">
-            Casa de <span className="text-golden">Dosa</span>
-          </h1>
+          <img 
+            src={logo} 
+            alt="Casa de Dosa" 
+            className="h-32 md:h-40 w-auto mx-auto mb-8 object-contain drop-shadow-2xl"
+          />
           <p className="text-xl md:text-2xl mb-8 text-blue-grey-light leading-relaxed">
             Donde la tradición india se encuentra con la pasión española
           </p>
