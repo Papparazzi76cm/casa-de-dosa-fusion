@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Star, Flame, Leaf } from "lucide-react";
+import { Star, Flame, Leaf, Wheat, Fish, Egg, Milk, Shell, Nut } from "lucide-react";
+
+type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
 interface MenuItem {
   id: number;
@@ -14,7 +16,23 @@ interface MenuItem {
   isVegetarian?: boolean;
   rating: number;
   image?: string;
+  allergens?: Allergen[];
 }
+
+const allergenInfo: Record<Allergen, { name: string; icon: any; color: string }> = {
+  gluten: { name: "Gluten", icon: Wheat, color: "bg-amber-100 text-amber-700" },
+  crustaceos: { name: "Crustáceos", icon: Shell, color: "bg-orange-100 text-orange-700" },
+  huevos: { name: "Huevos", icon: Egg, color: "bg-yellow-100 text-yellow-700" },
+  pescado: { name: "Pescado", icon: Fish, color: "bg-blue-100 text-blue-700" },
+  lacteos: { name: "Lácteos", icon: Milk, color: "bg-indigo-100 text-indigo-700" },
+  frutos_cascara: { name: "Frutos de cáscara", icon: Nut, color: "bg-brown-100 text-brown-700" },
+  soja: { name: "Soja", icon: Leaf, color: "bg-lime-100 text-lime-700" },
+  apio: { name: "Apio", icon: Leaf, color: "bg-green-100 text-green-700" },
+  mostaza: { name: "Mostaza", icon: Flame, color: "bg-yellow-200 text-yellow-800" },
+  sesamo: { name: "Sésamo", icon: Wheat, color: "bg-stone-100 text-stone-700" },
+  sulfitos: { name: "Sulfitos", icon: Star, color: "bg-purple-100 text-purple-700" },
+  moluscos: { name: "Moluscos", icon: Shell, color: "bg-pink-100 text-pink-700" },
+};
 
 const menuItems: MenuItem[] = [
   // Embutidos y Quesos
@@ -25,6 +43,7 @@ const menuItems: MenuItem[] = [
     price: 0,
     category: "Embutidos y Quesos",
     rating: 4.9,
+    allergens: ["sulfitos"],
   },
   {
     id: 2,
@@ -33,6 +52,7 @@ const menuItems: MenuItem[] = [
     price: 0,
     category: "Embutidos y Quesos",
     rating: 4.8,
+    allergens: ["sulfitos"],
   },
   {
     id: 3,
@@ -42,6 +62,7 @@ const menuItems: MenuItem[] = [
     category: "Embutidos y Quesos",
     isVegetarian: true,
     rating: 4.7,
+    allergens: ["lacteos", "frutos_cascara"],
   },
 
   // Fast Food
@@ -52,6 +73,7 @@ const menuItems: MenuItem[] = [
     price: 0,
     category: "Fast Food",
     rating: 4.8,
+    allergens: ["gluten", "huevos", "lacteos", "mostaza", "sesamo"],
   },
   {
     id: 5,
@@ -62,6 +84,7 @@ const menuItems: MenuItem[] = [
     isSpicy: true,
     isVegetarian: true,
     rating: 4.6,
+    allergens: ["gluten", "huevos"],
   },
   {
     id: 6,
@@ -70,6 +93,7 @@ const menuItems: MenuItem[] = [
     price: 0,
     category: "Fast Food",
     rating: 4.5,
+    allergens: ["gluten", "huevos", "lacteos", "mostaza", "sesamo"],
   },
   {
     id: 7,
@@ -78,6 +102,7 @@ const menuItems: MenuItem[] = [
     price: 0,
     category: "Fast Food",
     rating: 4.7,
+    allergens: ["gluten", "huevos", "lacteos"],
   },
   {
     id: 8,
@@ -86,6 +111,7 @@ const menuItems: MenuItem[] = [
     price: 0,
     category: "Fast Food",
     rating: 4.8,
+    allergens: ["gluten", "lacteos", "huevos"],
   },
   {
     id: 9,
@@ -95,6 +121,7 @@ const menuItems: MenuItem[] = [
     category: "Fast Food",
     isVegetarian: true,
     rating: 4.7,
+    allergens: ["gluten", "lacteos", "huevos", "soja", "pescado"],
   },
   {
     id: 10,
@@ -104,6 +131,7 @@ const menuItems: MenuItem[] = [
     category: "Fast Food",
     isVegetarian: true,
     rating: 4.6,
+    allergens: ["gluten", "mostaza", "sesamo"],
   },
   {
     id: 11,
@@ -112,6 +140,7 @@ const menuItems: MenuItem[] = [
     price: 0,
     category: "Fast Food",
     rating: 4.8,
+    allergens: ["gluten", "soja", "huevos", "apio"],
   },
 
   // Carne
@@ -122,6 +151,7 @@ const menuItems: MenuItem[] = [
     price: 0,
     category: "Carne",
     rating: 4.9,
+    allergens: ["lacteos", "apio"],
   },
   {
     id: 13,
@@ -130,6 +160,7 @@ const menuItems: MenuItem[] = [
     price: 0,
     category: "Carne",
     rating: 4.9,
+    allergens: ["lacteos", "frutos_cascara", "sulfitos"],
   },
 
   // Del Mar y los ríos
@@ -140,6 +171,7 @@ const menuItems: MenuItem[] = [
     price: 0,
     category: "Del Mar",
     rating: 4.8,
+    allergens: ["pescado", "soja", "gluten", "sesamo"],
   },
   {
     id: 15,
@@ -148,6 +180,7 @@ const menuItems: MenuItem[] = [
     price: 0,
     category: "Del Mar",
     rating: 4.9,
+    allergens: ["pescado", "lacteos", "soja"],
   },
 
   // Arroz
@@ -158,6 +191,7 @@ const menuItems: MenuItem[] = [
     price: 0,
     category: "Arroz",
     rating: 4.8,
+    allergens: ["crustaceos", "moluscos", "pescado", "apio"],
   },
 
   // Guarniciones
@@ -169,6 +203,7 @@ const menuItems: MenuItem[] = [
     category: "Guarniciones",
     isVegetarian: true,
     rating: 4.5,
+    allergens: [],
   },
   {
     id: 18,
@@ -178,6 +213,7 @@ const menuItems: MenuItem[] = [
     category: "Guarniciones",
     isVegetarian: true,
     rating: 4.6,
+    allergens: [],
   },
 
   // Postres
@@ -189,6 +225,7 @@ const menuItems: MenuItem[] = [
     category: "Postres",
     isVegetarian: true,
     rating: 4.8,
+    allergens: ["lacteos", "gluten", "huevos"],
   },
   {
     id: 20,
@@ -198,6 +235,7 @@ const menuItems: MenuItem[] = [
     category: "Postres",
     isVegetarian: true,
     rating: 4.7,
+    allergens: ["gluten", "lacteos", "huevos"],
   },
   {
     id: 21,
@@ -207,6 +245,7 @@ const menuItems: MenuItem[] = [
     category: "Postres",
     isVegetarian: true,
     rating: 4.7,
+    allergens: ["lacteos"],
   },
 
   // Desayunos - Croissant
@@ -218,6 +257,7 @@ const menuItems: MenuItem[] = [
     category: "Desayunos",
     isVegetarian: true,
     rating: 4.6,
+    allergens: ["gluten", "lacteos", "huevos"],
   },
   {
     id: 23,
@@ -226,6 +266,7 @@ const menuItems: MenuItem[] = [
     price: 4.50,
     category: "Desayunos",
     rating: 4.7,
+    allergens: ["gluten", "lacteos", "huevos", "sulfitos"],
   },
   {
     id: 24,
@@ -234,6 +275,7 @@ const menuItems: MenuItem[] = [
     price: 4.50,
     category: "Desayunos",
     rating: 4.7,
+    allergens: ["gluten", "lacteos", "huevos", "sulfitos"],
   },
   {
     id: 25,
@@ -243,6 +285,7 @@ const menuItems: MenuItem[] = [
     category: "Desayunos",
     isVegetarian: true,
     rating: 4.5,
+    allergens: ["gluten", "lacteos", "huevos", "frutos_cascara", "soja"],
   },
 
   // Desayunos - Tostadas
@@ -254,6 +297,7 @@ const menuItems: MenuItem[] = [
     category: "Desayunos",
     isVegetarian: true,
     rating: 4.5,
+    allergens: ["gluten"],
   },
   {
     id: 27,
@@ -262,6 +306,7 @@ const menuItems: MenuItem[] = [
     price: 4.50,
     category: "Desayunos",
     rating: 4.6,
+    allergens: ["gluten", "sulfitos"],
   },
   {
     id: 28,
@@ -270,6 +315,7 @@ const menuItems: MenuItem[] = [
     price: 5.30,
     category: "Desayunos",
     rating: 4.8,
+    allergens: ["gluten", "sulfitos"],
   },
   {
     id: 29,
@@ -278,6 +324,7 @@ const menuItems: MenuItem[] = [
     price: 4.50,
     category: "Desayunos",
     rating: 4.7,
+    allergens: ["gluten", "sulfitos"],
   },
   {
     id: 30,
@@ -287,6 +334,7 @@ const menuItems: MenuItem[] = [
     category: "Desayunos",
     isVegetarian: true,
     rating: 4.8,
+    allergens: ["gluten", "lacteos"],
   },
 
   // Desayunos - Pancakes
@@ -298,6 +346,7 @@ const menuItems: MenuItem[] = [
     category: "Desayunos",
     isVegetarian: true,
     rating: 4.8,
+    allergens: ["gluten", "lacteos", "huevos"],
   },
   {
     id: 32,
@@ -307,6 +356,7 @@ const menuItems: MenuItem[] = [
     category: "Desayunos",
     isVegetarian: true,
     rating: 4.5,
+    allergens: ["gluten", "lacteos"],
   },
 
   // Desayunos - Otros
@@ -318,6 +368,7 @@ const menuItems: MenuItem[] = [
     category: "Desayunos",
     isVegetarian: true,
     rating: 4.6,
+    allergens: ["huevos", "lacteos"],
   },
   {
     id: 34,
@@ -327,6 +378,7 @@ const menuItems: MenuItem[] = [
     category: "Desayunos",
     isVegetarian: true,
     rating: 4.7,
+    allergens: ["huevos"],
   },
 ];
 
@@ -398,7 +450,7 @@ const Menu = () => {
                     <p className="text-muted-foreground mb-3 leading-relaxed">
                       {item.description}
                     </p>
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-3 mb-3">
                       <div className="flex items-center space-x-1">
                         <Star className="h-4 w-4 fill-golden text-golden" />
                         <span className="text-sm font-medium text-card-foreground">
@@ -409,6 +461,25 @@ const Menu = () => {
                         {item.category}
                       </span>
                     </div>
+                    {item.allergens && item.allergens.length > 0 && (
+                      <div className="flex flex-wrap gap-1">
+                        {item.allergens.map((allergen) => {
+                          const info = allergenInfo[allergen];
+                          const Icon = info.icon;
+                          return (
+                            <Badge 
+                              key={allergen} 
+                              variant="secondary" 
+                              className={`text-xs ${info.color}`}
+                              title={info.name}
+                            >
+                              <Icon className="h-3 w-3 mr-1" />
+                              {info.name}
+                            </Badge>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
                   {item.price > 0 && (
                     <div className="text-right ml-4">
@@ -421,6 +492,30 @@ const Menu = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* Información de Alérgenos */}
+        <div className="mt-16 p-6 bg-card rounded-lg border border-border">
+          <h3 className="text-xl font-display font-semibold text-card-foreground mb-4">
+            Información sobre Alérgenos
+          </h3>
+          <p className="text-sm text-muted-foreground mb-4">
+            Según la normativa europea (Reglamento UE 1169/2011), indicamos la presencia de los 14 alérgenos principales en nuestros platos. 
+            Si tienes alguna alergia o intolerancia alimentaria, por favor consulta con nuestro personal antes de realizar tu pedido.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+            {Object.entries(allergenInfo).map(([key, info]) => {
+              const Icon = info.icon;
+              return (
+                <div key={key} className="flex items-center space-x-2 text-xs">
+                  <Badge variant="secondary" className={`${info.color} flex items-center space-x-1`}>
+                    <Icon className="h-3 w-3" />
+                    <span>{info.name}</span>
+                  </Badge>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Call to Action */}
