@@ -470,11 +470,10 @@ const Menu = () => {
                             <Badge 
                               key={allergen} 
                               variant="secondary" 
-                              className={`text-xs ${info.color}`}
+                              className={`text-xs ${info.color} p-1`}
                               title={info.name}
                             >
-                              <Icon className="h-3 w-3 mr-1" />
-                              {info.name}
+                              <Icon className="h-3 w-3" />
                             </Badge>
                           );
                         })}
