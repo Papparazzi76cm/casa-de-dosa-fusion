@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Star, Utensils, MapPin } from "lucide-react";
-import heroImage from "@/assets/hero-restaurant.jpg";
+import heroImage from "@/assets/gallery/jardin-terraza.jpg";
 import fusionDosa from "@/assets/fusion-dosa.jpg";
 import curryPaella from "@/assets/curry-paella.jpg";
 
