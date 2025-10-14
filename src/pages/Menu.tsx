@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Star, Flame, Leaf, Wheat, Fish, Egg, Milk, Shell, Nut } from "lucide-react";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
@@ -454,6 +455,7 @@ const categories = ["Todos", "Desayunos", "Embutidos y Quesos", "Ensalada y Verd
 
 const Menu = () => {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
+  const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
 
   const filteredItems = selectedCategory === "Todos" 
     ? menuItems 
@@ -492,7 +494,11 @@ const Menu = () => {
         {/* Menu Items */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {filteredItems.map((item) => (
-            <Card key={item.id} className="shadow-elegant hover:shadow-golden transition-all duration-300">
+            <Card 
+              key={item.id} 
+              className="shadow-elegant hover:shadow-golden transition-all duration-300 cursor-pointer"
+              onClick={() => setSelectedItem(item)}
+            >
               <CardContent className="p-6">
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex-1">
@@ -595,6 +601,95 @@ const Menu = () => {
             Reservar Mesa Ahora
           </Button>
         </div>
+
+        {/* Dialog para detalles del plato */}
+        <Dialog open={!!selectedItem} onOpenChange={() => setSelectedItem(null)}>
+          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+            {selectedItem && (
+              <>
+                <DialogHeader>
+                  <DialogTitle className="text-2xl font-display font-bold text-foreground flex items-center gap-2">
+                    {selectedItem.name}
+                    <span className="text-3xl font-bold text-golden ml-auto">
+                      {selectedItem.price}€
+                    </span>
+                  </DialogTitle>
+                </DialogHeader>
+                
+                <div className="space-y-6">
+                  {/* Imagen del plato */}
+                  <div className="w-full h-64 bg-muted rounded-lg overflow-hidden">
+                    {selectedItem.image ? (
+                      <img 
+                        src={selectedItem.image} 
+                        alt={selectedItem.name}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                        <span className="text-6xl">🍽️</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Badges de características */}
+                  <div className="flex flex-wrap gap-2">
+                    {selectedItem.isSpicy && (
+                      <Badge variant="secondary" className="bg-red-100 text-red-700">
+                        <Flame className="h-4 w-4 mr-1" />
+                        Picante
+                      </Badge>
+                    )}
+                    {selectedItem.isVegetarian && (
+                      <Badge variant="secondary" className="bg-green-100 text-green-700">
+                        <Leaf className="h-4 w-4 mr-1" />
+                        Vegetariano
+                      </Badge>
+                    )}
+                    <Badge variant="secondary" className="bg-primary/10 text-primary">
+                      <Star className="h-4 w-4 mr-1 fill-golden text-golden" />
+                      {selectedItem.rating}
+                    </Badge>
+                    <Badge variant="outline">
+                      {selectedItem.category}
+                    </Badge>
+                  </div>
+
+                  {/* Descripción */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">Descripción</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {selectedItem.description}
+                    </p>
+                  </div>
+
+                  {/* Alérgenos */}
+                  {selectedItem.allergens && selectedItem.allergens.length > 0 && (
+                    <div>
+                      <h3 className="text-lg font-semibold text-foreground mb-3">Alérgenos</h3>
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                        {selectedItem.allergens.map((allergen) => {
+                          const info = allergenInfo[allergen];
+                          const Icon = info.icon;
+                          return (
+                            <Badge 
+                              key={allergen} 
+                              variant="secondary" 
+                              className={`${info.color} p-2 justify-start`}
+                            >
+                              <Icon className="h-4 w-4 mr-2" />
+                              <span>{info.name}</span>
+                            </Badge>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
