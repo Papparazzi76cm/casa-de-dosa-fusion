@@ -7,9 +7,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, Clock, Users, Phone, Mail, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Reservas = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   
   const [formData, setFormData] = useState({
@@ -22,17 +24,32 @@ const Reservas = () => {
     requests: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const { error } = await supabase.functions.invoke('send-reservation-email', {
+        body: formData
+      });
+
+      if (error) throw error;
+
       setIsSubmitted(true);
       toast({
         title: "¡Reserva Confirmada!",
         description: "Hemos recibido tu reserva. Te contactaremos pronto para confirmar.",
       });
-    }, 1000);
+    } catch (error) {
+      console.error("Error al enviar la reserva:", error);
+      toast({
+        title: "Error",
+        description: "No se pudo procesar la reserva. Por favor, intenta de nuevo.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -215,9 +232,10 @@ const Reservas = () => {
                   <Button 
                     type="submit" 
                     size="lg" 
+                    disabled={isLoading}
                     className="w-full bg-gradient-golden hover:opacity-90 text-blue-grey-dark font-semibold"
                   >
-                    Confirmar Reserva
+                    {isLoading ? "Enviando..." : "Confirmar Reserva"}
                   </Button>
                 </form>
               </CardContent>
