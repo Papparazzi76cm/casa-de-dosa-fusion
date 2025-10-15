@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Instagram, Facebook, Twitter } from "lucide-react";
-import logo from "@/assets/logo-casa-de-dosa.jpg";
+import logo from "@/assets/logo-casa-de-dosa-new.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-grey-dark text-white">
+    <footer className="bg-[hsl(var(--header-footer-bg))] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo y descripción */}
