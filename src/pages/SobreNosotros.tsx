@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Users, Award, Utensils } from "lucide-react";
-import restaurantInterior from "@/assets/restaurant-interior.jpg";
+import interiorRustico from "@/assets/gallery/interior-rustico.jpg";
 
 const SobreNosotros = () => {
   return (
@@ -43,7 +43,7 @@ const SobreNosotros = () => {
           </div>
           <div className="relative">
             <img
-              src={restaurantInterior}
+              src={interiorRustico}
               alt="Interior del restaurante Casa de Dosa"
               className="rounded-lg shadow-elegant w-full h-96 object-cover"
             />
