@@ -47,7 +47,7 @@ All colors MUST be HSL.
     --blue-grey: 210 20% 75%;
     --blue-grey-light: 210 15% 85%;
     --blue-grey-dark: 210 30% 15%;
-    --header-footer-bg: 0 0% 54%;
+    --header-footer-bg: 0 0% 54.1%;
 
     /* Gradients - updated for dark theme */
     --gradient-hero: linear-gradient(135deg, hsl(var(--blue-grey-dark)), hsl(210 25% 20%));
