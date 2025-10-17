@@ -608,6 +608,19 @@ const Menu = () => {
     ? menuItems 
     : menuItems.filter(item => item.category === selectedCategory);
 
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    // Scroll al principio de la sección de items del menú
+    setTimeout(() => {
+      const menuItemsSection = document.getElementById('menu-items-section');
+      if (menuItemsSection) {
+        const yOffset = -100; // Offset para el navbar fijo
+        const y = menuItemsSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
   return (
     <div className="min-h-screen py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -627,7 +640,7 @@ const Menu = () => {
             <Button
               key={category}
               variant={selectedCategory === category ? "default" : "outline"}
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => handleCategoryChange(category)}
               className={selectedCategory === category 
                 ? "bg-gradient-golden hover:opacity-90" 
                 : "border-golden text-golden hover:bg-golden hover:text-blue-grey-dark"
@@ -639,7 +652,7 @@ const Menu = () => {
         </div>
 
         {/* Menu Items */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div id="menu-items-section" className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {filteredItems.map((item) => (
             <Card 
               key={item.id} 
