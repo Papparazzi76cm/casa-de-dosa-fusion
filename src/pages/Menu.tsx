@@ -5,6 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Star, Flame, Leaf, Wheat, Fish, Egg, Milk, Shell, Nut } from "lucide-react";
+import platoJamonIberico from "@/assets/plato-jamon-iberico.png";
+import platoEmbutidosIbericos from "@/assets/plato-embutidos-ibericos.png";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -163,6 +165,7 @@ const menuItems: MenuItem[] = [
     category: "Embutidos y Quesos",
     rating: 4.9,
     allergens: ["sulfitos"],
+    image: platoJamonIberico,
   },
   {
     id: 2,
@@ -172,6 +175,7 @@ const menuItems: MenuItem[] = [
     category: "Embutidos y Quesos",
     rating: 4.8,
     allergens: ["sulfitos"],
+    image: platoEmbutidosIbericos,
   },
   {
     id: 3,
