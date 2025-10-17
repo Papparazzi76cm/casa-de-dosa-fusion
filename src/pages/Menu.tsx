@@ -319,7 +319,7 @@ const menuItems: MenuItem[] = [
 
   // Desayunos - Croissant
   {
-    id: 22,
+    id: 29,
     name: "Croissant con Mermelada y Mantequilla",
     description: "Incluye café y zumo natural",
     price: 3.50,
@@ -329,7 +329,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "lacteos", "huevos"],
   },
   {
-    id: 23,
+    id: 30,
     name: "Croissant con Bacon y Queso",
     description: "Incluye café y zumo natural",
     price: 4.50,
@@ -338,7 +338,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "lacteos", "huevos", "sulfitos"],
   },
   {
-    id: 24,
+    id: 31,
     name: "Croissant con Jamón York/Serrano y Queso",
     description: "Incluye café y zumo natural",
     price: 4.50,
@@ -347,7 +347,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "lacteos", "huevos", "sulfitos"],
   },
   {
-    id: 25,
+    id: 32,
     name: "Croissant con Nutella",
     description: "Incluye café y zumo natural",
     price: 3.60,
@@ -359,7 +359,7 @@ const menuItems: MenuItem[] = [
 
   // Desayunos - Tostadas
   {
-    id: 26,
+    id: 33,
     name: "Tostada con Tomate, Aceite y Sal",
     description: "Incluye café y zumo natural",
     price: 3.90,
@@ -369,7 +369,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten"],
   },
   {
-    id: 27,
+    id: 34,
     name: "Tostada con Jamón York/Serrano, Tomate y Aceite",
     description: "Incluye café y zumo natural",
     price: 4.50,
@@ -378,7 +378,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "sulfitos"],
   },
   {
-    id: 28,
+    id: 35,
     name: "Tostada con Aguacate, Tomate y Jamón York/Serrano",
     description: "Incluye café y zumo natural",
     price: 5.30,
@@ -387,7 +387,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "sulfitos"],
   },
   {
-    id: 29,
+    id: 36,
     name: "Tostada con Tumaca",
     description: "Jamón serrano, tomate y orégano. Incluye café y zumo natural",
     price: 4.50,
@@ -396,7 +396,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "sulfitos"],
   },
   {
-    id: 30,
+    id: 37,
     name: "Tostada con Burrata y Mermelada",
     description: "Incluye café y zumo natural",
     price: 5.50,
@@ -408,7 +408,7 @@ const menuItems: MenuItem[] = [
 
   // Desayunos - Pancakes
   {
-    id: 31,
+    id: 38,
     name: "Pancakes con Sirope de Chocolate, Miel y Plátano",
     description: "Incluye café y zumo natural",
     price: 5.50,
@@ -418,7 +418,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "lacteos", "huevos"],
   },
   {
-    id: 32,
+    id: 39,
     name: "Napolitano",
     description: "Incluye café y zumo natural",
     price: 3.00,
@@ -430,7 +430,7 @@ const menuItems: MenuItem[] = [
 
   // Desayunos - Otros
   {
-    id: 33,
+    id: 40,
     name: "Pincho de Tortilla",
     description: "Incluye café y zumo natural",
     price: 3.50,
@@ -440,7 +440,7 @@ const menuItems: MenuItem[] = [
     allergens: ["huevos", "lacteos"],
   },
   {
-    id: 34,
+    id: 41,
     name: "Omelette (Indian Tortilla)",
     description: "Tortilla india con cebolla y cilantro. Incluye café y zumo natural",
     price: 4.00,
