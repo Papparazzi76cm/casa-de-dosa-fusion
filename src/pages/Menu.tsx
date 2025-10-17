@@ -61,16 +61,6 @@ const menuItems: MenuItem[] = [
   },
   {
     id: 1003,
-    name: "Ensaladilla de la Casa",
-    description: "Receta clásica con un toque gourmet",
-    price: 6.20,
-    category: "Tapas",
-    isVegetarian: true,
-    rating: 4.5,
-    allergens: ["huevos", "mostaza"],
-  },
-  {
-    id: 1004,
     name: "Samosas Vegetales",
     description: "Triángulos crujientes rellenos de verduras especiadas (8 unidades)",
     price: 6.90,
@@ -79,20 +69,9 @@ const menuItems: MenuItem[] = [
     rating: 4.6,
     allergens: ["gluten", "mostaza", "sesamo"],
   },
-  {
-    id: 1005,
-    name: "Mini Papadoms",
-    description: "Crujientes obleas tradicionales como snack",
-    price: 4.50,
-    category: "Tapas",
-    isVegetarian: true,
-    rating: 4.5,
-    allergens: ["gluten"],
-  },
-
   // Tapas - Carne
   {
-    id: 1006,
+    id: 1004,
     name: "Lágrimas de Pollo con Salsa Miel y Mostaza",
     description: "Crujientes tiras de pollo acompañadas con salsa dulce de miel y mostaza",
     price: 7.20,
@@ -101,16 +80,16 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "huevos", "mostaza"],
   },
   {
-    id: 1007,
+    id: 1005,
     name: "Gyozas (Empanadillas Rellenas)",
     description: "A elegir: Pollo / Cerdo / Cordero",
-    price: 7.50,
+    price: 9,
     category: "Tapas",
     rating: 4.8,
     allergens: ["gluten", "soja", "huevos", "apio"],
   },
   {
-    id: 1008,
+    id: 1006,
     name: "Torrezno de Soria",
     description: "Tradicional torrezno crujiente, jugoso por dentro y dorado por fuera",
     price: 6.50,
@@ -119,7 +98,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "huevos", "lacteos"],
   },
   {
-    id: 1009,
+    id: 1007,
     name: "Croquetas de Chorizo",
     description: "Cremosas croquetas artesanas con auténtico chorizo (6 unidades)",
     price: 5.90,
@@ -128,7 +107,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "lacteos", "huevos"],
   },
   {
-    id: 1010,
+    id: 1008,
     name: "Croquetón de Pollo Mali",
     description: "Gran croqueta con receta especial de la casa (1 unidad)",
     price: 1.50,
@@ -139,7 +118,7 @@ const menuItems: MenuItem[] = [
 
   // Tapas - Del Mar
   {
-    id: 1011,
+    id: 1009,
     name: "Mini Burger de Atún Indio con Patatas Fritas",
     description: "Pequeña hamburguesa casera de atún con especias indias, acompañada de crujientes patatas fritas",
     price: 4.90,
@@ -148,7 +127,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "huevos", "pescado", "mostaza", "sesamo"],
   },
   {
-    id: 1012,
+    id: 1010,
     name: "Rabas con Alioli",
     description: "Tiras de calamar rebozadas, fritas al estilo clásico y servidas con suave salsa alioli",
     price: 7.20,
@@ -157,16 +136,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "moluscos", "huevos"],
   },
   {
-    id: 1013,
-    name: "Salpicón de la Abuela con Mini Papadom",
-    description: "Ensalada fresca de mariscos y verduras, receta tradicional con un toque especial, servida con un crujiente mini papadom",
-    price: 6.80,
-    category: "Tapas",
-    rating: 4.6,
-    allergens: ["crustaceos", "moluscos", "gluten"],
-  },
-  {
-    id: 1014,
+    id: 1011,
     name: "Croquetas de Bacalao",
     description: "Deliciosas croquetas caseras de bacalao, doradas por fuera y cremosas por dentro (6 unidades)",
     price: 5.90,
@@ -175,7 +145,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "lacteos", "huevos", "pescado"],
   },
   {
-    id: 1015,
+    id: 1012,
     name: "Albóndigas de Langostino con Salsa India con Pan",
     description: "Jugosas albóndigas elaboradas con langostino fresco, aromatizadas con especias indias, crujientes por fuera y tiernas por dentro",
     price: 8.50,
