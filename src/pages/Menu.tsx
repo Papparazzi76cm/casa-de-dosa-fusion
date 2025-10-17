@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -601,6 +602,7 @@ const menuItems: MenuItem[] = [
 const categories = ["Todos", "Tapas", "Desayunos", "Embutidos y Quesos", "Ensalada y Verduras", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
 
 const Menu = () => {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
 
@@ -757,7 +759,11 @@ const Menu = () => {
           <p className="text-blue-grey-light mb-6 text-lg">
             Reserva tu mesa y disfruta de una experiencia culinaria inolvidable
           </p>
-          <Button size="lg" className="bg-golden hover:bg-golden-dark text-blue-grey-dark font-semibold">
+          <Button 
+            size="lg" 
+            className="bg-golden hover:bg-golden-dark text-blue-grey-dark font-semibold"
+            onClick={() => navigate('/reservas')}
+          >
             Reservar Mesa Ahora
           </Button>
         </div>
