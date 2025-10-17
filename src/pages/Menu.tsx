@@ -49,7 +49,7 @@ const menuItems: MenuItem[] = [
   {
     id: 2,
     name: "Selección de Ibéricos",
-    description: "Salchicha / chorizo / lomo",
+    description: "Salchichón / chorizo / lomo",
     price: 13,
     category: "Embutidos y Quesos",
     rating: 4.8,
@@ -105,11 +105,11 @@ const menuItems: MenuItem[] = [
     price: 15,
     category: "Entrantes",
     rating: 4.8,
-    allergens: ["gluten", "huevos", "lacteos", "mostaza", "sesamo"],
+    allergens: ["gluten", "huevos", "lacteos", "mostaza", "sésamo"],
   },
   {
     id: 8,
-    name: "Gyoza de Ropa Vieja con Jugo de Vegetal",
+    name: "Gyoza de Ropa Vieja con Jugo Vegetal",
     description: "Gyoza con relleno de ropa vieja y jugo vegetal (unidad)",
     price: 9,
     category: "Entrantes",
@@ -195,7 +195,7 @@ const menuItems: MenuItem[] = [
   },
   {
     id: 17,
-    name: "Finger de Pollo",
+    name: "Fingers de Pollo",
     description: "Tiras de pollo crujientes",
     price: 8,
     category: "Entrantes",
