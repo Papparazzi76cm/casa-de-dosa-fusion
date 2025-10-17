@@ -8,7 +8,6 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Reservas from "./pages/Reservas";
-import SobreNosotros from "./pages/SobreNosotros";
 import Galeria from "./pages/Galeria";
 import Contacto from "./pages/Contacto";
 import NotFound from "./pages/NotFound";
@@ -27,7 +26,6 @@ const App = () => (
               <Route path="/" element={<Home />} />
               <Route path="/menu" element={<Menu />} />
               <Route path="/reservas" element={<Reservas />} />
-              <Route path="/sobre-nosotros" element={<SobreNosotros />} />
               <Route path="/galeria" element={<Galeria />} />
               <Route path="/contacto" element={<Contacto />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

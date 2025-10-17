@@ -12,7 +12,6 @@ const Navigation = () => {
     { name: "Inicio", path: "/" },
     { name: "Menú", path: "/menu" },
     { name: "Reservas", path: "/reservas" },
-    { name: "Sobre Nosotros", path: "/sobre-nosotros" },
     { name: "Galería", path: "/galeria" },
     { name: "Contacto", path: "/contacto" },
   ];

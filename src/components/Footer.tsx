@@ -50,11 +50,6 @@ const Footer = () => {
                   Reservas
                 </Link>
               </li>
-              <li>
-                <Link to="/sobre-nosotros" className="text-blue-grey-light hover:text-golden transition-colors">
-                  Sobre Nosotros
-                </Link>
-              </li>
             </ul>
           </div>
 

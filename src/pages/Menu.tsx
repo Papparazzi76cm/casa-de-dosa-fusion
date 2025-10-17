@@ -105,7 +105,7 @@ const menuItems: MenuItem[] = [
     price: 15,
     category: "Entrantes",
     rating: 4.8,
-    allergens: ["gluten", "huevos", "lacteos", "mostaza", "sésamo"],
+    allergens: ["gluten", "huevos", "lacteos", "mostaza", "sesamo"],
   },
   {
     id: 8,
