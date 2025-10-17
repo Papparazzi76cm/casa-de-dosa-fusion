@@ -36,6 +36,153 @@ const allergenInfo: Record<Allergen, { name: string; icon: any; color: string }>
 };
 
 const menuItems: MenuItem[] = [
+  // Tapas - Vegetal
+  {
+    id: 1001,
+    name: "Patatas Bravas a Nuestro Estilo",
+    description: "Con salsa especial",
+    price: 6.50,
+    category: "Tapas",
+    isSpicy: true,
+    isVegetarian: true,
+    rating: 4.6,
+    allergens: ["gluten", "huevos"],
+  },
+  {
+    id: 1002,
+    name: "Masala Dosa",
+    description: "Crepe salado de origen indio relleno de puré de patatas con salsa de verduras",
+    price: 12.50,
+    category: "Tapas",
+    isVegetarian: true,
+    rating: 4.8,
+    allergens: ["gluten"],
+  },
+  {
+    id: 1003,
+    name: "Ensaladilla de la Casa",
+    description: "Receta clásica con un toque gourmet",
+    price: 6.20,
+    category: "Tapas",
+    isVegetarian: true,
+    rating: 4.5,
+    allergens: ["huevos", "mostaza"],
+  },
+  {
+    id: 1004,
+    name: "Samosas Vegetales",
+    description: "Triángulos crujientes rellenos de verduras especiadas (8 unidades)",
+    price: 6.90,
+    category: "Tapas",
+    isVegetarian: true,
+    rating: 4.6,
+    allergens: ["gluten", "mostaza", "sesamo"],
+  },
+  {
+    id: 1005,
+    name: "Mini Papadoms",
+    description: "Crujientes obleas tradicionales como snack",
+    price: 4.50,
+    category: "Tapas",
+    isVegetarian: true,
+    rating: 4.5,
+    allergens: ["gluten"],
+  },
+
+  // Tapas - Carne
+  {
+    id: 1006,
+    name: "Lágrimas de Pollo con Salsa Miel y Mostaza",
+    description: "Crujientes tiras de pollo acompañadas con salsa dulce de miel y mostaza",
+    price: 7.20,
+    category: "Tapas",
+    rating: 4.7,
+    allergens: ["gluten", "huevos", "mostaza"],
+  },
+  {
+    id: 1007,
+    name: "Gyozas (Empanadillas Rellenas)",
+    description: "A elegir: Pollo / Cerdo / Cordero",
+    price: 7.50,
+    category: "Tapas",
+    rating: 4.8,
+    allergens: ["gluten", "soja", "huevos", "apio"],
+  },
+  {
+    id: 1008,
+    name: "Torrezno de Soria",
+    description: "Tradicional torrezno crujiente, jugoso por dentro y dorado por fuera",
+    price: 6.50,
+    category: "Tapas",
+    rating: 4.7,
+    allergens: ["gluten", "huevos", "lacteos"],
+  },
+  {
+    id: 1009,
+    name: "Croquetas de Chorizo",
+    description: "Cremosas croquetas artesanas con auténtico chorizo (6 unidades)",
+    price: 5.90,
+    category: "Tapas",
+    rating: 4.6,
+    allergens: ["gluten", "lacteos", "huevos"],
+  },
+  {
+    id: 1010,
+    name: "Croquetón de Pollo Mali",
+    description: "Gran croqueta con receta especial de la casa (1 unidad)",
+    price: 1.50,
+    category: "Tapas",
+    rating: 4.8,
+    allergens: ["gluten", "lacteos", "huevos"],
+  },
+
+  // Tapas - Del Mar
+  {
+    id: 1011,
+    name: "Mini Burger de Atún Indio con Patatas Fritas",
+    description: "Pequeña hamburguesa casera de atún con especias indias, acompañada de crujientes patatas fritas",
+    price: 4.90,
+    category: "Tapas",
+    rating: 4.5,
+    allergens: ["gluten", "huevos", "pescado", "mostaza", "sesamo"],
+  },
+  {
+    id: 1012,
+    name: "Rabas con Alioli",
+    description: "Tiras de calamar rebozadas, fritas al estilo clásico y servidas con suave salsa alioli",
+    price: 7.20,
+    category: "Tapas",
+    rating: 4.7,
+    allergens: ["gluten", "moluscos", "huevos"],
+  },
+  {
+    id: 1013,
+    name: "Salpicón de la Abuela con Mini Papadom",
+    description: "Ensalada fresca de mariscos y verduras, receta tradicional con un toque especial, servida con un crujiente mini papadom",
+    price: 6.80,
+    category: "Tapas",
+    rating: 4.6,
+    allergens: ["crustaceos", "moluscos", "gluten"],
+  },
+  {
+    id: 1014,
+    name: "Croquetas de Bacalao",
+    description: "Deliciosas croquetas caseras de bacalao, doradas por fuera y cremosas por dentro (6 unidades)",
+    price: 5.90,
+    category: "Tapas",
+    rating: 4.7,
+    allergens: ["gluten", "lacteos", "huevos", "pescado"],
+  },
+  {
+    id: 1015,
+    name: "Albóndigas de Langostino con Salsa India con Pan",
+    description: "Jugosas albóndigas elaboradas con langostino fresco, aromatizadas con especias indias, crujientes por fuera y tiernas por dentro",
+    price: 8.50,
+    category: "Tapas",
+    rating: 4.8,
+    allergens: ["crustaceos", "gluten", "huevos"],
+  },
+
   // Embutidos y Quesos
   {
     id: 1,
@@ -451,7 +598,7 @@ const menuItems: MenuItem[] = [
   },
 ];
 
-const categories = ["Todos", "Desayunos", "Embutidos y Quesos", "Ensalada y Verduras", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
+const categories = ["Todos", "Tapas", "Desayunos", "Embutidos y Quesos", "Ensalada y Verduras", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
 
 const Menu = () => {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
