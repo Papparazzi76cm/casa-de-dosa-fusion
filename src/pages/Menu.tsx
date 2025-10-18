@@ -232,7 +232,7 @@ const menuItems: MenuItem[] = [
   {
     id: 8,
     name: "Gyoza de Ropa Vieja con Jugo Vegetal",
-    description: "Gyoza con relleno de ropa vieja y jugo vegetal (unidad)",
+    description: "Gyoza con relleno de ropa vieja y jugo vegetal (4 unidades)",
     price: 9,
     category: "Entrantes",
     rating: 4.8,
