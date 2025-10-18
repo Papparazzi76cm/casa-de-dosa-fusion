@@ -301,7 +301,7 @@ const menuItems: MenuItem[] = [
     id: 15,
     name: "Torrezno de Soria",
     description: "Especialidad tradicional de Soria",
-    price: 7,
+    price: 6.5,
     category: "Entrantes",
     rating: 4.7,
     allergens: ["gluten", "huevos", "lacteos"],
