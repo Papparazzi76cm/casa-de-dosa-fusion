@@ -83,10 +83,10 @@ const menuItems: MenuItem[] = [
   },
   {
     id: 1005,
-    name: "Gyozas (Empanadillas Rellenas)",
-    description: "A elegir: Pollo / Cerdo / Cordero",
+   name: "Gyoza de Ropa Vieja con Jugo Vegetal",
+    description: "Gyoza con relleno de ropa vieja y jugo vegetal (4 unidades)",
     price: 9,
-    category: "Tapas",
+    category: "Entrantes",
     rating: 4.8,
     allergens: ["gluten", "soja", "huevos", "apio"],
   },
