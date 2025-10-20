@@ -271,7 +271,7 @@ const menuItems: MenuItem[] = [
   {
     id: 12,
     name: "Croquetón de Pollo Malai",
-    description: "Croqueta con receta especial de la casa" (mínimo 2 unidades),
+    description: "Croqueta con receta especial de la casa (mínimo 2 unidades)",
     price: 3,
     category: "Entrantes",
     rating: 4.8,
