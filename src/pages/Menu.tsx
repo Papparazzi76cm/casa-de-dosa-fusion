@@ -111,7 +111,7 @@ const menuItems: MenuItem[] = [
   {
     id: 1008,
     name: "Croquetón de Pollo Mali",
-    description: "Croqueta con receta especial de la casa (1 unidad)",
+    description: "Croqueta con receta especial de la casa (mínimo 2 unidades)",
     price: 3,
     category: "Tapas",
     rating: 4.8,
