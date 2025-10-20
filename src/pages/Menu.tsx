@@ -342,7 +342,7 @@ const menuItems: MenuItem[] = [
     price: 22,
     category: "Pescados",
     rating: 4.9,
-    allergens: ["pescado", "lacteos", "soja"],
+    allergens: ["pescado", "lacteos", "soja", "frutos_cascara"],
   },
 
   // Arroz
