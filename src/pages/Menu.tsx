@@ -49,7 +49,7 @@ const menuItems: MenuItem[] = [
     isSpicy: true,
     isVegetarian: true,
     rating: 4.6,
-    allergens: ["gluten", "huevos"],
+    allergens: ["gluten"],
   },
   {
     id: 1002,
@@ -94,10 +94,10 @@ const menuItems: MenuItem[] = [
     id: 1006,
     name: "Torrezno de Soria",
     description: "Tradicional torrezno crujiente, jugoso por dentro y dorado por fuera",
-    price: 6.50,
+    price: 7,
     category: "Tapas",
     rating: 4.7,
-    allergens: ["gluten", "huevos", "lacteos"],
+    allergens: [],
   },
   {
     id: 1007,
@@ -185,7 +185,7 @@ const menuItems: MenuItem[] = [
     category: "Embutidos y Quesos",
     isVegetarian: true,
     rating: 4.7,
-    allergens: ["lacteos", "frutos_cascara"],
+    allergens: ["lacteos"],
   },
 
   // Ensalada y Verduras
@@ -206,7 +206,7 @@ const menuItems: MenuItem[] = [
     price: 12,
     category: "Ensalada y Verduras",
     rating: 4.7,
-    allergens: ["crustaceos", "huevos", "mostaza"],
+    allergens: ["crustaceos", "huevos"],
   },
   {
     id: 6,
@@ -271,8 +271,8 @@ const menuItems: MenuItem[] = [
   {
     id: 12,
     name: "Croquetón de Pollo Malai",
-    description: "Gran croqueta con receta especial de la casa",
-    price: 1.50,
+    description: "Croqueta con receta especial de la casa" (mínimo 2 unidades),
+    price: 3,
     category: "Entrantes",
     rating: 4.8,
     allergens: ["gluten", "lacteos", "huevos"],
@@ -301,7 +301,7 @@ const menuItems: MenuItem[] = [
     id: 15,
     name: "Torrezno de Soria",
     description: "Especialidad tradicional de Soria",
-    price: 6.5,
+    price: 7,
     category: "Entrantes",
     rating: 4.7,
     allergens: ["gluten", "huevos", "lacteos"],
@@ -539,17 +539,6 @@ const menuItems: MenuItem[] = [
     rating: 4.8,
     allergens: ["gluten", "lacteos", "huevos"],
   },
-  {
-    id: 39,
-    name: "Napolitano",
-    description: "Incluye café y zumo natural",
-    price: 3.00,
-    category: "Desayunos",
-    isVegetarian: true,
-    rating: 4.5,
-    allergens: ["gluten", "lacteos"],
-  },
-
   // Desayunos - Otros
   {
     id: 40,
