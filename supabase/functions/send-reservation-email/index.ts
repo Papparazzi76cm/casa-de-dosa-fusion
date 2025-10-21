@@ -33,7 +33,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Enviar email al restaurante
     const restaurantEmail = await resend.emails.send({
       from: "Casa de Dosa <onboarding@resend.dev>",
-      to: ["reservas@casadenosa.com"],
+      to: ["carlosmariscal039@gmail.com"],
       subject: `Nueva Reserva - ${name} (${date} ${time})`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
