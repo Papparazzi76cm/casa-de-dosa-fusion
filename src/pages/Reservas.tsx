@@ -345,7 +345,7 @@ const Reservas = () => {
               <CardContent className="space-y-3">
                 <div className="flex items-center space-x-2">
                   <Phone className="h-4 w-4 text-golden" />
-                  <span className="text-muted-foreground">+34 912 345 678</span>
+                  <span className="text-muted-foreground">983 64 23 92</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="h-4 w-4 text-golden" />

@@ -206,8 +206,8 @@ const handler = async (req: Request): Promise<Response> => {
           
           <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px;">
             <h3 style="margin-top: 0;">Contacto</h3>
-            <p style="margin: 5px 0;">📞 +34 912 345 678</p>
-            <p style="margin: 5px 0;">✉️ reservas@casadedosa.es</p>
+            <p style="margin: 5px 0;">📞 983 64 23 92</p>
+            <p style="margin: 5px 0;">✉️ reservas@casadedosa.com</p>
           </div>
           
           <p style="margin-top: 30px;">¡Nos vemos pronto en Casa de Dosa!</p>
