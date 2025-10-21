@@ -6,7 +6,7 @@ const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
 const supabase = createClient(
   Deno.env.get("SUPABASE_URL") ?? "",
-  Deno.env.get("SUPABASE_ANON_KEY") ?? ""
+  Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
 );
 
 const corsHeaders = {
@@ -102,18 +102,24 @@ const handler = async (req: Request): Promise<Response> => {
     const editToken = crypto.randomUUID();
     const tokenExpiresAt = new Date(Date.now() + 60 * 60 * 1000); // 60 minutes from now
 
+    console.log("Updating reservation with token:", reservation.id);
+
     // Update reservation with token
-    const { error: updateError } = await supabase
+    const { data: updatedData, error: updateError } = await supabase
       .from('reservations')
       .update({
         edit_token: editToken,
         token_expires_at: tokenExpiresAt.toISOString()
       })
-      .eq('id', reservation.id);
+      .eq('id', reservation.id)
+      .select();
 
     if (updateError) {
       console.error("Error updating token:", updateError);
+      throw new Error("Error al actualizar el token de reserva");
     }
+
+    console.log("Token updated successfully:", updatedData);
 
     // Create action URLs
     const baseUrl = Deno.env.get("SUPABASE_URL")?.replace('/rest/v1', '') || '';
