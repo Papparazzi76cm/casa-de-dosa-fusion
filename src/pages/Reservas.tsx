@@ -1,17 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Calendar, Clock, Users, Phone, Mail, CheckCircle } from "lucide-react";
+import { Calendar, Clock, Users, Phone, Mail, CheckCircle, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 const Reservas = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [availableSpots, setAvailableSpots] = useState<{ morning: number; evening: number } | null>(null);
   const { toast } = useToast();
   
   const [formData, setFormData] = useState({
@@ -33,7 +34,13 @@ const Reservas = () => {
         body: formData
       });
 
-      if (error) throw error;
+      if (error) {
+        // Check if error message contains availability info
+        if (error.message?.includes('No hay suficiente capacidad')) {
+          throw new Error(error.message);
+        }
+        throw error;
+      }
 
       setIsSubmitted(true);
       toast({
@@ -55,6 +62,43 @@ const Reservas = () => {
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
+
+  // Check availability when date changes
+  useEffect(() => {
+    const checkAvailability = async () => {
+      if (!formData.date) {
+        setAvailableSpots(null);
+        return;
+      }
+
+      try {
+        const { data, error } = await supabase
+          .from('reservations')
+          .select('guests, session')
+          .eq('date', formData.date)
+          .neq('status', 'cancelled');
+
+        if (error) throw error;
+
+        const morningGuests = data
+          ?.filter(r => r.session === 'morning')
+          .reduce((sum, r) => sum + r.guests, 0) || 0;
+
+        const eveningGuests = data
+          ?.filter(r => r.session === 'evening')
+          .reduce((sum, r) => sum + r.guests, 0) || 0;
+
+        setAvailableSpots({
+          morning: 30 - morningGuests,
+          evening: 30 - eveningGuests
+        });
+      } catch (error) {
+        console.error("Error checking availability:", error);
+      }
+    };
+
+    checkAvailability();
+  }, [formData.date]);
 
   if (isSubmitted) {
     return (
@@ -169,7 +213,7 @@ const Reservas = () => {
 
                   {/* Detalles de la Reserva */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="space-y-2">
+                     <div className="space-y-2">
                       <Label htmlFor="date">Fecha *</Label>
                       <Input
                         id="date"
@@ -179,6 +223,22 @@ const Reservas = () => {
                         onChange={(e) => handleInputChange("date", e.target.value)}
                         min={new Date().toISOString().split('T')[0]}
                       />
+                      {availableSpots && formData.date && (
+                        <div className="text-xs space-y-1 mt-2">
+                          <div className="flex items-center justify-between p-2 bg-muted rounded">
+                            <span>Mañana (10:00-16:30)</span>
+                            <span className={availableSpots.morning < 10 ? "text-red-500 font-semibold" : "text-green-600 font-semibold"}>
+                              {availableSpots.morning} plazas
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-between p-2 bg-muted rounded">
+                            <span>Tarde (19:30-00:00)</span>
+                            <span className={availableSpots.evening < 10 ? "text-red-500 font-semibold" : "text-green-600 font-semibold"}>
+                              {availableSpots.evening} plazas
+                            </span>
+                          </div>
+                        </div>
+                      )}
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="time">Hora *</Label>
@@ -307,6 +367,7 @@ const Reservas = () => {
               </CardHeader>
               <CardContent>
                 <ul className="text-sm text-muted-foreground space-y-2">
+                  <li>• Capacidad máxima: 30 comensales por sesión</li>
                   <li>• Las reservas se mantienen 15 minutos</li>
                   <li>• Cancelaciones con 24h de antelación</li>
                   <li>• Grupos grandes requieren confirmación</li>

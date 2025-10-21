@@ -1,7 +1,13 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+
+const supabase = createClient(
+  Deno.env.get("SUPABASE_URL") ?? "",
+  Deno.env.get("SUPABASE_ANON_KEY") ?? ""
+);
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -29,6 +35,68 @@ const handler = async (req: Request): Promise<Response> => {
     const { name, email, phone, date, time, guests, requests }: ReservationEmailRequest = await req.json();
 
     console.log("Sending reservation email for:", name);
+
+    // Determine session based on time (morning: 10:00-16:30, evening: 19:30-00:00)
+    const hour = parseInt(time.split(':')[0]);
+    const session = hour < 17 ? 'morning' : 'evening';
+
+    // Check current capacity for the date and session
+    const { data: existingReservations, error: queryError } = await supabase
+      .from('reservations')
+      .select('guests')
+      .eq('date', date)
+      .eq('session', session)
+      .neq('status', 'cancelled');
+
+    if (queryError) {
+      console.error("Error checking capacity:", queryError);
+      throw new Error("Error al verificar disponibilidad");
+    }
+
+    // Calculate total guests for this session
+    const totalGuests = existingReservations?.reduce((sum, res) => sum + res.guests, 0) || 0;
+    const requestedGuests = parseInt(guests);
+
+    console.log(`Session: ${session}, Current capacity: ${totalGuests}/30, Requested: ${requestedGuests}`);
+
+    // Check if adding this reservation would exceed capacity
+    if (totalGuests + requestedGuests > 30) {
+      const availableSpots = 30 - totalGuests;
+      return new Response(
+        JSON.stringify({ 
+          error: `No hay suficiente capacidad. Solo quedan ${availableSpots} plazas disponibles para esta sesión.`,
+          availableSpots
+        }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    // Save reservation to database
+    const { data: reservation, error: insertError } = await supabase
+      .from('reservations')
+      .insert({
+        name,
+        email,
+        phone,
+        date,
+        time,
+        guests: requestedGuests,
+        session,
+        requests,
+        status: 'pending'
+      })
+      .select()
+      .single();
+
+    if (insertError) {
+      console.error("Error saving reservation:", insertError);
+      throw new Error("Error al guardar la reserva");
+    }
+
+    console.log("Reservation saved:", reservation.id);
 
     // Enviar email al restaurante
     const restaurantEmail = await resend.emails.send({
