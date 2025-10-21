@@ -281,7 +281,7 @@ const Reservas = () => {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="h-4 w-4 text-golden" />
-                  <span className="text-muted-foreground">reservas@casadedosa.es</span>
+                  <span className="text-muted-foreground">reservas@casadedosa.com</span>
                 </div>
                 <p className="text-sm text-muted-foreground mt-4">
                   Para reservas de más de 10 personas o eventos especiales, 

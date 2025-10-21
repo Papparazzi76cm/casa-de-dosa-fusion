@@ -82,7 +82,7 @@ const Contacto = () => {
                 <div className="space-y-3">
                   <div>
                     <p className="font-medium text-foreground">Reservas y General</p>
-                    <p className="text-muted-foreground">reservas@casadedosa.es</p>
+                    <p className="text-muted-foreground">reservas@casadedosa.com</p>
                   </div>
                 </div>
               </CardContent>
