@@ -187,17 +187,28 @@ const Reservas = () => {
                           <SelectValue placeholder="Selecciona hora" />
                         </SelectTrigger>
                         <SelectContent>
+                          <SelectItem value="10:00">10:00</SelectItem>
+                          <SelectItem value="10:30">10:30</SelectItem>
+                          <SelectItem value="11:00">11:00</SelectItem>
+                          <SelectItem value="11:30">11:30</SelectItem>
+                          <SelectItem value="12:00">12:00</SelectItem>
+                          <SelectItem value="12:30">12:30</SelectItem>
                           <SelectItem value="13:00">13:00</SelectItem>
                           <SelectItem value="13:30">13:30</SelectItem>
                           <SelectItem value="14:00">14:00</SelectItem>
                           <SelectItem value="14:30">14:30</SelectItem>
                           <SelectItem value="15:00">15:00</SelectItem>
+                          <SelectItem value="15:30">15:30</SelectItem>
+                          <SelectItem value="16:00">16:00</SelectItem>
+                          <SelectItem value="19:30">19:30</SelectItem>
                           <SelectItem value="20:00">20:00</SelectItem>
                           <SelectItem value="20:30">20:30</SelectItem>
                           <SelectItem value="21:00">21:00</SelectItem>
                           <SelectItem value="21:30">21:30</SelectItem>
                           <SelectItem value="22:00">22:00</SelectItem>
                           <SelectItem value="22:30">22:30</SelectItem>
+                          <SelectItem value="23:00">23:00</SelectItem>
+                          <SelectItem value="23:30">23:30</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -253,16 +264,13 @@ const Reservas = () => {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div>
-                  <h4 className="font-semibold text-foreground">Almuerzo</h4>
-                  <p className="text-muted-foreground">13:00 - 16:00</p>
+                  <h4 className="font-semibold text-foreground">Lunes a Sábado</h4>
+                  <p className="text-muted-foreground">10:00 - 16:30</p>
+                  <p className="text-muted-foreground">19:30 - 00:00</p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground">Cena</h4>
-                  <p className="text-muted-foreground">20:00 - 00:00</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground">Días</h4>
-                  <p className="text-muted-foreground">Lunes a Domingo</p>
+                  <h4 className="font-semibold text-foreground">Domingo</h4>
+                  <p className="text-muted-foreground">10:00 - 16:30</p>
                 </div>
               </CardContent>
             </Card>

@@ -65,7 +65,8 @@ const Contacto = () => {
                   983 64 23 92
                 </p>
                 <p className="text-muted-foreground">
-                  Lunes a Domingo: 12:00 - 00:30<br />
+                  Lunes a Sábado: 10:00 - 16:30, 19:30 - 00:00<br />
+                  Domingo: 10:00 - 16:30<br />
                   Para reservas y consultas generales
                 </p>
               </CardContent>
@@ -98,16 +99,20 @@ const Contacto = () => {
               <CardContent>
                 <div className="space-y-3">
                   <div className="flex justify-between">
-                    <span className="font-medium text-foreground">Lunes - Domingo</span>
-                    <span className="text-muted-foreground">13:00 - 16:00</span>
+                    <span className="font-medium text-foreground">Lunes - Sábado</span>
+                    <span className="text-muted-foreground">10:00 - 16:30</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="font-medium text-foreground"></span>
-                    <span className="text-muted-foreground">20:00 - 00:00</span>
+                    <span className="text-muted-foreground">19:30 - 00:00</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-medium text-foreground">Domingo</span>
+                    <span className="text-muted-foreground">10:00 - 16:30</span>
                   </div>
                   <p className="text-sm text-muted-foreground mt-4">
-                    * Última entrada para almuerzo: 15:30<br />
-                    * Última entrada para cena: 23:30
+                    * Última entrada para almuerzo: 16:00<br />
+                    * Última entrada para cena: 23:30 (Lun-Sáb)
                   </p>
                 </div>
               </CardContent>
