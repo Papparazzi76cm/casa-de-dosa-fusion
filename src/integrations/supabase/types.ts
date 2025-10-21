@@ -18,6 +18,7 @@ export type Database = {
         Row: {
           created_at: string
           date: string
+          edit_token: string | null
           email: string
           guests: number
           id: string
@@ -27,11 +28,13 @@ export type Database = {
           session: string
           status: string
           time: string
+          token_expires_at: string | null
           updated_at: string
         }
         Insert: {
           created_at?: string
           date: string
+          edit_token?: string | null
           email: string
           guests: number
           id?: string
@@ -41,11 +44,13 @@ export type Database = {
           session: string
           status?: string
           time: string
+          token_expires_at?: string | null
           updated_at?: string
         }
         Update: {
           created_at?: string
           date?: string
+          edit_token?: string | null
           email?: string
           guests?: number
           id?: string
@@ -55,6 +60,7 @@ export type Database = {
           session?: string
           status?: string
           time?: string
+          token_expires_at?: string | null
           updated_at?: string
         }
         Relationships: []

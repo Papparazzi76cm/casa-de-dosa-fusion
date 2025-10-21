@@ -98,6 +98,28 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Reservation saved:", reservation.id);
 
+    // Generate secure token for cancellation/editing (valid for 60 minutes)
+    const editToken = crypto.randomUUID();
+    const tokenExpiresAt = new Date(Date.now() + 60 * 60 * 1000); // 60 minutes from now
+
+    // Update reservation with token
+    const { error: updateError } = await supabase
+      .from('reservations')
+      .update({
+        edit_token: editToken,
+        token_expires_at: tokenExpiresAt.toISOString()
+      })
+      .eq('id', reservation.id);
+
+    if (updateError) {
+      console.error("Error updating token:", updateError);
+    }
+
+    // Create action URLs
+    const baseUrl = Deno.env.get("SUPABASE_URL")?.replace('/rest/v1', '') || '';
+    const cancelUrl = `${baseUrl}/functions/v1/cancel-reservation?token=${editToken}`;
+    const editUrl = `${baseUrl}/functions/v1/edit-reservation?token=${editToken}`;
+
     // Enviar email al restaurante
     const restaurantEmail = await resend.emails.send({
       from: "Casa de Dosa <reservas@casadedosa.com>",
@@ -198,10 +220,27 @@ const handler = async (req: Request): Promise<Response> => {
           <div style="background-color: #fff3cd; padding: 15px; margin: 20px 0; border-radius: 8px; border-left: 4px solid #D4AF37;">
             <h3 style="margin-top: 0;">Política de Reservas</h3>
             <ul style="margin: 0; padding-left: 20px;">
+              <li>Capacidad máxima: 30 comensales por sesión</li>
               <li>Las reservas se mantienen 15 minutos</li>
               <li>Cancelaciones con 24h de antelación</li>
               <li>Grupos grandes requieren confirmación</li>
             </ul>
+          </div>
+          
+          <div style="background-color: #e8f4f8; padding: 15px; margin: 20px 0; border-radius: 8px; border-left: 4px solid #0ea5e9;">
+            <h3 style="margin-top: 0;">¿Necesitas hacer cambios?</h3>
+            <p style="margin: 10px 0;">Puedes cancelar o modificar tu reserva durante los próximos 60 minutos:</p>
+            <div style="margin: 15px 0;">
+              <a href="${cancelUrl}" style="display: inline-block; padding: 10px 20px; background-color: #ef4444; color: white; text-decoration: none; border-radius: 5px; margin-right: 10px;">
+                Cancelar Reserva
+              </a>
+              <a href="${editUrl}" style="display: inline-block; padding: 10px 20px; background-color: #0ea5e9; color: white; text-decoration: none; border-radius: 5px;">
+                Modificar Reserva
+              </a>
+            </div>
+            <p style="font-size: 12px; color: #666; margin: 10px 0;">
+              Estos enlaces expiran el ${tokenExpiresAt.toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
+            </p>
           </div>
           
           <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px;">
