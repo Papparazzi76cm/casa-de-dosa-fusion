@@ -25,6 +25,31 @@ interface ReservationEmailRequest {
   requests?: string;
 }
 
+// Helper function to check if a slot is blocked
+const isSlotBlocked = async (date: string, session: 'morning' | 'evening'): Promise<boolean> => {
+  // Sundays evening are always blocked
+  const checkDate = new Date(date + 'T00:00:00'); // Use T00:00:00 to avoid timezone issues with getDay()
+  if (checkDate.getDay() === 0 && session === 'evening') {
+    return true;
+  }
+
+  // Check the blocked_slots table
+  const { data, error } = await supabase
+    .from('blocked_slots')
+    .select('id')
+    .eq('date', date)
+    .eq('session', session)
+    .maybeSingle(); // Use maybeSingle to handle null result without error
+
+  if (error) {
+    console.error("Error checking blocked slots:", error);
+    // Fail open (allow reservation) or closed (block reservation)? Let's fail closed for safety.
+    throw new Error("Error al verificar si la sesión está bloqueada.");
+  }
+
+  return data !== null; // If data is not null, the slot exists, hence it's blocked
+};
+
 const handler = async (req: Request): Promise<Response> => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -34,11 +59,28 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const { name, email, phone, date, time, guests, requests }: ReservationEmailRequest = await req.json();
 
-    console.log("Sending reservation email for:", name);
+    console.log("Processing reservation request for:", name, date, time);
 
     // Determine session based on time (morning: 10:00-16:30, evening: 19:30-00:00)
     const hour = parseInt(time.split(':')[0]);
     const session = hour < 17 ? 'morning' : 'evening';
+
+    // *** Check if the slot is blocked ***
+    const blocked = await isSlotBlocked(date, session);
+    if (blocked) {
+      console.log(`Reservation attempt blocked for ${date} ${session}`);
+      return new Response(
+        JSON.stringify({
+          error: `Lo sentimos, la sesión ${session === 'morning' ? 'de mañana' : 'de tarde'} del ${date} está completamente bloqueada y no acepta reservas.`,
+          blocked: true
+        }),
+        {
+          status: 400, // Bad Request or 409 Conflict might also be suitable
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+    // *** End of block check ***
 
     // Check current capacity for the date and session
     const { data: existingReservations, error: queryError } = await supabase
@@ -56,14 +98,15 @@ const handler = async (req: Request): Promise<Response> => {
     // Calculate total guests for this session
     const totalGuests = existingReservations?.reduce((sum, res) => sum + res.guests, 0) || 0;
     const requestedGuests = parseInt(guests);
+    const capacity = 30; // Define capacity
 
-    console.log(`Session: ${session}, Current capacity: ${totalGuests}/30, Requested: ${requestedGuests}`);
+    console.log(`Session: ${session}, Current capacity: ${totalGuests}/${capacity}, Requested: ${requestedGuests}`);
 
     // Check if adding this reservation would exceed capacity
-    if (totalGuests + requestedGuests > 30) {
-      const availableSpots = 30 - totalGuests;
+    if (totalGuests + requestedGuests > capacity) {
+      const availableSpots = capacity - totalGuests;
       return new Response(
-        JSON.stringify({ 
+        JSON.stringify({
           error: `No hay suficiente capacidad. Solo quedan ${availableSpots} plazas disponibles para esta sesión.`,
           availableSpots
         }),
@@ -86,7 +129,7 @@ const handler = async (req: Request): Promise<Response> => {
         guests: requestedGuests,
         session,
         requests,
-        status: 'pending'
+        status: 'pending' // Default status
       })
       .select()
       .single();
@@ -112,72 +155,42 @@ const handler = async (req: Request): Promise<Response> => {
         token_expires_at: tokenExpiresAt.toISOString()
       })
       .eq('id', reservation.id)
-      .select();
+      .select(); // Re-select updated data if needed
 
     if (updateError) {
       console.error("Error updating token:", updateError);
+      // Optional: Attempt to delete the reservation if token update fails? Or just log?
       throw new Error("Error al actualizar el token de reserva");
     }
 
-    console.log("Token updated successfully:", updatedData);
+    console.log("Token updated successfully for reservation:", reservation.id);
 
     // Create action URLs
-    const baseUrl = Deno.env.get("SUPABASE_URL")?.replace('/rest/v1', '') || '';
-    const cancelUrl = `${baseUrl}/functions/v1/cancel-reservation?token=${editToken}`;
-    const editUrl = `${baseUrl}/functions/v1/edit-reservation?token=${editToken}`;
+    const functionHost = Deno.env.get("SUPABASE_URL")?.replace('/rest/v1', '') || ''; // Get base URL correctly
+    const cancelUrl = `${functionHost}/functions/v1/cancel-reservation?token=${editToken}`;
+    const editUrl = `${functionHost}/functions/v1/edit-reservation?token=${editToken}`; // Assuming you have this function
 
     // Enviar email al restaurante
     const restaurantEmail = await resend.emails.send({
       from: "Casa de Dosa <reservas@casadedosa.com>",
-      to: ["reservas@casadedosa.com"],
+      to: ["reservas@casadedosa.com"], // Send to restaurant
       subject: `Nueva Reserva - ${name} (${date} ${time})`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h1 style="color: #D4AF37; border-bottom: 2px solid #D4AF37; padding-bottom: 10px;">
             Nueva Reserva Recibida
           </h1>
-          
+          <p>Se ha registrado una nueva reserva:</p>
           <div style="background-color: #f5f5f5; padding: 20px; margin: 20px 0; border-radius: 8px;">
-            <h2 style="margin-top: 0;">Detalles de la Reserva:</h2>
-            
-            <table style="width: 100%; border-collapse: collapse;">
-              <tr>
-                <td style="padding: 8px 0; font-weight: bold;">Nombre:</td>
-                <td style="padding: 8px 0;">${name}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-weight: bold;">Email:</td>
-                <td style="padding: 8px 0;">${email}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-weight: bold;">Teléfono:</td>
-                <td style="padding: 8px 0;">${phone}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-weight: bold;">Fecha:</td>
-                <td style="padding: 8px 0;">${date}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-weight: bold;">Hora:</td>
-                <td style="padding: 8px 0;">${time}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-weight: bold;">Comensales:</td>
-                <td style="padding: 8px 0;">${guests} ${guests === "1" ? "persona" : "personas"}</td>
-              </tr>
-            </table>
-            
-            ${requests ? `
-              <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #ddd;">
-                <strong>Peticiones Especiales:</strong>
-                <p style="margin: 5px 0;">${requests}</p>
-              </div>
-            ` : ''}
+            <h2 style="margin-top: 0;">Detalles:</h2>
+            <p><strong>Nombre:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Teléfono:</strong> ${phone}</p>
+            <p><strong>Fecha:</strong> ${date}</p>
+            <p><strong>Hora:</strong> ${time}</p>
+            <p><strong>Comensales:</strong> ${guests}</p>
+            ${requests ? `<p><strong>Peticiones:</strong> ${requests}</p>` : ''}
           </div>
-          
-          <p style="color: #666; font-size: 14px;">
-            Este email fue generado automáticamente desde el formulario de reservas de Casa de Dosa.
-          </p>
         </div>
       `,
     });
@@ -185,108 +198,56 @@ const handler = async (req: Request): Promise<Response> => {
     // Enviar email de confirmación al cliente
     const customerEmail = await resend.emails.send({
       from: "Casa de Dosa <reservas@casadedosa.com>",
-      to: [email],
+      to: [email], // Send to customer
       subject: "Confirmación de Reserva - Casa de Dosa",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h1 style="color: #D4AF37; border-bottom: 2px solid #D4AF37; padding-bottom: 10px;">
-            ¡Reserva Confirmada!
+            ¡Reserva Recibida!
           </h1>
-          
-          <p style="font-size: 16px;">Hola ${name},</p>
-          
-          <p>Gracias por elegir Casa de Dosa. Hemos recibido tu reserva y te contactaremos pronto para confirmar todos los detalles.</p>
-          
+          <p>Hola ${name},</p>
+          <p>Hemos recibido tu solicitud de reserva en Casa de Dosa. Nos pondremos en contacto contigo pronto para confirmarla.</p>
           <div style="background-color: #f5f5f5; padding: 20px; margin: 20px 0; border-radius: 8px;">
-            <h2 style="margin-top: 0; color: #D4AF37;">Detalles de tu Reserva:</h2>
-            
-            <table style="width: 100%; border-collapse: collapse;">
-              <tr>
-                <td style="padding: 8px 0; font-weight: bold;">Fecha:</td>
-                <td style="padding: 8px 0;">${date}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-weight: bold;">Hora:</td>
-                <td style="padding: 8px 0;">${time}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-weight: bold;">Comensales:</td>
-                <td style="padding: 8px 0;">${guests} ${guests === "1" ? "persona" : "personas"}</td>
-              </tr>
-            </table>
-            
-            ${requests ? `
-              <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #ddd;">
-                <strong>Tus Peticiones Especiales:</strong>
-                <p style="margin: 5px 0;">${requests}</p>
-              </div>
-            ` : ''}
+            <h2 style="margin-top: 0; color: #D4AF37;">Detalles de tu Solicitud:</h2>
+            <p><strong>Fecha:</strong> ${date}</p>
+            <p><strong>Hora:</strong> ${time}</p>
+            <p><strong>Comensales:</strong> ${guests}</p>
+            ${requests ? `<p><strong>Peticiones:</strong> ${requests}</p>` : ''}
           </div>
-          
-          <div style="background-color: #fff3cd; padding: 15px; margin: 20px 0; border-radius: 8px; border-left: 4px solid #D4AF37;">
-            <h3 style="margin-top: 0;">Política de Reservas</h3>
-            <ul style="margin: 0; padding-left: 20px;">
-              <li>Capacidad máxima: 30 comensales por sesión</li>
-              <li>Las reservas se mantienen 15 minutos</li>
-              <li>Cancelaciones con 24h de antelación</li>
-              <li>Grupos grandes requieren confirmación</li>
-            </ul>
-          </div>
-          
           <div style="background-color: #e8f4f8; padding: 15px; margin: 20px 0; border-radius: 8px; border-left: 4px solid #0ea5e9;">
             <h3 style="margin-top: 0;">¿Necesitas hacer cambios?</h3>
-            <p style="margin: 10px 0;">Puedes cancelar o modificar tu reserva durante los próximos 60 minutos:</p>
-            <div style="margin: 15px 0;">
-              <a href="${cancelUrl}" style="display: inline-block; padding: 10px 20px; background-color: #ef4444; color: white; text-decoration: none; border-radius: 5px; margin-right: 10px;">
-                Cancelar Reserva
-              </a>
-              <a href="${editUrl}" style="display: inline-block; padding: 10px 20px; background-color: #0ea5e9; color: white; text-decoration: none; border-radius: 5px;">
-                Modificar Reserva
-              </a>
-            </div>
-            <p style="font-size: 12px; color: #666; margin: 10px 0;">
-              Estos enlaces expiran el ${tokenExpiresAt.toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
-            </p>
+            <p>Puedes cancelar o modificar tu reserva usando los siguientes enlaces (válidos por 60 minutos):</p>
+            <p><a href="${cancelUrl}" style="color: #ef4444;">Cancelar Reserva</a></p>
+            <p><a href="${editUrl}" style="color: #0ea5e9;">Modificar Reserva</a> (Enlace expira pronto)</p>
           </div>
-          
-          <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px;">
-            <h3 style="margin-top: 0;">Contacto</h3>
-            <p style="margin: 5px 0;">📞 983 64 23 92</p>
-            <p style="margin: 5px 0;">✉️ reservas@casadedosa.com</p>
-          </div>
-          
-          <p style="margin-top: 30px;">¡Nos vemos pronto en Casa de Dosa!</p>
-          
-          <p style="color: #666; font-size: 12px; margin-top: 30px; border-top: 1px solid #eee; padding-top: 15px;">
-            Si no has realizado esta reserva, por favor ignora este email.
-          </p>
+          <p>¡Esperamos verte pronto!</p>
         </div>
       `,
     });
 
-    console.log("Restaurant email sent:", restaurantEmail);
-    console.log("Customer email sent:", customerEmail);
+    console.log("Emails sent - Restaurant:", restaurantEmail.data?.id, "Customer:", customerEmail.data?.id);
 
     return new Response(
-      JSON.stringify({ 
-        success: true, 
-        restaurantEmailId: restaurantEmail.data?.id,
-        customerEmailId: customerEmail.data?.id
-      }), 
+      JSON.stringify({ success: true }),
       {
         status: 200,
-        headers: {
-          "Content-Type": "application/json",
-          ...corsHeaders,
-        },
+        headers: { "Content-Type": "application/json", ...corsHeaders },
       }
     );
   } catch (error: any) {
     console.error("Error in send-reservation-email function:", error);
+    // Provide more specific error messages if possible
+    let errorMessage = "Error al procesar la reserva.";
+    if (error.message.includes('No hay suficiente capacidad')) {
+      errorMessage = error.message;
+    } else if (error.message.includes('bloqueada')) {
+        errorMessage = error.message;
+    }
+
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: errorMessage }),
       {
-        status: 500,
+        status: error.message.includes('capacidad') || error.message.includes('bloqueada') ? 400 : 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },
       }
     );
