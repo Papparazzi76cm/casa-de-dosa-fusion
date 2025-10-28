@@ -101,15 +101,6 @@ const menuItems: MenuItem[] = [
   },
   {
     id: 1007,
-    name: "Croquetas de Chorizo",
-    description: "Cremosas croquetas artesanas con auténtico chorizo (6 unidades)",
-    price: 5.90,
-    category: "Tapas",
-    rating: 4.6,
-    allergens: ["gluten", "lacteos", "huevos"],
-  },
-  {
-    id: 1008,
     name: "Croquetón de Pollo Mali",
     description: "Croqueta con receta especial de la casa (mínimo 2 unidades)",
     price: 3,
@@ -120,7 +111,7 @@ const menuItems: MenuItem[] = [
 
   // Tapas - Del Mar
   {
-    id: 1009,
+    id: 1008,
     name: "Mini Burger de Atún Indio con Patatas Fritas",
     description: "Pequeña hamburguesa casera de atún con especias indias, acompañada de crujientes patatas fritas",
     price: 4.90,
@@ -129,7 +120,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "huevos", "pescado", "mostaza", "sesamo"],
   },
   {
-    id: 1010,
+    id: 1009,
     name: "Rabas con Alioli",
     description: "Tiras de calamar rebozadas, fritas al estilo clásico y servidas con suave salsa alioli",
     price: 7.20,
@@ -138,7 +129,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "moluscos", "huevos"],
   },
   {
-    id: 1011,
+    id: 1010,
     name: "Croquetas de Bacalao",
     description: "Deliciosas croquetas caseras de bacalao, doradas por fuera y cremosas por dentro (6 unidades)",
     price: 5.90,
@@ -147,7 +138,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "lacteos", "huevos", "pescado"],
   },
   {
-    id: 1012,
+    id: 1011,
     name: "Albóndigas de Langostino con Salsa India con Pan",
     description: "Jugosas albóndigas elaboradas con langostino fresco, aromatizadas con especias indias, crujientes por fuera y tiernas por dentro",
     price: 8.50,
@@ -252,7 +243,7 @@ const menuItems: MenuItem[] = [
     id: 10,
     name: "Croqueta de Mango Kimchi - Media Ración",
     description: "Fusión única de sabores orientales y tropicales (4 unidades)",
-    price: 4,
+    price: 5,
     category: "Entrantes",
     isVegetarian: true,
     rating: 4.7,
@@ -280,7 +271,7 @@ const menuItems: MenuItem[] = [
   {
     id: 13,
     name: "Mini Burger",
-    description: "Pequeña hamburguesa casera de atún con especial de India acompañada de crujientes patata fritas",
+    description: "Pequeña hamburguesa casera de atún con salsa especial de India acompañada de crujientes patata fritas",
     price: 4.90,
     category: "Entrantes",
     rating: 4.5,
