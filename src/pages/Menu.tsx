@@ -46,7 +46,6 @@ const menuItems: MenuItem[] = [
     description: "Con salsa especial",
     price: 6.50,
     category: "Tapas",
-    isSpicy: true,
     isVegetarian: true,
     rating: 4.6,
     allergens: ["gluten"],
