@@ -283,7 +283,6 @@ const menuItems: MenuItem[] = [
     description: "Patatas crujientes con nuestra salsa brava especial",
     price: 6.50,
     category: "Entrantes",
-    isSpicy: true,
     isVegetarian: true,
     rating: 4.6,
     allergens: ["gluten", "huevos"],
