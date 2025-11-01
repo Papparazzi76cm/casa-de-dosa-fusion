@@ -15,10 +15,10 @@ import lagrimasPollo from "@/assets/menu/lagrimas-pollo.jpg";
 import gyozaRopaVieja from "@/assets/menu/gyoza-ropa-vieja.jpg";
 import torreznoSoria from "@/assets/menu/torrezno-soria.jpg";
 import rodaballo from "@/assets/menu/rodaballo.jpg";
-import entraña from "@/assets/menu/entraña.jpg";
-import arrozMariscos from "@/assets/menu/arroz-marisco.jpg";
+import entraña from "@/assets/menu/entraña-angus.jpg";
+import arrozMariscos from "@/assets/menu/arroz-mariscos.jpg";
 import burrata from "@/assets/menu/burrata.jpg";
-import croquetaMangoKimchi from "@/assets/menu/croquetas-kimchi.jpg";
+import croquetaMangoKimchi from "@/assets/menu/croquetas-kimchi-mango.jpg";
 
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
