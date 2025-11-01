@@ -13,6 +13,7 @@ import masalaDosa from "@/assets/menu/masala-dosa.jpg";
 import samosasVegetales from "@/assets/menu/samosas-vegetales.jpg";
 import lagrimasPollo from "@/assets/menu/lagrimas-pollo.jpg";
 import gyozaRopaVieja from "@/assets/menu/gyoza-ropa-vieja.jpg";
+import torreznoSoria from "@/assets/menu/torrezno-soria.jpg";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -107,6 +108,7 @@ const menuItems: MenuItem[] = [
     price: 7,
     category: "Tapas",
     rating: 4.7,
+    image: torreznoSoria,
     allergens: [],
   },
   {
