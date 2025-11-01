@@ -22,7 +22,7 @@ import croquetaMangoKimchi from "@/assets/menu/croquetas-kimchi-mango.jpg";
 import pannacotta from "@/assets/menu/pannacotta.png";
 import torrija from "@/assets/menu/torrija.jpg";
 import cremaBatata from "@/assets/menu/crema-batata.png";
-import ensaladilla from "@/assets/menu/ensaladilla.jpg";
+import ensaladilla from "@/assets/menu/ensaladilla.png";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
