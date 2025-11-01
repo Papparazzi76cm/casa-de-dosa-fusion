@@ -16,6 +16,8 @@ import gyozaRopaVieja from "@/assets/menu/gyoza-ropa-vieja.jpg";
 import torreznoSoria from "@/assets/menu/torrezno-soria.jpg";
 import rodaballo from "@/assets/menu/rodaballo.jpg";
 import entraña from "@/assets/menu/entraña.jpg";
+import arrozMariscos from "@/assets/menu/arroz-marisco.jpg";
+
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -301,6 +303,7 @@ const menuItems: MenuItem[] = [
     category: "Entrantes",
     isVegetarian: true,
     rating: 4.6,
+    image: patatasBravas,
     allergens: ["gluten", "huevos"],
   },
   {
@@ -363,6 +366,7 @@ const menuItems: MenuItem[] = [
     price: 25,
     category: "Arroz",
     rating: 4.8,
+    image: arrozMariscos,
     allergens: ["crustaceos", "moluscos", "pescado", "apio"],
   },
   {
