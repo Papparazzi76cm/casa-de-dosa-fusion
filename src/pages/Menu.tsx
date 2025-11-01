@@ -10,7 +10,6 @@ import platoEmbutidosIbericos from "@/assets/plato-embutidos-ibericos.png";
 import tartarAtun from "@/assets/menu/tartar-atun.jpg";
 import masalaDosa from "@/assets/menu/masala-dosa.jpg";
 import gyozaRopaVieja from "@/assets/menu/gyoza-ropa-vieja.jpg";
-import torreznoSoria from "@/assets/menu/torrezno-soria.jpg";
 import rodaballo from "@/assets/menu/rodaballo.jpg";
 import entraña from "@/assets/menu/entraña-angus.jpg";
 import arrozMariscos from "@/assets/menu/arroz-mariscos.jpg";
@@ -111,7 +110,6 @@ const menuItems: MenuItem[] = [
     price: 7,
     category: "Tapas",
     rating: 4.7,
-    image: torreznoSoria,
     allergens: [],
   },
   {
@@ -314,7 +312,6 @@ const menuItems: MenuItem[] = [
     description: "Especialidad tradicional de Soria",
     price: 7,
     category: "Entrantes",
-    image: torreznoSoria,
     rating: 4.7,
     allergens: ["gluten", "huevos", "lacteos"],
   },
