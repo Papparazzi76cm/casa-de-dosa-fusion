@@ -11,6 +11,7 @@ import tartarAtun from "@/assets/menu/tartar-atun.jpg";
 import patatasBravas from "@/assets/menu/patatas-bravas.jpg";
 import masalaDosa from "@/assets/menu/masala-dosa.jpg";
 import samosasVegetales from "@/assets/menu/samosas-vegetales.jpg";
+import lagrimasPollo from "@/assets/menu/lagrimas-pollo.jpg";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -85,6 +86,7 @@ const menuItems: MenuItem[] = [
     price: 7.20,
     category: "Tapas",
     rating: 4.7,
+    image: lagrimasPollo,
     allergens: ["gluten", "huevos", "mostaza"],
   },
   {
