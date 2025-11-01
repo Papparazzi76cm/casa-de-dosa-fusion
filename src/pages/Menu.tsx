@@ -22,6 +22,7 @@ import ensaladilla from "@/assets/menu/ensaladilla.png";
 import torreznoSoria from "@/assets/menu/torrezno-soria.png";
 import ruloLechazo from "@/assets/menu/rulo-lechazo.png";
 import seleccionQuesos from "@/assets/menu/seleccion-quesos.png";
+import hamburguesa from "@/assets/menu/hamburguesa.png";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -239,6 +240,7 @@ const menuItems: MenuItem[] = [
     price: 15,
     category: "Entrantes",
     rating: 4.8,
+    image: hamburguesa,
     allergens: ["gluten", "huevos", "lacteos", "mostaza", "sesamo"],
   },
   {
