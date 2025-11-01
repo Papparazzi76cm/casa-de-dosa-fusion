@@ -15,6 +15,7 @@ import lagrimasPollo from "@/assets/menu/lagrimas-pollo.jpg";
 import gyozaRopaVieja from "@/assets/menu/gyoza-ropa-vieja.jpg";
 import torreznoSoria from "@/assets/menu/torrezno-soria.jpg";
 import rodaballo from "@/assets/menu/rodaballo.jpg";
+import entraña from "@/assets/menu/entraña.jpg";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -379,6 +380,7 @@ const menuItems: MenuItem[] = [
     price: 29,
     category: "Carne",
     rating: 4.9,
+    imagen: entraña
     allergens: ["lacteos", "apio"],
   },
   {
