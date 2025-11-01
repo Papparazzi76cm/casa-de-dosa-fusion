@@ -334,7 +334,6 @@ const menuItems: MenuItem[] = [
     price: 8,
     category: "Entrantes",
     rating: 4.6,
-    image: lagrimasPollo,
     allergens: ["gluten", "huevos"],
   },
 
