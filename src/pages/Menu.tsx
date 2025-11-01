@@ -14,6 +14,7 @@ import samosasVegetales from "@/assets/menu/samosas-vegetales.jpg";
 import lagrimasPollo from "@/assets/menu/lagrimas-pollo.jpg";
 import gyozaRopaVieja from "@/assets/menu/gyoza-ropa-vieja.jpg";
 import torreznoSoria from "@/assets/menu/torrezno-soria.jpg";
+import rodaballo from "@/assets/menu/rodaballo.jpg";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -346,6 +347,7 @@ const menuItems: MenuItem[] = [
     price: 22,
     category: "Pescados",
     rating: 4.9,
+    image: rodaballo
     allergens: ["pescado", "lacteos", "soja", "frutos_cascara"],
   },
 
