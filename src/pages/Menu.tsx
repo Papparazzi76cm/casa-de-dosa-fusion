@@ -7,6 +7,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Star, Flame, Leaf, Wheat, Fish, Egg, Milk, Shell, Nut } from "lucide-react";
 import platoJamonIberico from "@/assets/plato-jamon-iberico.png";
 import platoEmbutidosIbericos from "@/assets/plato-embutidos-ibericos.png";
+import tartarAtun from "@/assets/menu/tartar-atun.jpg";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -322,6 +323,7 @@ const menuItems: MenuItem[] = [
     price: 15,
     category: "Pescados",
     rating: 4.8,
+    image: tartarAtun,
     allergens: ["pescado", "soja", "gluten", "sesamo"],
   },
   {
