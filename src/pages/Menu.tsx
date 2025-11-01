@@ -19,6 +19,8 @@ import pannacotta from "@/assets/menu/pannacotta.png";
 import torrija from "@/assets/menu/torrija.png";
 import cremaBatata from "@/assets/menu/crema-batata.png";
 import ensaladilla from "@/assets/menu/ensaladilla.png";
+import torreznoSoria from "@/assets/menu/torrezno-soria.png";
+import ruloLechazo from "@/assets/menu/rulo-lechazo.png";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -110,6 +112,7 @@ const menuItems: MenuItem[] = [
     price: 7,
     category: "Tapas",
     rating: 4.7,
+    image: torreznoSoria,
     allergens: [],
   },
   {
@@ -313,6 +316,7 @@ const menuItems: MenuItem[] = [
     price: 7,
     category: "Entrantes",
     rating: 4.7,
+    image: torreznoSoria,
     allergens: ["gluten", "huevos", "lacteos"],
   },
   {
@@ -396,6 +400,7 @@ const menuItems: MenuItem[] = [
     price: 20,
     category: "Carne",
     rating: 4.9,
+    image: ruloLechazo,
     allergens: ["lacteos", "frutos_cascara", "sulfitos"],
   },
 
