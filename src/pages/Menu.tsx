@@ -21,8 +21,8 @@ import burrata from "@/assets/menu/burrata.jpg";
 import croquetaMangoKimchi from "@/assets/menu/croquetas-kimchi-mango.jpg";
 import pannacotta from "@/assets/menu/pannacotta.png";
 import torrija from "@/assets/menu/torrija.jpg";
-
-
+import cremaBatata from "@/assets/menu/crema-batata.png";
+import ensaladilla from "@/assets/menu/ensaladilla.jpg";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -219,6 +219,7 @@ const menuItems: MenuItem[] = [
     price: 12,
     category: "Ensalada y Verduras",
     rating: 4.7,
+    image: ensaladilla,
     allergens: ["crustaceos", "huevos"],
   },
   {
@@ -229,6 +230,7 @@ const menuItems: MenuItem[] = [
     category: "Ensalada y Verduras",
     isVegetarian: true,
     rating: 4.6,
+    image: cremaBatata,
     allergens: ["lacteos"],
   },
 
