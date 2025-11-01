@@ -21,6 +21,7 @@ import cremaBatata from "@/assets/menu/crema-batata.png";
 import ensaladilla from "@/assets/menu/ensaladilla.png";
 import torreznoSoria from "@/assets/menu/torrezno-soria.png";
 import ruloLechazo from "@/assets/menu/rulo-lechazo.png";
+import seleccionQuesos from "@/assets/menu/seleccion-quesos.png";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -192,6 +193,7 @@ const menuItems: MenuItem[] = [
     category: "Embutidos y Quesos",
     isVegetarian: true,
     rating: 4.7,
+    image: seleccionQuesos,
     allergens: ["lacteos"],
   },
 
