@@ -8,7 +8,6 @@ import { Star, Flame, Leaf, Wheat, Fish, Egg, Milk, Shell, Nut } from "lucide-re
 import platoJamonIberico from "@/assets/plato-jamon-iberico.png";
 import platoEmbutidosIbericos from "@/assets/plato-embutidos-ibericos.png";
 import tartarAtun from "@/assets/menu/tartar-atun.jpg";
-import patatasBravas from "@/assets/menu/patatas-bravas.jpg";
 import masalaDosa from "@/assets/menu/masala-dosa.jpg";
 import samosasVegetales from "@/assets/menu/samosas-vegetales.jpg";
 import lagrimasPollo from "@/assets/menu/lagrimas-pollo.jpg";
