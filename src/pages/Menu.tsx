@@ -58,6 +58,7 @@ const menuItems: MenuItem[] = [
     category: "Tapas",
     isVegetarian: true,
     rating: 4.6,
+    image: patatasBravas,
     allergens: ["gluten"],
   },
   {
@@ -79,6 +80,7 @@ const menuItems: MenuItem[] = [
     category: "Tapas",
     isVegetarian: true,
     rating: 4.6,
+    image: samosasVegetales,
     allergens: ["gluten", "mostaza", "sesamo"],
   },
   // Tapas - Carne
@@ -89,6 +91,7 @@ const menuItems: MenuItem[] = [
     price: 7.20,
     category: "Tapas",
     rating: 4.7,
+    image: lagrimasPollo,
     allergens: ["gluten", "huevos", "mostaza"],
   },
   {
@@ -108,6 +111,7 @@ const menuItems: MenuItem[] = [
     price: 7,
     category: "Tapas",
     rating: 4.7,
+    image: torreznoSoria,
     allergens: [],
   },
   {
@@ -252,6 +256,7 @@ const menuItems: MenuItem[] = [
     category: "Entrantes",
     isVegetarian: true,
     rating: 4.6,
+    image: samosasVegetales,
     allergens: ["gluten", "mostaza", "sesamo"],
   },
   {
@@ -302,6 +307,7 @@ const menuItems: MenuItem[] = [
     category: "Entrantes",
     isVegetarian: true,
     rating: 4.6,
+    image: patatasBravas,
     allergens: ["gluten", "huevos"],
   },
   {
@@ -310,6 +316,7 @@ const menuItems: MenuItem[] = [
     description: "Especialidad tradicional de Soria",
     price: 7,
     category: "Entrantes",
+    image: torreznoSoria,
     rating: 4.7,
     allergens: ["gluten", "huevos", "lacteos"],
   },
@@ -329,6 +336,7 @@ const menuItems: MenuItem[] = [
     price: 8,
     category: "Entrantes",
     rating: 4.6,
+    image: lagrimasPollo,
     allergens: ["gluten", "huevos"],
   },
 
