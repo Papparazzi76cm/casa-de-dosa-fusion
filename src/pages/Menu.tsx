@@ -12,6 +12,7 @@ import patatasBravas from "@/assets/menu/patatas-bravas.jpg";
 import masalaDosa from "@/assets/menu/masala-dosa.jpg";
 import samosasVegetales from "@/assets/menu/samosas-vegetales.jpg";
 import lagrimasPollo from "@/assets/menu/lagrimas-pollo.jpg";
+import gyozaRopaVieja from "@/assets/menu/gyoza-ropa-vieja.jpg";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -96,6 +97,7 @@ const menuItems: MenuItem[] = [
     price: 9,
     category: "Entrantes",
     rating: 4.8,
+    image: gyozaRopaVieja,
     allergens: ["gluten", "soja", "huevos", "apio"],
   },
   {
@@ -235,6 +237,7 @@ const menuItems: MenuItem[] = [
     price: 9,
     category: "Entrantes",
     rating: 4.8,
+    image: gyozaRopaVieja,
     allergens: ["gluten", "soja", "huevos", "apio"],
   },
   {
