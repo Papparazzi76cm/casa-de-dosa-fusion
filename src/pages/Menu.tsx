@@ -64,7 +64,6 @@ const menuItems: MenuItem[] = [
     category: "Tapas",
     isVegetarian: true,
     rating: 4.6,
-    image: patatasBravas,
     allergens: ["gluten"],
   },
   {
@@ -313,7 +312,6 @@ const menuItems: MenuItem[] = [
     category: "Entrantes",
     isVegetarian: true,
     rating: 4.6,
-    image: patatasBravas,
     allergens: ["gluten", "huevos"],
   },
   {
