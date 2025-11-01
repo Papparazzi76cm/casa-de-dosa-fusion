@@ -17,6 +17,8 @@ import torreznoSoria from "@/assets/menu/torrezno-soria.jpg";
 import rodaballo from "@/assets/menu/rodaballo.jpg";
 import entraña from "@/assets/menu/entraña.jpg";
 import arrozMariscos from "@/assets/menu/arroz-marisco.jpg";
+import burrata from "@/assets/menu/burrata.jpg";
+import croquetaMangoKimchi from "@/assets/menu/croquetas-kimchi.jpg";
 
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
@@ -204,6 +206,7 @@ const menuItems: MenuItem[] = [
     category: "Ensalada y Verduras",
     isVegetarian: true,
     rating: 4.8,
+    image: burrata,
     allergens: ["lacteos"],
   },
   {
@@ -265,6 +268,7 @@ const menuItems: MenuItem[] = [
     category: "Entrantes",
     isVegetarian: true,
     rating: 4.7,
+    image: croquetaMangoKimchi,
     allergens: ["gluten", "lacteos", "huevos", "soja", "pescado"],
   },
   {
