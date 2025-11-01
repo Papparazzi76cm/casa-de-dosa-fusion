@@ -8,6 +8,7 @@ import { Star, Flame, Leaf, Wheat, Fish, Egg, Milk, Shell, Nut } from "lucide-re
 import platoJamonIberico from "@/assets/plato-jamon-iberico.png";
 import platoEmbutidosIbericos from "@/assets/plato-embutidos-ibericos.png";
 import tartarAtun from "@/assets/menu/tartar-atun.jpg";
+import patatasBravas from "@/assets/menu/patatas-bravas.jpg";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -49,6 +50,7 @@ const menuItems: MenuItem[] = [
     category: "Tapas",
     isVegetarian: true,
     rating: 4.6,
+    image: patatasBravas,
     allergens: ["gluten"],
   },
   {
