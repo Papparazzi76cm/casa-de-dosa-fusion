@@ -199,7 +199,7 @@ const menuItems: MenuItem[] = [
 
   // Ensalada y Verduras
   {
-    id: 1,
+    id: 4,
     name: "Burrata y Tartar de Pitahaya y Manzana",
     description: "Fresca combinación de burrata con pitahaya y manzana",
     price: 12,
@@ -210,7 +210,7 @@ const menuItems: MenuItem[] = [
     allergens: ["lacteos"],
   },
   {
-    id: 3,
+    id: 5,
     name: "Ensaladilla de Gamba con Mayonesa y Alioli",
     description: "Ensaladilla clásica con gambas frescas",
     price: 12,
@@ -220,7 +220,7 @@ const menuItems: MenuItem[] = [
     allergens: ["crustaceos", "huevos"],
   },
   {
-    id: 4,
+    id: 6,
     name: "Crema de Batata",
     description: "Crema suave y reconfortante de batata",
     price: 8,
@@ -233,7 +233,7 @@ const menuItems: MenuItem[] = [
 
   // Entrantes
   {
-    id: 1,
+    id: 7,
     name: "Hamburguesa de Vergara Beef con Yuca Frita",
     description: "Lechuga, tomate, cebolla caramelizada, huevos a la plancha, queso cheddar, mayonesa kewpie",
     price: 15,
@@ -242,7 +242,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "huevos", "lacteos", "mostaza", "sesamo"],
   },
   {
-    id: 2,
+    id: 8,
     name: "Gyoza de Ropa Vieja con Jugo Vegetal",
     description: "Gyoza con relleno de ropa vieja y jugo vegetal (4 unidades)",
     price: 9,
@@ -252,7 +252,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "soja", "huevos", "apio"],
   },
   {
-    id: 3,
+    id: 9,
     name: "Samosa de Verdura",
     description: "Samosas crujientes rellenas de verduras frescas (8 unidades)",
     price: 6.90,
@@ -262,7 +262,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "mostaza", "sesamo"],
   },
   {
-    id: 4,
+    id: 10,
     name: "Croqueta de Mango Kimchi - Media Ración",
     description: "Fusión única de sabores orientales y tropicales (4 unidades)",
     price: 5,
@@ -273,7 +273,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "lacteos", "huevos", "soja", "pescado"],
   },
   {
-    id: 5,
+    id: 11,
     name: "Croqueta de Mango Kimchi - Ración",
     description: "Fusión única de sabores orientales y tropicales (8 unidades)",
     price: 8,
@@ -284,7 +284,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "lacteos", "huevos", "soja", "pescado"],
   },
   {
-    id: 6,
+    id: 12,
     name: "Croquetón de Pollo Malai",
     description: "Croqueta con receta especial de la casa (mínimo 2 unidades)",
     price: 3,
@@ -293,7 +293,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "lacteos", "huevos"],
   },
   {
-    id: 7,
+    id: 13,
     name: "Mini Burger",
     description: "Pequeña hamburguesa casera de atún con salsa especial de India acompañada de crujientes patata fritas",
     price: 4.90,
@@ -302,7 +302,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "huevos", "pescado", "mostaza", "sesamo"],
   },
   {
-    id: 8,
+    id: 14,
     name: "Patata Brava con Salsa Especial de Casa",
     description: "Patatas crujientes con nuestra salsa brava especial",
     price: 6.50,
@@ -312,7 +312,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "huevos"],
   },
   {
-    id: 9,
+    id: 15,
     name: "Torrezno de Soria",
     description: "Especialidad tradicional de Soria",
     price: 7,
@@ -322,7 +322,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "huevos", "lacteos"],
   },
   {
-    id: 10,
+    id: 16,
     name: "Rabas con Alioli",
     description: "Calamares a la romana con alioli casero",
     price: 7.50,
@@ -331,7 +331,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "moluscos", "huevos"],
   },
   {
-    id: 11,
+    id: 17,
     name: "Fingers de Pollo",
     description: "Tiras de pollo crujientes",
     price: 8,
@@ -342,7 +342,7 @@ const menuItems: MenuItem[] = [
 
   // Pescados
   {
-    id: 1,
+    id: 18,
     name: "Tartar de Atún Rojo Sandía y Ponzu de Tomate",
     description: "Tartar de atún rojo fresco con sandía y ponzu de tomate",
     price: 15,
@@ -352,7 +352,7 @@ const menuItems: MenuItem[] = [
     allergens: ["pescado", "soja", "gluten", "sesamo"],
   },
   {
-    id: 2,
+    id: 19,
     name: "Rodaballo con Puré de Coliflor y Salsa Ponzu",
     description: "Rodaballo fresco con puré cremoso de coliflor y salsa ponzu",
     price: 22,
@@ -364,7 +364,7 @@ const menuItems: MenuItem[] = [
 
   // Arroz
   {
-    id: 1,
+    id: 20,
     name: "Arroz de Mariscos (2 personas)",
     description: "Arroz con pulpo, chipiron, langostino y mejillón",
     price: 25,
@@ -374,7 +374,7 @@ const menuItems: MenuItem[] = [
     allergens: ["crustaceos", "moluscos", "pescado", "apio"],
   },
   {
-    id: 2,
+    id: 21,
     name: "Arroz de Mariscos (4 personas)",
     description: "Arroz con pulpo, chipiron, langostino y mejillón",
     price: 45,
@@ -386,7 +386,7 @@ const menuItems: MenuItem[] = [
 
   // Carne
   {
-    id: 1,
+    id: 22,
     name: "Entraña de Angus con Irish Champ con Salsa de Curry",
     description: "Entraña de Angus tierna con Irish champ y salsa de curry",
     price: 29,
@@ -396,7 +396,7 @@ const menuItems: MenuItem[] = [
     allergens: ["lacteos", "apio"],
   },
   {
-    id: 2,
+    id: 23,
     name: "Rulo de Lechazo Relleno de Duxelle y Jugo de Granada",
     description: "Rulo de lechazo relleno de champiñón y jugo de Granada",
     price: 20,
@@ -408,7 +408,7 @@ const menuItems: MenuItem[] = [
 
   // Guarniciones
   {
-    id: 1,
+    id: 24,
     name: "Patata Frita",
     description: "Patatas fritas crujientes",
     price: 5,
@@ -418,7 +418,7 @@ const menuItems: MenuItem[] = [
     allergens: [],
   },
   {
-    id: 2,
+    id: 25,
     name: "Boniato Frito",
     description: "Boniato frito con toque dulce",
     price: 5,
@@ -428,7 +428,7 @@ const menuItems: MenuItem[] = [
     allergens: [],
   },
   {
-    id: 3,
+    id: 2501,
     name: "Pan",
     description: "Pan recién horneado",
     price: 1,
@@ -440,7 +440,7 @@ const menuItems: MenuItem[] = [
 
   // Postres
   {
-    id: 1,
+    id: 26,
     name: "Tarta de Queso con Helado de Café",
     description: "Tarta de queso cremosa acompañada de helado de café",
     price: 8,
@@ -450,7 +450,7 @@ const menuItems: MenuItem[] = [
     allergens: ["lacteos", "gluten", "huevos"],
   },
   {
-    id: 2,
+    id: 27,
     name: "Torrija con Espuma de Coco y Helado Nocciola",
     description: "Torrija tradicional con espuma de coco y helado de avellana",
     price: 9,
@@ -461,7 +461,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "lacteos", "huevos", "frutos_cascara"],
   },
   {
-    id: 3,
+    id: 28,
     name: "Pannacotta de Lessy de Mango con Helado de Mango",
     description: "Pannacotta suave con chutney de mango y helado de mango",
     price: 10,
@@ -472,7 +472,7 @@ const menuItems: MenuItem[] = [
     allergens: ["lacteos"],
   },
   {
-    id: 4,
+    id: 29,
     name: "Helado de Mango",
     description: "Helado cremoso de mango",
     price: 5,
@@ -482,7 +482,7 @@ const menuItems: MenuItem[] = [
     allergens: ["lacteos"],
   },
   {
-    id: 5,
+    id: 30,
     name: "Helado de Café",
     description: "Helado cremoso de café",
     price: 5,
@@ -492,7 +492,7 @@ const menuItems: MenuItem[] = [
     allergens: ["lacteos"],
   },
   {
-    id: 6,
+    id: 31,
     name: "Helado de Nutella",
     description: "Helado cremoso de Nutella",
     price: 5,
@@ -504,7 +504,7 @@ const menuItems: MenuItem[] = [
 
   // Desayunos - Croissant
   {
-    id: 1,
+    id: 32,
     name: "Croissant con Mermelada y Mantequilla",
     description: "Incluye café y zumo natural",
     price: 3.50,
@@ -514,7 +514,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "lacteos", "huevos"],
   },
   {
-    id: 2,
+    id: 33,
     name: "Croissant con Bacon y Queso",
     description: "Incluye café y zumo natural",
     price: 4.50,
@@ -523,7 +523,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "lacteos", "huevos", "sulfitos"],
   },
   {
-    id: 3,
+    id: 34,
     name: "Croissant con Jamón York/Serrano y Queso",
     description: "Incluye café y zumo natural",
     price: 4.50,
@@ -532,7 +532,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "lacteos", "huevos", "sulfitos"],
   },
   {
-    id: 4,
+    id: 35,
     name: "Croissant con Nutella",
     description: "Incluye café y zumo natural",
     price: 3.60,
@@ -544,7 +544,7 @@ const menuItems: MenuItem[] = [
 
   // Desayunos - Tostadas
   {
-    id: 5,
+    id: 36,
     name: "Tostada con Tomate, Aceite y Sal",
     description: "Incluye café y zumo natural",
     price: 3.90,
@@ -554,7 +554,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten"],
   },
   {
-    id: 6,
+    id: 37,
     name: "Tostada con Jamón York/Serrano, Tomate y Aceite",
     description: "Incluye café y zumo natural",
     price: 4.50,
@@ -563,7 +563,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "sulfitos"],
   },
   {
-    id: 7,
+    id: 38,
     name: "Tostada con Aguacate, Tomate y Jamón York/Serrano",
     description: "Incluye café y zumo natural",
     price: 5.30,
@@ -572,7 +572,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "sulfitos"],
   },
   {
-    id: 8,
+    id: 39,
     name: "Tostada con Tumaca",
     description: "Jamón serrano, tomate y orégano. Incluye café y zumo natural",
     price: 4.50,
@@ -581,7 +581,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "sulfitos"],
   },
   {
-    id: 9,
+    id: 40,
     name: "Tostada con Burrata y Mermelada",
     description: "Incluye café y zumo natural",
     price: 5.50,
@@ -593,7 +593,7 @@ const menuItems: MenuItem[] = [
 
   // Desayunos - Pancakes
   {
-    id: 10,
+    id: 41,
     name: "Pancakes con Sirope de Chocolate, Miel y Plátano",
     description: "Incluye café y zumo natural",
     price: 5.50,
@@ -604,7 +604,7 @@ const menuItems: MenuItem[] = [
   },
   // Desayunos - Otros
   {
-    id: 11,
+    id: 42,
     name: "Pincho de Tortilla",
     description: "Incluye café y zumo natural",
     price: 3.50,
@@ -614,7 +614,7 @@ const menuItems: MenuItem[] = [
     allergens: ["huevos", "lacteos"],
   },
   {
-    id: 12,
+    id: 43,
     name: "Omelette (Indian Tortilla)",
     description: "Tortilla india con cebolla y cilantro. Incluye café y zumo natural",
     price: 4.00,
