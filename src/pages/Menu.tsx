@@ -9,7 +9,6 @@ import platoJamonIberico from "@/assets/plato-jamon-iberico.png";
 import platoEmbutidosIbericos from "@/assets/plato-embutidos-ibericos.png";
 import tartarAtun from "@/assets/menu/tartar-atun.jpg";
 import masalaDosa from "@/assets/menu/masala-dosa.jpg";
-import lagrimasPollo from "@/assets/menu/lagrimas-pollo.jpg";
 import gyozaRopaVieja from "@/assets/menu/gyoza-ropa-vieja.jpg";
 import torreznoSoria from "@/assets/menu/torrezno-soria.jpg";
 import rodaballo from "@/assets/menu/rodaballo.jpg";
@@ -93,7 +92,6 @@ const menuItems: MenuItem[] = [
     price: 7.20,
     category: "Tapas",
     rating: 4.7,
-    image: lagrimasPollo,
     allergens: ["gluten", "huevos", "mostaza"],
   },
   {
