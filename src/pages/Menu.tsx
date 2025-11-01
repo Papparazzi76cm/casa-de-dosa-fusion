@@ -16,7 +16,7 @@ import arrozMariscos from "@/assets/menu/arroz-mariscos.jpg";
 import burrata from "@/assets/menu/burrata.jpg";
 import croquetaMangoKimchi from "@/assets/menu/croquetas-kimchi-mango.jpg";
 import pannacotta from "@/assets/menu/pannacotta.png";
-import torrija from "@/assets/menu/torrija.jpg";
+import torrija from "@/assets/menu/torrija.png";
 import cremaBatata from "@/assets/menu/crema-batata.png";
 import ensaladilla from "@/assets/menu/ensaladilla.png";
 
