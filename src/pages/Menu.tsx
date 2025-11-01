@@ -279,6 +279,7 @@ const menuItems: MenuItem[] = [
     category: "Entrantes",
     isVegetarian: true,
     rating: 4.7,
+    image: croquetaMangoKimchi,
     allergens: ["gluten", "lacteos", "huevos", "soja", "pescado"],
   },
   {
@@ -380,6 +381,7 @@ const menuItems: MenuItem[] = [
     price: 45,
     category: "Arroz",
     rating: 4.8,
+    image: arrozMariscos,
     allergens: ["crustaceos", "moluscos", "pescado", "apio"],
   },
 
@@ -391,7 +393,7 @@ const menuItems: MenuItem[] = [
     price: 29,
     category: "Carne",
     rating: 4.9,
-    imagen: entraña,
+    image: entraña,
     allergens: ["lacteos", "apio"],
   },
   {
