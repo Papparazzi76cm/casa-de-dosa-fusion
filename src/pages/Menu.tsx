@@ -252,6 +252,7 @@ const menuItems: MenuItem[] = [
     category: "Entrantes",
     isVegetarian: true,
     rating: 4.6,
+    image: samosasVegetales,
     allergens: ["gluten", "mostaza", "sesamo"],
   },
   {
@@ -308,6 +309,7 @@ const menuItems: MenuItem[] = [
     description: "Especialidad tradicional de Soria",
     price: 7,
     category: "Entrantes",
+    image: torreznoSoria,
     rating: 4.7,
     allergens: ["gluten", "huevos", "lacteos"],
   },
@@ -327,6 +329,7 @@ const menuItems: MenuItem[] = [
     price: 8,
     category: "Entrantes",
     rating: 4.6,
+    image: lagrimasPollo,
     allergens: ["gluten", "huevos"],
   },
 
@@ -348,7 +351,7 @@ const menuItems: MenuItem[] = [
     price: 22,
     category: "Pescados",
     rating: 4.9,
-    image: rodaballo
+    image: rodaballo,
     allergens: ["pescado", "lacteos", "soja", "frutos_cascara"],
   },
 
@@ -380,7 +383,7 @@ const menuItems: MenuItem[] = [
     price: 29,
     category: "Carne",
     rating: 4.9,
-    imagen: entraña
+    imagen: entraña,
     allergens: ["lacteos", "apio"],
   },
   {
