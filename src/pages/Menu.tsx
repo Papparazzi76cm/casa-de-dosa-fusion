@@ -19,6 +19,9 @@ import entraña from "@/assets/menu/entraña-angus.jpg";
 import arrozMariscos from "@/assets/menu/arroz-mariscos.jpg";
 import burrata from "@/assets/menu/burrata.jpg";
 import croquetaMangoKimchi from "@/assets/menu/croquetas-kimchi-mango.jpg";
+import pannacotta from "@/assets/menu/pannacotta.png";
+import torrija from "@/assets/menu/torrija.jpg";
+
 
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
@@ -457,6 +460,7 @@ const menuItems: MenuItem[] = [
     category: "Postres",
     isVegetarian: true,
     rating: 4.7,
+    image: torrija,
     allergens: ["gluten", "lacteos", "huevos", "frutos_cascara"],
   },
   {
@@ -467,6 +471,7 @@ const menuItems: MenuItem[] = [
     category: "Postres",
     isVegetarian: true,
     rating: 4.7,
+    image: pannacotta,
     allergens: ["lacteos"],
   },
   {
