@@ -9,7 +9,6 @@ import platoJamonIberico from "@/assets/plato-jamon-iberico.png";
 import platoEmbutidosIbericos from "@/assets/plato-embutidos-ibericos.png";
 import tartarAtun from "@/assets/menu/tartar-atun.jpg";
 import masalaDosa from "@/assets/menu/masala-dosa.jpg";
-import samosasVegetales from "@/assets/menu/samosas-vegetales.jpg";
 import lagrimasPollo from "@/assets/menu/lagrimas-pollo.jpg";
 import gyozaRopaVieja from "@/assets/menu/gyoza-ropa-vieja.jpg";
 import torreznoSoria from "@/assets/menu/torrezno-soria.jpg";
@@ -84,7 +83,6 @@ const menuItems: MenuItem[] = [
     category: "Tapas",
     isVegetarian: true,
     rating: 4.6,
-    image: samosasVegetales,
     allergens: ["gluten", "mostaza", "sesamo"],
   },
   // Tapas - Carne
@@ -260,7 +258,6 @@ const menuItems: MenuItem[] = [
     category: "Entrantes",
     isVegetarian: true,
     rating: 4.6,
-    image: samosasVegetales,
     allergens: ["gluten", "mostaza", "sesamo"],
   },
   {
