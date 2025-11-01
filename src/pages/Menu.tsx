@@ -9,6 +9,7 @@ import platoJamonIberico from "@/assets/plato-jamon-iberico.png";
 import platoEmbutidosIbericos from "@/assets/plato-embutidos-ibericos.png";
 import tartarAtun from "@/assets/menu/tartar-atun.jpg";
 import patatasBravas from "@/assets/menu/patatas-bravas.jpg";
+import masalaDosa from "@/assets/menu/masala-dosa.jpg";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -61,6 +62,7 @@ const menuItems: MenuItem[] = [
     category: "Tapas",
     isVegetarian: true,
     rating: 4.8,
+    image: masalaDosa,
     allergens: ["gluten"],
   },
   {
