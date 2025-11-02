@@ -102,7 +102,7 @@ const menuItems: MenuItem[] = [
    name: "Gyoza de Ropa Vieja con Jugo Vegetal",
     description: "Gyoza con relleno de ropa vieja y jugo vegetal (4 unidades)",
     price: 9,
-    category: "Entrantes",
+    category: "Tapas",
     rating: 4.8,
     image: gyozaRopaVieja,
     allergens: ["gluten", "soja", "huevos", "apio"],
@@ -126,10 +126,20 @@ const menuItems: MenuItem[] = [
     rating: 4.8,
     allergens: ["gluten", "lacteos", "huevos"],
   },
+  {
+    id: 1008,
+    name: "Hamburguesa de Vergara Beef con Yuca Frita",
+    description: "Lechuga, tomate, cebolla caramelizada, huevos a la plancha, queso cheddar, mayonesa kewpie",
+    price: 15,
+    category: "Tapas",
+    rating: 4.8,
+    image: hamburguesa,
+    allergens: ["gluten", "huevos", "lacteos", "mostaza", "sesamo"],
+  },
 
   // Tapas - Del Mar
   {
-    id: 1008,
+    id: 1009,
     name: "Mini Burger de Atún Indio con Patatas Fritas",
     description: "Pequeña hamburguesa casera de atún con especias indias, acompañada de crujientes patatas fritas",
     price: 4.90,
@@ -138,7 +148,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "huevos", "pescado", "mostaza", "sesamo"],
   },
   {
-    id: 1009,
+    id: 1010,
     name: "Rabas con Alioli",
     description: "Tiras de calamar rebozadas, fritas al estilo clásico y servidas con suave salsa alioli",
     price: 7.20,
@@ -147,7 +157,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "moluscos", "huevos"],
   },
   {
-    id: 1010,
+    id: 1011,
     name: "Croquetas de Bacalao",
     description: "Deliciosas croquetas caseras de bacalao, doradas por fuera y cremosas por dentro (6 unidades)",
     price: 5.90,
@@ -156,7 +166,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "lacteos", "huevos", "pescado"],
   },
   {
-    id: 1011,
+    id: 1012,
     name: "Albóndigas de Langostino con Salsa India con Pan",
     description: "Jugosas albóndigas elaboradas con langostino fresco, aromatizadas con especias indias, crujientes por fuera y tiernas por dentro",
     price: 8.50,
