@@ -18,7 +18,7 @@ import croquetaMangoKimchi from "@/assets/menu/croquetas-kimchi-mango.jpg";
 import pannacotta from "@/assets/menu/pannacotta.png";
 import torrija from "@/assets/menu/torrija.png";
 import cremaBatata from "@/assets/menu/crema-batata.png";
-import ensaladilla from "@/assets/menu/ensaladilla.png";
+import ensaladilla from "@/assets/menu/ensaladilla.jpg";
 import torreznoSoria from "@/assets/menu/torrezno-soria.png";
 import ruloLechazo from "@/assets/menu/rulo-lechazo.png";
 import seleccionQuesos from "@/assets/menu/seleccion-quesos.png";
