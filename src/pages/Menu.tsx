@@ -162,7 +162,7 @@ const menuItems: MenuItem[] = [
   // Tapas - Del Mar
   {
     id: 1011,
-    name: "Mini Burger de Atún Indio con Patatas Fritas",
+    name: "Mini Burger de Atún con Patatas Fritas",
     description: "Pequeña hamburguesa casera de atún con especias indias, acompañada de crujientes patatas fritas",
     price: 4.90,
     category: "Tapas",
@@ -195,6 +195,16 @@ const menuItems: MenuItem[] = [
     category: "Tapas",
     rating: 4.8,
     allergens: ["crustaceos", "gluten", "huevos"],
+  },
+  {
+    id: 1015,
+    name: "Ensaladilla de Gamba con Mayonesa y Alioli",
+    description: "Ensaladilla clásica con gambas frescas",
+    price: 12,
+    category: "Tapas",
+    rating: 4.7,
+    image: ensaladilla,
+    allergens: ["crustaceos", "huevos"],
   },
 
   // Embutidos y Quesos
