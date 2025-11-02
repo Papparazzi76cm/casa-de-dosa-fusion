@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Layout from "./components/Layout";
-import Index from "./pages/Index";
+import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Reservas from "./pages/Reservas";
 import Galeria from "./pages/Galeria";
@@ -23,7 +23,7 @@ const App = () => (
         <BrowserRouter>
           <Layout>
             <Routes>
-              <Route path="/" element={<Index />} />
+              <Route path="/" element={<Home />} />
               <Route path="/menu" element={<Menu />} />
               <Route path="/reservas" element={<Reservas />} />
               <Route path="/galeria" element={<Galeria />} />
