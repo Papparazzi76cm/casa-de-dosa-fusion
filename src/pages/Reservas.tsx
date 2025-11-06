@@ -291,15 +291,15 @@ const Reservas = () => {
                         <div className="text-xs space-y-1 mt-2">
                           <div className="flex items-center justify-between p-2 bg-muted rounded">
                             <span>Mañana (10:00-16:30)</span>
-                            <span className={availableSpots.morning < 10 ? "text-red-500 font-semibold" : "text-green-600 font-semibold"}>
-                              {availableSpots.morning < 0 ? 0 : availableSpots.morning} plazas
+                            <span className={availableSpots.morning <= 0 ? "text-red-500 font-semibold" : "text-green-600 font-semibold"}>
+                              {availableSpots.morning <= 0 ? "Completo" : "Disponible"}
                             </span>
                           </div>
                           { new Date(formData.date + 'T00:00:00').getDay() !== 0 && ( // Hide evening availability on Sunday
                             <div className="flex items-center justify-between p-2 bg-muted rounded">
                               <span>Tarde (19:30-00:00)</span>
-                              <span className={availableSpots.evening < 10 ? "text-red-500 font-semibold" : "text-green-600 font-semibold"}>
-                                {availableSpots.evening < 0 ? 0 : availableSpots.evening} plazas
+                              <span className={availableSpots.evening <= 0 ? "text-red-500 font-semibold" : "text-green-600 font-semibold"}>
+                                {availableSpots.evening <= 0 ? "Completo" : "Disponible"}
                               </span>
                             </div>
                           )}
