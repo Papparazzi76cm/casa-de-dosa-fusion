@@ -25,6 +25,9 @@ import seleccionQuesos from "@/assets/menu/seleccion-quesos.png";
 import hamburguesa from "@/assets/menu/hamburguesa.png";
 import miniBurguer from "@/assets/menu/mini-burguer.jpeg";
 import samosasVegetales from "@/assets/menu/samosas-vegetales.png";
+import rabas from "@/assets/menu/rabas.jpg";
+import albondigas from "@/assets/menu/albondigas.jpg";
+import tartaQueso from "@/assets/menu/tarta-queso.jpg";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -180,6 +183,7 @@ const menuItems: MenuItem[] = [
     price: 7.20,
     category: "Tapas",
     rating: 4.7,
+    image: rabas,
     allergens: ["gluten", "moluscos", "huevos"],
   },
   {
@@ -198,6 +202,7 @@ const menuItems: MenuItem[] = [
     price: 8.50,
     category: "Tapas",
     rating: 4.8,
+    image: albondigas,
     allergens: ["crustaceos", "gluten", "huevos"],
   },
   {
@@ -378,6 +383,7 @@ const menuItems: MenuItem[] = [
     price: 7.50,
     category: "Entrantes",
     rating: 4.7,
+    image: rabas,
     allergens: ["gluten", "moluscos", "huevos"],
   },
   {
@@ -497,6 +503,7 @@ const menuItems: MenuItem[] = [
     category: "Postres",
     isVegetarian: true,
     rating: 4.8,
+    image: tartaQueso,
     allergens: ["lacteos", "gluten", "huevos"],
   },
   {
