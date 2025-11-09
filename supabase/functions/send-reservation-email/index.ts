@@ -141,9 +141,9 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Reservation saved:", reservation.id);
 
-    // Generate secure token for cancellation/editing (valid for 60 minutes)
+    // Generate secure token for cancellation/editing (valid for 7 days)
     const editToken = crypto.randomUUID();
-    const tokenExpiresAt = new Date(Date.now() + 60 * 60 * 1000); // 60 minutes from now
+    const tokenExpiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days from now
 
     console.log("Updating reservation with token:", reservation.id);
 
@@ -216,9 +216,9 @@ const handler = async (req: Request): Promise<Response> => {
           </div>
           <div style="background-color: #e8f4f8; padding: 15px; margin: 20px 0; border-radius: 8px; border-left: 4px solid #0ea5e9;">
             <h3 style="margin-top: 0;">¿Necesitas hacer cambios?</h3>
-            <p>Puedes cancelar o modificar tu reserva usando los siguientes enlaces (válidos por 60 minutos):</p>
+            <p>Puedes cancelar o modificar tu reserva usando los siguientes enlaces (válidos por 7 días):</p>
             <p><a href="${cancelUrl}" style="color: #ef4444;">Cancelar Reserva</a></p>
-            <p><a href="${editUrl}" style="color: #0ea5e9;">Modificar Reserva</a> (Enlace expira pronto)</p>
+            <p><a href="${editUrl}" style="color: #0ea5e9;">Modificar Reserva</a></p>
           </div>
           <p>¡Esperamos verte pronto!</p>
         </div>

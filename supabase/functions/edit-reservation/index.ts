@@ -103,7 +103,7 @@ const handler = async (req: Request): Promise<Response> => {
             </head>
             <body>
               <h1 class="warning">⏱️ Enlace expirado</h1>
-              <p>El enlace de edición ha expirado (válido solo 60 minutos).</p>
+              <p>El enlace de edición ha expirado (válido por 7 días).</p>
               <div class="info">
                 <p>Para modificar tu reserva, por favor contacta con nosotros:</p>
                 <p>📞 983 64 23 92</p>
