@@ -14,8 +14,6 @@ import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/AdminLogin";
 import Admin from "./pages/Admin";
 import SetupAdmin from "./pages/SetupAdmin";
-import CancelReservation from "./pages/CancelReservation";
-import EditReservation from "./pages/EditReservation";
 
 const queryClient = new QueryClient();
 
@@ -36,8 +34,6 @@ const App = () => (
               <Route path="/setup-admin" element={<SetupAdmin />} />
               <Route path="/admin-login" element={<AdminLogin />} />
               <Route path="/admin" element={<Admin />} />
-              <Route path="/cancel-reservation" element={<CancelReservation />} />
-              <Route path="/edit-reservation" element={<EditReservation />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
