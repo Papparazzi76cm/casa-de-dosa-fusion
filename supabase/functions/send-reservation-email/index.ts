@@ -168,7 +168,6 @@ const handler = async (req: Request): Promise<Response> => {
     // Create action URLs
     const functionHost = Deno.env.get("SUPABASE_URL")?.replace('/rest/v1', '') || ''; // Get base URL correctly
     const cancelUrl = `${functionHost}/functions/v1/cancel-reservation?token=${editToken}`;
-    const editUrl = `${functionHost}/functions/v1/edit-reservation?token=${editToken}`; // Assuming you have this function
 
     // Enviar email al restaurante
     const restaurantEmail = await resend.emails.send({
@@ -214,11 +213,11 @@ const handler = async (req: Request): Promise<Response> => {
             <p><strong>Comensales:</strong> ${guests}</p>
             ${requests ? `<p><strong>Peticiones:</strong> ${requests}</p>` : ''}
           </div>
-          <div style="background-color: #e8f4f8; padding: 15px; margin: 20px 0; border-radius: 8px; border-left: 4px solid #0ea5e9;">
-            <h3 style="margin-top: 0;">¿Necesitas hacer cambios?</h3>
-            <p>Puedes cancelar o modificar tu reserva usando los siguientes enlaces (válidos por 7 días):</p>
-            <p><a href="${cancelUrl}" style="color: #ef4444;">Cancelar Reserva</a></p>
-            <p><a href="${editUrl}" style="color: #0ea5e9;">Modificar Reserva</a></p>
+          <div style="background-color: #e8f4f8; padding: 15px; margin: 20px 0; border-radius: 8px; border-left: 4px solid #ef4444;">
+            <h3 style="margin-top: 0;">¿Necesitas cancelar?</h3>
+            <p>Si necesitas cancelar tu reserva, puedes hacerlo usando el siguiente enlace (válido por 7 días):</p>
+            <p><a href="${cancelUrl}" style="color: #ef4444; font-weight: bold;">Cancelar Reserva</a></p>
+            <p style="font-size: 12px; color: #666; margin-top: 10px;">Para modificar tu reserva, por favor contacta con nosotros al 983 64 23 92</p>
           </div>
           <p>¡Esperamos verte pronto!</p>
         </div>
