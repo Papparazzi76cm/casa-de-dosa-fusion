@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import heroImage from "@/assets/gallery/jardin-terraza.jpg";
@@ -168,15 +169,16 @@ const Galeria = () => {
             Ven y disfruta de una experiencia gastronómica única en persona
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-golden hover:bg-golden-dark text-blue-grey-dark font-semibold">
-              Reservar Mesa
+            <Button asChild size="lg" className="bg-golden hover:bg-golden-dark text-blue-grey-dark font-semibold">
+              <Link to="/reservas">Reservar Mesa</Link>
             </Button>
             <Button 
+              asChild
               variant="outline" 
               size="lg"
               className="border-golden text-golden hover:bg-golden hover:text-blue-grey-dark"
             >
-              Ver Menú Completo
+              <Link to="/menu">Ver Menú Completo</Link>
             </Button>
           </div>
         </div>
