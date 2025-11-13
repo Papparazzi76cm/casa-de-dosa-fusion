@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
-import heroImage from "@/assets/hero-restaurant.jpg";
-import fusionDosa from "@/assets/fusion-dosa.jpg";
-import curryPaella from "@/assets/curry-paella.jpg";
-import restaurantInterior from "@/assets/restaurant-interior.jpg";
+import heroImage from "@/assets/gallery/jardin-terraza.jpg";
+import fusionDosa from "@/assets/menu/croquetas-kimchi-mango.jpg";
+import Paella from "@/assets/menu/arroz-mariscos.jpg";
+import restaurantInterior from "@/assets/gallery/interior-rustico.jpg";
+import ambienteInterior from "@/assets/gallery/bar-clientes.jpg";
+import burguerAtun from "@/assets/menu/mini-burguer.jpeg";
+import ruloLechazo from "@/assets/menu/rulo-lechazo.png";
+import torrijaHelado from "@/assets/menu/torrija.png";
 
 interface GalleryImage {
   id: number;
@@ -17,50 +21,49 @@ const galleryImages: GalleryImage[] = [
   {
     id: 1,
     src: heroImage,
-    alt: "Platos destacados de Casa de Dosa",
-    category: "Platos",
+    alt: "Jardín terraza de Casa de Dosa",
+    category: "Ambiente",
   },
   {
     id: 2,
     src: fusionDosa,
-    alt: "Dosa Ibérico con jamón y queso manchego",
-    category: "Platos",
+    alt: "Croquetas de kimchi con mango",
+    category: "Entrantes",
   },
   {
     id: 3,
-    src: curryPaella,
-    alt: "Paella Curry con mariscos",
-    category: "Platos",
+    src: Paella,
+    alt: "Arroz con mariscos",
+    category: "Principales",
   },
   {
     id: 4,
     src: restaurantInterior,
-    alt: "Interior elegante del restaurante",
+    alt: "Interior rústico del restaurante",
     category: "Ambiente",
   },
-  // Simulating more images for a complete gallery
   {
     id: 5,
-    src: fusionDosa,
-    alt: "Samosas de jamón ibérico",
-    category: "Entrantes",
+    src: ambienteInterior,
+    alt: "Bar con clientes",
+    category: "Ambiente",
   },
   {
     id: 6,
-    src: curryPaella,
-    alt: "Cordero Tandoor Andaluz",
-    category: "Principales",
+    src: burguerAtun,
+    alt: "Mini hamburguesa de atún",
+    category: "Entrantes",
   },
   {
     id: 7,
-    src: restaurantInterior,
-    alt: "Mesa preparada para cena romántica",
-    category: "Ambiente",
+    src: ruloLechazo,
+    alt: "Rulo de lechazo",
+    category: "Principales",
   },
   {
     id: 8,
-    src: heroImage,
-    alt: "Gulab Jamun con crema catalana",
+    src: torrijaHelado,
+    alt: "Torrija con helado",
     category: "Postres",
   },
 ];
