@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
-import heroImage from "@/assets/hero-restaurant.jpg";
-import fusionDosa from "@/assets/fusion-dosa.jpg";
-import curryPaella from "@/assets/curry-paella.jpg";
-import restaurantInterior from "@/assets/restaurant-interior.jpg";
+import heroImage from "@/assets/gallery/jardin-terraza.jpg";
+import fusionDosa from "@/assets/menu/croquetas-kimchi-mango.jpg";
+import Paella from "@/assets/menu/arroz-mariscos.jpg";
+import restaurantInterior from "@/assets/gallery/interior-rustico.jpg";
+import ambienteInterior from "@/assets/gallery/bar-clientes.jpg;
+import burguerAtun from "@/assets/menu/mini-burguer.jpeg;
+import ruloLechazo from "@/assets/menu/rulo-lechazo.png;
+import torrijaHelado from "@/assets/menu/torrija.png;
 
 interface GalleryImage {
   id: number;
