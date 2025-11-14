@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
 import { Resend } from "npm:resend@2.0.0";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const supabase = createClient(
   Deno.env.get("SUPABASE_URL") ?? "",
@@ -9,9 +10,23 @@ const supabase = createClient(
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
+// Token validation schema
+const tokenSchema = z.string().uuid("Invalid token format");
+
 const handler = async (req: Request): Promise<Response> => {
   const url = new URL(req.url);
   const token = url.searchParams.get("token");
+  
+  // Validate token format
+  const tokenValidation = tokenSchema.safeParse(token);
+  if (!tokenValidation.success) {
+    return new Response(
+      getErrorHtml("Invalid or missing cancellation link. Please use the link from your confirmation email."),
+      { status: 400, headers: { "Content-Type": "text/html" } }
+    );
+  }
+  
+  const validToken = tokenValidation.data;
 
   if (!token) {
     return new Response(

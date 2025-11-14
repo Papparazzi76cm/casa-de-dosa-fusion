@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -15,15 +16,21 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
-interface ReservationEmailRequest {
-  name: string;
-  email: string;
-  phone: string;
-  date: string;
-  time: string;
-  guests: string;
-  requests?: string;
-}
+// Input validation schema
+const reservationSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name too long"),
+  email: z.string().trim().email("Invalid email").max(255, "Email too long"),
+  phone: z.string().trim().regex(/^\+?[0-9\s-]{9,20}$/, "Invalid phone format"),
+  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date format"),
+  time: z.string().regex(/^\d{2}:\d{2}$/, "Invalid time format"),
+  guests: z.string().refine((val) => {
+    const num = parseInt(val);
+    return !isNaN(num) && num >= 1 && num <= 30;
+  }, "Guests must be between 1 and 30"),
+  requests: z.string().max(500, "Special requests too long").optional()
+});
+
+type ReservationEmailRequest = z.infer<typeof reservationSchema>;
 
 // Helper function to check if a slot is blocked
 const isSlotBlocked = async (date: string, session: 'morning' | 'evening'): Promise<boolean> => {
@@ -43,8 +50,7 @@ const isSlotBlocked = async (date: string, session: 'morning' | 'evening'): Prom
 
   if (error) {
     console.error("Error checking blocked slots:", error);
-    // Fail open (allow reservation) or closed (block reservation)? Let's fail closed for safety.
-    throw new Error("Error al verificar si la sesión está bloqueada.");
+    throw new Error("Unable to verify slot availability");
   }
 
   return data !== null; // If data is not null, the slot exists, hence it's blocked
@@ -57,7 +63,25 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { name, email, phone, date, time, guests, requests }: ReservationEmailRequest = await req.json();
+    const rawData = await req.json();
+    
+    // Validate input data
+    const validationResult = reservationSchema.safeParse(rawData);
+    if (!validationResult.success) {
+      console.error("Validation error:", validationResult.error.errors);
+      return new Response(
+        JSON.stringify({ 
+          error: "Invalid reservation data",
+          details: validationResult.error.errors.map(e => e.message)
+        }),
+        { 
+          status: 400, 
+          headers: { ...corsHeaders, "Content-Type": "application/json" } 
+        }
+      );
+    }
+    
+    const { name, email, phone, date, time, guests, requests } = validationResult.data;
 
     console.log("Processing reservation request for:", name, date, time);
 
@@ -92,7 +116,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (queryError) {
       console.error("Error checking capacity:", queryError);
-      throw new Error("Error al verificar disponibilidad");
+      throw new Error("Unable to verify availability");
     }
 
     // Calculate total guests for this session
