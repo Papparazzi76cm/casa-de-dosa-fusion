@@ -93,6 +93,15 @@ const Reservas = () => {
       }
 
       try {
+        // Check for blocked slots
+        const { data: blockedSlots, error: blockedError } = await supabase
+          .from('blocked_slots')
+          .select('session')
+          .eq('date', formData.date);
+
+        if (blockedError) throw blockedError;
+
+        // Check existing reservations
         const { data, error } = await supabase
           .from('reservations')
           .select('guests, session')
@@ -113,9 +122,13 @@ const Reservas = () => {
         const morningCapacity = 30;
         const eveningCapacity = 30;
 
+        // Check if sessions are blocked
+        const isMorningBlocked = blockedSlots?.some(slot => slot.session === 'morning');
+        const isEveningBlocked = blockedSlots?.some(slot => slot.session === 'evening');
+
         setAvailableSpots({
-          morning: morningCapacity - morningGuests,
-          evening: eveningCapacity - eveningGuests
+          morning: isMorningBlocked ? 0 : Math.max(0, morningCapacity - morningGuests),
+          evening: isEveningBlocked ? 0 : Math.max(0, eveningCapacity - eveningGuests)
         });
       } catch (error) {
         console.error("Error checking availability:", error);
