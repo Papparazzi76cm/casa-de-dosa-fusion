@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Star, Flame, Leaf, Wheat, Fish, Egg, Milk, Shell, Nut } from "lucide-react";
 import platoJamonIberico from "@/assets/plato-jamon-iberico.png";
 import platoEmbutidosIbericos from "@/assets/plato-embutidos-ibericos.png";
@@ -682,24 +683,44 @@ const menuItems: MenuItem[] = [
   },
 ];
 
-const categories = ["Todos", "Tapas", "Desayunos", "Embutidos y Quesos", "Ensalada y Verduras", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
+const barraCategories = ["Todos", "Tapas", "Desayunos"];
+const comedorCategories = ["Todos", "Embutidos y Quesos", "Ensalada y Verduras", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
 
 const Menu = () => {
   const navigate = useNavigate();
+  const [selectedSection, setSelectedSection] = useState<"barra" | "comedor">("barra");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
 
-  const filteredItems = selectedCategory === "Todos" 
-    ? menuItems 
-    : menuItems.filter(item => item.category === selectedCategory);
+  const getFilteredItems = () => {
+    const sectionCategories = selectedSection === "barra" 
+      ? ["Tapas", "Desayunos"]
+      : ["Embutidos y Quesos", "Ensalada y Verduras", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
+    
+    if (selectedCategory === "Todos") {
+      return menuItems.filter(item => sectionCategories.includes(item.category));
+    }
+    return menuItems.filter(item => item.category === selectedCategory);
+  };
+
+  const filteredItems = getFilteredItems();
+
+  const handleSectionChange = (section: "barra" | "comedor") => {
+    setSelectedSection(section);
+    setSelectedCategory("Todos");
+    scrollToMenu();
+  };
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
-    // Scroll al principio de la sección de items del menú
+    scrollToMenu();
+  };
+
+  const scrollToMenu = () => {
     setTimeout(() => {
       const menuItemsSection = document.getElementById('menu-items-section');
       if (menuItemsSection) {
-        const yOffset = -100; // Offset para el navbar fijo
+        const yOffset = -100;
         const y = menuItemsSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({ top: y, behavior: 'smooth' });
       }
@@ -719,22 +740,49 @@ const Menu = () => {
           </p>
         </div>
 
-        {/* Filtros de categoría */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              variant={selectedCategory === category ? "default" : "outline"}
-              onClick={() => handleCategoryChange(category)}
-              className={selectedCategory === category 
-                ? "bg-gradient-golden hover:opacity-90" 
-                : "border-golden text-golden hover:bg-golden hover:text-blue-grey-dark"
-              }
-            >
-              {category}
-            </Button>
-          ))}
-        </div>
+        {/* Tabs de sección principal */}
+        <Tabs value={selectedSection} onValueChange={(value) => handleSectionChange(value as "barra" | "comedor")} className="mb-8">
+          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
+            <TabsTrigger value="barra" className="text-lg">Barra</TabsTrigger>
+            <TabsTrigger value="comedor" className="text-lg">Comedor</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="barra">
+            <div className="flex flex-wrap justify-center gap-4 mb-12">
+              {barraCategories.map((category) => (
+                <Button
+                  key={category}
+                  variant={selectedCategory === category ? "default" : "outline"}
+                  onClick={() => handleCategoryChange(category)}
+                  className={selectedCategory === category 
+                    ? "bg-gradient-golden hover:opacity-90" 
+                    : "border-golden text-golden hover:bg-golden hover:text-blue-grey-dark"
+                  }
+                >
+                  {category}
+                </Button>
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="comedor">
+            <div className="flex flex-wrap justify-center gap-4 mb-12">
+              {comedorCategories.map((category) => (
+                <Button
+                  key={category}
+                  variant={selectedCategory === category ? "default" : "outline"}
+                  onClick={() => handleCategoryChange(category)}
+                  className={selectedCategory === category 
+                    ? "bg-gradient-golden hover:opacity-90" 
+                    : "border-golden text-golden hover:bg-golden hover:text-blue-grey-dark"
+                  }
+                >
+                  {category}
+                </Button>
+              ))}
+            </div>
+          </TabsContent>
+        </Tabs>
 
         {/* Menu Items */}
         <div id="menu-items-section" className="grid grid-cols-1 md:grid-cols-2 gap-8">
