@@ -284,6 +284,68 @@ const menuItems: MenuItem[] = [
     allergens: ["lacteos"],
   },
 
+  // Selección de Dosas
+  {
+    id: 50,
+    name: "Masala Dosa",
+    description: "Crepe crujiente de arroz y lentejas rellena de puré de patatas especiado al estilo del sur de India, acompañada de salsa tradicionales de verduras",
+    price: 12.50,
+    category: "Selección de Dosas",
+    isVegetarian: true,
+    rating: 4.8,
+    image: masalaDosa,
+    allergens: ["gluten"],
+  },
+  {
+    id: 51,
+    name: "Egg Dosa",
+    description: "Fina y crujiente crepe de arroz y lentejas, rellena de huevo especiado, servida caliente y dorada",
+    price: 13.50,
+    category: "Selección de Dosas",
+    rating: 4.7,
+    allergens: ["gluten", "huevos"],
+  },
+  {
+    id: 52,
+    name: "Cheese Dosa",
+    description: "Dosa crujiente rellena con una mezcla cremosa de quesos, fundida perfecta para un bocado reconfortante",
+    price: 15.50,
+    category: "Selección de Dosas",
+    isVegetarian: true,
+    rating: 4.8,
+    allergens: ["gluten", "lacteos"],
+  },
+  {
+    id: 53,
+    name: "Nuttella Dosa",
+    description: "Dosa fina y crujiente rellena de Nutella fundida, creando un bocado goloso y irresistible",
+    price: 11.00,
+    category: "Selección de Dosas",
+    isVegetarian: true,
+    rating: 4.7,
+    allergens: ["gluten", "lacteos", "frutos_cascara", "soja"],
+  },
+  {
+    id: 54,
+    name: "Ghee Rost",
+    description: "Dosa crujiente dorada en ghee, con aroma intenso y sabor profundo, ligera y deliciosa en cada bocado",
+    price: 13.50,
+    category: "Selección de Dosas",
+    isVegetarian: true,
+    rating: 4.8,
+    allergens: ["gluten", "lacteos"],
+  },
+  {
+    id: 55,
+    name: "Uttapam Dosa",
+    description: "Uttapam esponjoso y grueso, coronado con verduras frescas salteadas que aportan color, textura, sabor suave y reconfortante",
+    price: 10.50,
+    category: "Selección de Dosas",
+    isVegetarian: true,
+    rating: 4.7,
+    allergens: ["gluten"],
+  },
+
   // Entrantes
   {
     id: 8,
@@ -642,7 +704,7 @@ const menuItems: MenuItem[] = [
 ];
 
 const barraCategories = ["Todos", "Tapas", "Desayunos"];
-const comedorCategories = ["Todos", "Embutidos y Quesos", "Ensalada y Verduras", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
+const comedorCategories = ["Todos", "Embutidos y Quesos", "Ensalada y Verduras", "Selección de Dosas", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
 
 const Menu = () => {
   const navigate = useNavigate();
@@ -653,7 +715,7 @@ const Menu = () => {
   const getFilteredItems = () => {
     const sectionCategories = selectedSection === "barra" 
       ? ["Tapas", "Desayunos"]
-      : ["Embutidos y Quesos", "Ensalada y Verduras", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
+      : ["Embutidos y Quesos", "Ensalada y Verduras", "Selección de Dosas", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
     
     if (selectedCategory === "Todos") {
       return menuItems.filter(item => sectionCategories.includes(item.category));
