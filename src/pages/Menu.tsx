@@ -337,7 +337,7 @@ const menuItems: MenuItem[] = [
     allergens: ["gluten", "lacteos", "huevos"],
   },
   {
-    id: 18,
+    id: 16,
     name: "Zamburiñas con Leche de Coco y Anacardo",
     description: "Delicadas zamburiñas bañadas en salsa cremosa leche de coco, acompañadas de anacardos tostados (4 unidades)",
     price: 8,
