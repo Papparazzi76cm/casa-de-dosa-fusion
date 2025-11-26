@@ -5,7 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Star, Flame, Leaf, Wheat, Fish, Egg, Milk, Shell, Nut, X } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Star, Flame, Leaf, Wheat, Fish, Egg, Milk, Shell, Nut, X, Info } from "lucide-react";
 import platoJamonIberico from "@/assets/plato-jamon-iberico.png";
 import platoEmbutidosIbericos from "@/assets/plato-embutidos-ibericos.png";
 import tartarAtun from "@/assets/menu/tartar-atun.jpg";
@@ -45,19 +46,79 @@ interface MenuItem {
   allergens?: Allergen[];
 }
 
-const allergenInfo: Record<Allergen, { name: string; icon: any; color: string }> = {
-  gluten: { name: "Gluten", icon: Wheat, color: "bg-amber-100 text-amber-700" },
-  crustaceos: { name: "Crustáceos", icon: Shell, color: "bg-orange-100 text-orange-700" },
-  huevos: { name: "Huevos", icon: Egg, color: "bg-yellow-100 text-yellow-700" },
-  pescado: { name: "Pescado", icon: Fish, color: "bg-blue-100 text-blue-700" },
-  lacteos: { name: "Lácteos", icon: Milk, color: "bg-indigo-100 text-indigo-700" },
-  frutos_cascara: { name: "Frutos de cáscara", icon: Nut, color: "bg-brown-100 text-brown-700" },
-  soja: { name: "Soja", icon: Leaf, color: "bg-lime-100 text-lime-700" },
-  apio: { name: "Apio", icon: Leaf, color: "bg-green-100 text-green-700" },
-  mostaza: { name: "Mostaza", icon: Flame, color: "bg-yellow-200 text-yellow-800" },
-  sesamo: { name: "Sésamo", icon: Wheat, color: "bg-stone-100 text-stone-700" },
-  sulfitos: { name: "Sulfitos", icon: Star, color: "bg-purple-100 text-purple-700" },
-  moluscos: { name: "Moluscos", icon: Shell, color: "bg-pink-100 text-pink-700" },
+const allergenInfo: Record<Allergen, { name: string; icon: any; color: string; description: string }> = {
+  gluten: { 
+    name: "Gluten", 
+    icon: Wheat, 
+    color: "bg-amber-100 text-amber-700",
+    description: "Presente en cereales como trigo, centeno, cebada y avena. Se encuentra en pan, pasta, bollería y productos rebozados."
+  },
+  crustaceos: { 
+    name: "Crustáceos", 
+    icon: Shell, 
+    color: "bg-orange-100 text-orange-700",
+    description: "Incluye cangrejos, langostas, gambas, langostinos y similares. También productos derivados y caldos."
+  },
+  huevos: { 
+    name: "Huevos", 
+    icon: Egg, 
+    color: "bg-yellow-100 text-yellow-700",
+    description: "Huevos de gallina y productos que los contengan como mayonesa, alioli, rebozados y repostería."
+  },
+  pescado: { 
+    name: "Pescado", 
+    icon: Fish, 
+    color: "bg-blue-100 text-blue-700",
+    description: "Todo tipo de pescado y productos derivados. Incluye gelatinas y salsas a base de pescado."
+  },
+  lacteos: { 
+    name: "Lácteos", 
+    icon: Milk, 
+    color: "bg-indigo-100 text-indigo-700",
+    description: "Leche y productos lácteos: quesos, mantequilla, nata, yogur y derivados lácteos."
+  },
+  frutos_cascara: { 
+    name: "Frutos de cáscara", 
+    icon: Nut, 
+    color: "bg-brown-100 text-brown-700",
+    description: "Almendras, avellanas, nueces, anacardos, pistachos, nueces de Brasil, macadamia y productos que los contengan."
+  },
+  soja: { 
+    name: "Soja", 
+    icon: Leaf, 
+    color: "bg-lime-100 text-lime-700",
+    description: "Habas de soja y productos derivados como salsa de soja, tofu, tempeh y aceite de soja."
+  },
+  apio: { 
+    name: "Apio", 
+    icon: Leaf, 
+    color: "bg-green-100 text-green-700",
+    description: "Apio en rama, hojas, semillas y productos que lo contengan. Común en caldos, sopas y salsas."
+  },
+  mostaza: { 
+    name: "Mostaza", 
+    icon: Flame, 
+    color: "bg-yellow-200 text-yellow-800",
+    description: "Semillas de mostaza y productos derivados como salsas y aderezos que la contengan."
+  },
+  sesamo: { 
+    name: "Sésamo", 
+    icon: Wheat, 
+    color: "bg-stone-100 text-stone-700",
+    description: "Semillas de sésamo enteras o en pasta (tahini), presentes en panes, ensaladas y salsas asiáticas."
+  },
+  sulfitos: { 
+    name: "Sulfitos", 
+    icon: Star, 
+    color: "bg-purple-100 text-purple-700",
+    description: "Conservantes usados en vinos, cervezas, frutas deshidratadas, embutidos y conservas."
+  },
+  moluscos: { 
+    name: "Moluscos", 
+    icon: Shell, 
+    color: "bg-pink-100 text-pink-700",
+    description: "Caracoles, almejas, mejillones, ostras, calamares, pulpo, sepia y similares."
+  },
 };
 
 const menuItems: MenuItem[] = [
@@ -812,9 +873,25 @@ const Menu = () => {
             {/* Allergen Filters */}
             <div className="mb-8 p-6 bg-card rounded-lg border border-border">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-display font-semibold text-card-foreground">
-                  Filtrar por Alérgenos
-                </h3>
+                <div className="flex items-center gap-2">
+                  <h3 className="text-lg font-display font-semibold text-card-foreground">
+                    Filtrar por Alérgenos
+                  </h3>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button className="text-muted-foreground hover:text-foreground transition-colors">
+                          <Info className="h-4 w-4" />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent className="max-w-xs">
+                        <p className="text-sm">
+                          Pasa el cursor sobre cada alérgeno para ver información detallada. Los alérgenos seleccionados se excluirán de los resultados.
+                        </p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
                 {excludedAllergens.length > 0 && (
                   <Button 
                     variant="ghost" 
@@ -830,28 +907,37 @@ const Menu = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 Selecciona los alérgenos que deseas evitar para ver solo los platos seguros para ti
               </p>
-              <div className="flex flex-wrap gap-2">
-                {Object.entries(allergenInfo).map(([key, info]) => {
-                  const Icon = info.icon;
-                  const isSelected = excludedAllergens.includes(key as Allergen);
-                  return (
-                    <Button
-                      key={key}
-                      variant={isSelected ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => toggleAllergen(key as Allergen)}
-                      className={isSelected 
-                        ? "bg-red-500 hover:bg-red-600 text-white" 
-                        : "border-border hover:bg-muted"
-                      }
-                    >
-                      <Icon className="h-4 w-4 mr-2" />
-                      {info.name}
-                      {isSelected && <X className="h-3 w-3 ml-2" />}
-                    </Button>
-                  );
-                })}
-              </div>
+              <TooltipProvider>
+                <div className="flex flex-wrap gap-2">
+                  {Object.entries(allergenInfo).map(([key, info]) => {
+                    const Icon = info.icon;
+                    const isSelected = excludedAllergens.includes(key as Allergen);
+                    return (
+                      <Tooltip key={key}>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant={isSelected ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => toggleAllergen(key as Allergen)}
+                            className={isSelected 
+                              ? "bg-red-500 hover:bg-red-600 text-white" 
+                              : "border-border hover:bg-muted"
+                            }
+                          >
+                            <Icon className="h-4 w-4 mr-2" />
+                            {info.name}
+                            {isSelected && <X className="h-3 w-3 ml-2" />}
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent className="max-w-xs">
+                          <p className="text-sm font-semibold mb-1">{info.name}</p>
+                          <p className="text-xs text-muted-foreground">{info.description}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    );
+                  })}
+                </div>
+              </TooltipProvider>
               {excludedAllergens.length > 0 && (
                 <p className="text-sm text-muted-foreground mt-4">
                   Mostrando platos sin: <span className="font-semibold text-foreground">
@@ -882,9 +968,25 @@ const Menu = () => {
             {/* Allergen Filters */}
             <div className="mb-8 p-6 bg-card rounded-lg border border-border">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-display font-semibold text-card-foreground">
-                  Filtrar por Alérgenos
-                </h3>
+                <div className="flex items-center gap-2">
+                  <h3 className="text-lg font-display font-semibold text-card-foreground">
+                    Filtrar por Alérgenos
+                  </h3>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button className="text-muted-foreground hover:text-foreground transition-colors">
+                          <Info className="h-4 w-4" />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent className="max-w-xs">
+                        <p className="text-sm">
+                          Pasa el cursor sobre cada alérgeno para ver información detallada. Los alérgenos seleccionados se excluirán de los resultados.
+                        </p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
                 {excludedAllergens.length > 0 && (
                   <Button 
                     variant="ghost" 
@@ -900,28 +1002,37 @@ const Menu = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 Selecciona los alérgenos que deseas evitar para ver solo los platos seguros para ti
               </p>
-              <div className="flex flex-wrap gap-2">
-                {Object.entries(allergenInfo).map(([key, info]) => {
-                  const Icon = info.icon;
-                  const isSelected = excludedAllergens.includes(key as Allergen);
-                  return (
-                    <Button
-                      key={key}
-                      variant={isSelected ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => toggleAllergen(key as Allergen)}
-                      className={isSelected 
-                        ? "bg-red-500 hover:bg-red-600 text-white" 
-                        : "border-border hover:bg-muted"
-                      }
-                    >
-                      <Icon className="h-4 w-4 mr-2" />
-                      {info.name}
-                      {isSelected && <X className="h-3 w-3 ml-2" />}
-                    </Button>
-                  );
-                })}
-              </div>
+              <TooltipProvider>
+                <div className="flex flex-wrap gap-2">
+                  {Object.entries(allergenInfo).map(([key, info]) => {
+                    const Icon = info.icon;
+                    const isSelected = excludedAllergens.includes(key as Allergen);
+                    return (
+                      <Tooltip key={key}>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant={isSelected ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => toggleAllergen(key as Allergen)}
+                            className={isSelected 
+                              ? "bg-red-500 hover:bg-red-600 text-white" 
+                              : "border-border hover:bg-muted"
+                            }
+                          >
+                            <Icon className="h-4 w-4 mr-2" />
+                            {info.name}
+                            {isSelected && <X className="h-3 w-3 ml-2" />}
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent className="max-w-xs">
+                          <p className="text-sm font-semibold mb-1">{info.name}</p>
+                          <p className="text-xs text-muted-foreground">{info.description}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    );
+                  })}
+                </div>
+              </TooltipProvider>
               {excludedAllergens.length > 0 && (
                 <p className="text-sm text-muted-foreground mt-4">
                   Mostrando platos sin: <span className="font-semibold text-foreground">
