@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -782,12 +782,23 @@ const menuItems: MenuItem[] = [
 const barraCategories = ["Todos", "Tapas", "Desayunos"];
 const comedorCategories = ["Todos", "Embutidos y Quesos", "Ensalada y Verduras", "Selección de Dosas", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
 
+const ALLERGEN_PREFERENCES_KEY = 'casa-dosa-allergen-preferences';
+
 const Menu = () => {
   const navigate = useNavigate();
   const [selectedSection, setSelectedSection] = useState<"barra" | "comedor" | "menu-dia" | "menu-fin-semana" | "menu-navidad">("barra");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
-  const [excludedAllergens, setExcludedAllergens] = useState<Allergen[]>([]);
+  const [excludedAllergens, setExcludedAllergens] = useState<Allergen[]>(() => {
+    // Load preferences from localStorage on initial render
+    try {
+      const saved = localStorage.getItem(ALLERGEN_PREFERENCES_KEY);
+      return saved ? JSON.parse(saved) : [];
+    } catch (error) {
+      console.error('Error loading allergen preferences:', error);
+      return [];
+    }
+  });
 
   const getFilteredItems = () => {
     const sectionCategories = selectedSection === "barra" 
@@ -846,6 +857,15 @@ const Menu = () => {
     setExcludedAllergens([]);
   };
 
+  // Save allergen preferences to localStorage whenever they change
+  useEffect(() => {
+    try {
+      localStorage.setItem(ALLERGEN_PREFERENCES_KEY, JSON.stringify(excludedAllergens));
+    } catch (error) {
+      console.error('Error saving allergen preferences:', error);
+    }
+  }, [excludedAllergens]);
+
   return (
     <div className="min-h-screen py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -886,7 +906,7 @@ const Menu = () => {
                       </TooltipTrigger>
                       <TooltipContent className="max-w-xs">
                         <p className="text-sm">
-                          Pasa el cursor sobre cada alérgeno para ver información detallada. Los alérgenos seleccionados se excluirán de los resultados.
+                          Pasa el cursor sobre cada alérgeno para ver información detallada. Los alérgenos seleccionados se excluirán de los resultados y se guardarán automáticamente para futuras visitas.
                         </p>
                       </TooltipContent>
                     </Tooltip>
@@ -905,7 +925,7 @@ const Menu = () => {
                 )}
               </div>
               <p className="text-sm text-muted-foreground mb-4">
-                Selecciona los alérgenos que deseas evitar para ver solo los platos seguros para ti
+                Selecciona los alérgenos que deseas evitar. Tus preferencias se guardarán automáticamente para futuras visitas.
               </p>
               <TooltipProvider>
                 <div className="flex flex-wrap gap-2">
@@ -981,7 +1001,7 @@ const Menu = () => {
                       </TooltipTrigger>
                       <TooltipContent className="max-w-xs">
                         <p className="text-sm">
-                          Pasa el cursor sobre cada alérgeno para ver información detallada. Los alérgenos seleccionados se excluirán de los resultados.
+                          Pasa el cursor sobre cada alérgeno para ver información detallada. Los alérgenos seleccionados se excluirán de los resultados y se guardarán automáticamente para futuras visitas.
                         </p>
                       </TooltipContent>
                     </Tooltip>
@@ -1000,7 +1020,7 @@ const Menu = () => {
                 )}
               </div>
               <p className="text-sm text-muted-foreground mb-4">
-                Selecciona los alérgenos que deseas evitar para ver solo los platos seguros para ti
+                Selecciona los alérgenos que deseas evitar. Tus preferencias se guardarán automáticamente para futuras visitas.
               </p>
               <TooltipProvider>
                 <div className="flex flex-wrap gap-2">
