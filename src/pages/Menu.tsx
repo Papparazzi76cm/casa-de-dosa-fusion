@@ -498,6 +498,46 @@ const menuItems: MenuItem[] = [
     allergens: ["lacteos"],
   },
 
+  // Menú del Día (20€ - Lunes a Viernes)
+  {
+    id: 70,
+    name: "Crema de Calabaza y Zanahoria al Jengibre",
+    description: "Crema suave de calabaza y zanahoria al jengibre con aceite de trufa, ligera y aromática. Parte del Menú del Día (20€ - Incluye: Entrante + Plato Principal + Postre + Agua/Vino + Café)",
+    price: 20,
+    category: "Menú del Día",
+    isVegetarian: true,
+    rating: 4.7,
+    allergens: ["lacteos"],
+  },
+  {
+    id: 71,
+    name: "Cachopo de Ternera",
+    description: "Con jamón y queso fundido acompañado de patatas fritas, tradicional crujiente y sabroso. Parte del Menú del Día (20€ - Incluye: Entrante + Plato Principal + Postre + Agua/Vino + Café)",
+    price: 20,
+    category: "Menú del Día",
+    rating: 4.8,
+    allergens: ["gluten", "lacteos", "huevos"],
+  },
+  {
+    id: 72,
+    name: "Gambas al Ajillo",
+    description: "Jugosas gambas salteadas en aceite de oliva con ajo laminado, guindilla y un toque de perejil, servidas bien calientes para disfrutar de todo su aroma. Parte del Menú del Día (20€ - Incluye: Entrante + Plato Principal + Postre + Agua/Vino + Café)",
+    price: 20,
+    category: "Menú del Día",
+    rating: 4.8,
+    allergens: ["crustaceos"],
+  },
+  {
+    id: 73,
+    name: "Coulant de Chocolate Negro/Blanco",
+    description: "Bizcocho tibio de chocolate con corazón fundido, intenso y cremoso en cada bocado. Parte del Menú del Día (20€ - Incluye: Entrante + Plato Principal + Postre + Agua/Vino + Café)",
+    price: 20,
+    category: "Menú del Día",
+    isVegetarian: true,
+    rating: 4.9,
+    allergens: ["gluten", "lacteos", "huevos"],
+  },
+
   // Guarniciones
   {
     id: 24,
@@ -719,7 +759,7 @@ const menuItems: MenuItem[] = [
 ];
 
 const barraCategories = ["Todos", "Tapas", "Desayunos"];
-const comedorCategories = ["Todos", "Embutidos y Quesos", "Ensalada y Verduras", "Selección de Dosas", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
+const comedorCategories = ["Todos", "Menú del Día", "Embutidos y Quesos", "Ensalada y Verduras", "Selección de Dosas", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
 
 const Menu = () => {
   const navigate = useNavigate();
@@ -730,7 +770,7 @@ const Menu = () => {
   const getFilteredItems = () => {
     const sectionCategories = selectedSection === "barra" 
       ? ["Tapas", "Desayunos"]
-      : ["Embutidos y Quesos", "Ensalada y Verduras", "Selección de Dosas", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
+      : ["Menú del Día", "Embutidos y Quesos", "Ensalada y Verduras", "Selección de Dosas", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
     
     if (selectedCategory === "Todos") {
       return menuItems.filter(item => sectionCategories.includes(item.category));
