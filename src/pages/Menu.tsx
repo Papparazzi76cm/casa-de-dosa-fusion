@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Star, Flame, Leaf, Wheat, Fish, Egg, Milk, Shell, Nut } from "lucide-react";
+import { Star, Flame, Leaf, Wheat, Fish, Egg, Milk, Shell, Nut, X } from "lucide-react";
 import platoJamonIberico from "@/assets/plato-jamon-iberico.png";
 import platoEmbutidosIbericos from "@/assets/plato-embutidos-ibericos.png";
 import tartarAtun from "@/assets/menu/tartar-atun.jpg";
@@ -726,16 +726,27 @@ const Menu = () => {
   const [selectedSection, setSelectedSection] = useState<"barra" | "comedor" | "menu-dia" | "menu-fin-semana" | "menu-navidad">("barra");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+  const [excludedAllergens, setExcludedAllergens] = useState<Allergen[]>([]);
 
   const getFilteredItems = () => {
     const sectionCategories = selectedSection === "barra" 
       ? ["Tapas", "Desayunos"]
       : ["Embutidos y Quesos", "Ensalada y Verduras", "Selección de Dosas", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
     
-    if (selectedCategory === "Todos") {
-      return menuItems.filter(item => sectionCategories.includes(item.category));
+    let items = menuItems.filter(item => sectionCategories.includes(item.category));
+    
+    if (selectedCategory !== "Todos") {
+      items = items.filter(item => item.category === selectedCategory);
     }
-    return menuItems.filter(item => item.category === selectedCategory);
+    
+    // Filter by allergens: exclude items that contain any of the excluded allergens
+    if (excludedAllergens.length > 0) {
+      items = items.filter(item => 
+        !item.allergens?.some(allergen => excludedAllergens.includes(allergen))
+      );
+    }
+    
+    return items;
   };
 
   const filteredItems = getFilteredItems();
@@ -762,6 +773,18 @@ const Menu = () => {
     }, 100);
   };
 
+  const toggleAllergen = (allergen: Allergen) => {
+    setExcludedAllergens(prev => 
+      prev.includes(allergen) 
+        ? prev.filter(a => a !== allergen)
+        : [...prev, allergen]
+    );
+  };
+
+  const clearAllFilters = () => {
+    setExcludedAllergens([]);
+  };
+
   return (
     <div className="min-h-screen py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -786,6 +809,58 @@ const Menu = () => {
           </TabsList>
 
           <TabsContent value="barra">
+            {/* Allergen Filters */}
+            <div className="mb-8 p-6 bg-card rounded-lg border border-border">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-display font-semibold text-card-foreground">
+                  Filtrar por Alérgenos
+                </h3>
+                {excludedAllergens.length > 0 && (
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    onClick={clearAllFilters}
+                    className="text-golden hover:text-golden-dark"
+                  >
+                    <X className="h-4 w-4 mr-1" />
+                    Limpiar filtros
+                  </Button>
+                )}
+              </div>
+              <p className="text-sm text-muted-foreground mb-4">
+                Selecciona los alérgenos que deseas evitar para ver solo los platos seguros para ti
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {Object.entries(allergenInfo).map(([key, info]) => {
+                  const Icon = info.icon;
+                  const isSelected = excludedAllergens.includes(key as Allergen);
+                  return (
+                    <Button
+                      key={key}
+                      variant={isSelected ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => toggleAllergen(key as Allergen)}
+                      className={isSelected 
+                        ? "bg-red-500 hover:bg-red-600 text-white" 
+                        : "border-border hover:bg-muted"
+                      }
+                    >
+                      <Icon className="h-4 w-4 mr-2" />
+                      {info.name}
+                      {isSelected && <X className="h-3 w-3 ml-2" />}
+                    </Button>
+                  );
+                })}
+              </div>
+              {excludedAllergens.length > 0 && (
+                <p className="text-sm text-muted-foreground mt-4">
+                  Mostrando platos sin: <span className="font-semibold text-foreground">
+                    {excludedAllergens.map(a => allergenInfo[a].name).join(', ')}
+                  </span>
+                </p>
+              )}
+            </div>
+
             <div className="flex flex-wrap justify-center gap-4 mb-12">
               {barraCategories.map((category) => (
                 <Button
@@ -804,6 +879,58 @@ const Menu = () => {
           </TabsContent>
 
           <TabsContent value="comedor">
+            {/* Allergen Filters */}
+            <div className="mb-8 p-6 bg-card rounded-lg border border-border">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-display font-semibold text-card-foreground">
+                  Filtrar por Alérgenos
+                </h3>
+                {excludedAllergens.length > 0 && (
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    onClick={clearAllFilters}
+                    className="text-golden hover:text-golden-dark"
+                  >
+                    <X className="h-4 w-4 mr-1" />
+                    Limpiar filtros
+                  </Button>
+                )}
+              </div>
+              <p className="text-sm text-muted-foreground mb-4">
+                Selecciona los alérgenos que deseas evitar para ver solo los platos seguros para ti
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {Object.entries(allergenInfo).map(([key, info]) => {
+                  const Icon = info.icon;
+                  const isSelected = excludedAllergens.includes(key as Allergen);
+                  return (
+                    <Button
+                      key={key}
+                      variant={isSelected ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => toggleAllergen(key as Allergen)}
+                      className={isSelected 
+                        ? "bg-red-500 hover:bg-red-600 text-white" 
+                        : "border-border hover:bg-muted"
+                      }
+                    >
+                      <Icon className="h-4 w-4 mr-2" />
+                      {info.name}
+                      {isSelected && <X className="h-3 w-3 ml-2" />}
+                    </Button>
+                  );
+                })}
+              </div>
+              {excludedAllergens.length > 0 && (
+                <p className="text-sm text-muted-foreground mt-4">
+                  Mostrando platos sin: <span className="font-semibold text-foreground">
+                    {excludedAllergens.map(a => allergenInfo[a].name).join(', ')}
+                  </span>
+                </p>
+              )}
+            </div>
+
             <div className="flex flex-wrap justify-center gap-4 mb-12">
               {comedorCategories.map((category) => (
                 <Button
