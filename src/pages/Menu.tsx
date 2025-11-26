@@ -777,12 +777,12 @@ const Menu = () => {
 
         {/* Tabs de sección principal */}
         <Tabs value={selectedSection} onValueChange={(value) => handleSectionChange(value as "barra" | "comedor" | "menu-dia" | "menu-fin-semana" | "menu-navidad")} className="mb-8">
-          <TabsList className="grid w-full max-w-5xl mx-auto grid-cols-2 md:grid-cols-5 mb-8">
-            <TabsTrigger value="barra" className="text-base md:text-lg">Barra</TabsTrigger>
-            <TabsTrigger value="comedor" className="text-base md:text-lg">Comedor</TabsTrigger>
-            <TabsTrigger value="menu-dia" className="text-base md:text-lg">Menú del Día</TabsTrigger>
-            <TabsTrigger value="menu-fin-semana" className="text-base md:text-lg">Menú de fin de Semana</TabsTrigger>
-            <TabsTrigger value="menu-navidad" className="text-base md:text-lg">Menú de Navidad</TabsTrigger>
+          <TabsList className="flex flex-col md:grid w-full max-w-5xl mx-auto md:grid-cols-5 gap-2 md:gap-0 mb-8 h-auto md:h-auto bg-transparent md:bg-muted p-0 md:p-1">
+            <TabsTrigger value="barra" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Barra</TabsTrigger>
+            <TabsTrigger value="comedor" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Comedor</TabsTrigger>
+            <TabsTrigger value="menu-dia" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Menú del Día</TabsTrigger>
+            <TabsTrigger value="menu-fin-semana" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Menú de fin de Semana</TabsTrigger>
+            <TabsTrigger value="menu-navidad" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Menú de Navidad</TabsTrigger>
           </TabsList>
 
           <TabsContent value="barra">
