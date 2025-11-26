@@ -723,7 +723,7 @@ const comedorCategories = ["Todos", "Embutidos y Quesos", "Ensalada y Verduras",
 
 const Menu = () => {
   const navigate = useNavigate();
-  const [selectedSection, setSelectedSection] = useState<"barra" | "comedor">("barra");
+  const [selectedSection, setSelectedSection] = useState<"barra" | "comedor" | "menu-dia" | "menu-fin-semana" | "menu-navidad">("barra");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
 
@@ -740,7 +740,7 @@ const Menu = () => {
 
   const filteredItems = getFilteredItems();
 
-  const handleSectionChange = (section: "barra" | "comedor") => {
+  const handleSectionChange = (section: "barra" | "comedor" | "menu-dia" | "menu-fin-semana" | "menu-navidad") => {
     setSelectedSection(section);
     setSelectedCategory("Todos");
     scrollToMenu();
@@ -776,10 +776,13 @@ const Menu = () => {
         </div>
 
         {/* Tabs de sección principal */}
-        <Tabs value={selectedSection} onValueChange={(value) => handleSectionChange(value as "barra" | "comedor")} className="mb-8">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
-            <TabsTrigger value="barra" className="text-lg">Barra</TabsTrigger>
-            <TabsTrigger value="comedor" className="text-lg">Comedor</TabsTrigger>
+        <Tabs value={selectedSection} onValueChange={(value) => handleSectionChange(value as "barra" | "comedor" | "menu-dia" | "menu-fin-semana" | "menu-navidad")} className="mb-8">
+          <TabsList className="grid w-full max-w-5xl mx-auto grid-cols-2 md:grid-cols-5 mb-8">
+            <TabsTrigger value="barra" className="text-base md:text-lg">Barra</TabsTrigger>
+            <TabsTrigger value="comedor" className="text-base md:text-lg">Comedor</TabsTrigger>
+            <TabsTrigger value="menu-dia" className="text-base md:text-lg">Menú del Día</TabsTrigger>
+            <TabsTrigger value="menu-fin-semana" className="text-base md:text-lg">Menú de fin de Semana</TabsTrigger>
+            <TabsTrigger value="menu-navidad" className="text-base md:text-lg">Menú de Navidad</TabsTrigger>
           </TabsList>
 
           <TabsContent value="barra">
@@ -817,9 +820,191 @@ const Menu = () => {
               ))}
             </div>
           </TabsContent>
+
+          <TabsContent value="menu-dia">
+            <div id="menu-items-section" className="max-w-4xl mx-auto">
+              <Card className="shadow-elegant hover:shadow-golden transition-all duration-300">
+                <CardContent className="p-8">
+                  <div className="text-center mb-6">
+                    <h2 className="text-4xl font-display font-bold text-golden mb-2">MENÚ DEL DÍA</h2>
+                    <p className="text-sm text-muted-foreground">Disponible Lunes a Viernes</p>
+                    <div className="text-5xl font-bold text-golden mt-4">20€</div>
+                    <p className="text-sm text-muted-foreground mt-1">Por Persona</p>
+                  </div>
+
+                  <div className="space-y-8">
+                    <div>
+                      <h3 className="text-2xl font-display font-semibold text-foreground mb-4 border-b-2 border-golden pb-2">ENTRANTE</h3>
+                      <div className="ml-4">
+                        <h4 className="text-lg font-semibold text-card-foreground mb-2">Crema de calabaza y zanahoria</h4>
+                        <p className="text-muted-foreground">Al Jengibre con aceite de trufa, ligera y aromática</p>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-2xl font-display font-semibold text-foreground mb-4 border-b-2 border-golden pb-2">PLATO PRINCIPAL</h3>
+                      <div className="ml-4 space-y-4">
+                        <div>
+                          <h4 className="text-lg font-semibold text-card-foreground mb-2">Cachopo de Ternera</h4>
+                          <p className="text-muted-foreground">Con Jamón y Queso fundido acompañado de patatas fritas, tradicional crujiente y sabroso</p>
+                        </div>
+                        <div className="text-center text-muted-foreground font-semibold">o</div>
+                        <div>
+                          <h4 className="text-lg font-semibold text-card-foreground mb-2">Gambas al ajillo</h4>
+                          <p className="text-muted-foreground">Jugosas gambas salteadas en aceite de oliva con ajo laminado, guindilla y un toque de perejil, servidas bien calientes para disfrutar de todo su aroma</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-2xl font-display font-semibold text-foreground mb-4 border-b-2 border-golden pb-2">POSTRE</h3>
+                      <div className="ml-4">
+                        <h4 className="text-lg font-semibold text-card-foreground mb-2">Coulant de chocolate Negro/Blanco</h4>
+                        <p className="text-muted-foreground">Bizcocho tibio de chocolate con corazón fundido, intenso y cremoso en cada bocado</p>
+                      </div>
+                    </div>
+
+                    <div className="bg-muted/50 rounded-lg p-4 mt-6">
+                      <p className="text-center text-card-foreground font-semibold">
+                        Incluido: Agua / Vino de la Casa / Café
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="menu-fin-semana">
+            <div id="menu-items-section" className="max-w-4xl mx-auto">
+              <Card className="shadow-elegant hover:shadow-golden transition-all duration-300">
+                <CardContent className="p-8">
+                  <div className="text-center mb-6">
+                    <h2 className="text-4xl font-display font-bold text-golden mb-4">MENÚ</h2>
+                    <div className="text-5xl font-bold text-golden">35€</div>
+                    <p className="text-sm text-muted-foreground mt-1">Por Persona</p>
+                  </div>
+
+                  <div className="space-y-8">
+                    <div>
+                      <h3 className="text-2xl font-display font-semibold text-foreground mb-4 border-b-2 border-golden pb-2">ENTRANTES (A ELEGIR)</h3>
+                      <div className="ml-4 space-y-4">
+                        <div>
+                          <h4 className="text-lg font-semibold text-card-foreground mb-2">Ensalada de pollo con mayonesa de kimchi</h4>
+                          <p className="text-muted-foreground">Pollo desmenuzado con kimchi, mayonesa cremosa, tomate fresco y cebolla</p>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-semibold text-card-foreground mb-2">Crema de calabaza y zanahoria al jengibre con aceite de trufa</h4>
+                          <p className="text-muted-foreground">(ligera y aromático)</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-2xl font-display font-semibold text-foreground mb-4 border-b-2 border-golden pb-2">PLATO PRINCIPAL (A ELEGIR)</h3>
+                      <div className="ml-4 space-y-4">
+                        <div>
+                          <h4 className="text-lg font-semibold text-card-foreground mb-2">Solomillo de ternera con jugo de trufa</h4>
+                          <p className="text-muted-foreground">Solomillo de ternera al punto, acompañado de un jugo de trufa intenso y aromático</p>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-semibold text-card-foreground mb-2">Merluza con chutney de tomate y bilbaína</h4>
+                          <p className="text-muted-foreground">Merluza fresca a la plancha con chutney de tomate especiado y salsa bilbaína tradicional</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-2xl font-display font-semibold text-foreground mb-4 border-b-2 border-golden pb-2">POSTRE (A ELEGIR)</h3>
+                      <div className="ml-4 space-y-4">
+                        <div>
+                          <h4 className="text-lg font-semibold text-card-foreground mb-2">Torrija moderna con espuma de coco</h4>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-semibold text-card-foreground mb-2">Helado</h4>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-muted/50 rounded-lg p-4 mt-6 space-y-2">
+                      <p className="text-center text-card-foreground font-semibold">
+                        Pan, Agua, vino Ribera y café incluidos
+                      </p>
+                      <div className="text-center text-sm text-muted-foreground space-y-1">
+                        <p>*Menu Disponible por fin de Semanas y Festivos</p>
+                        <p>*Grupo Mínimo de 6 personas</p>
+                        <p>*Con Reserva</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="menu-navidad">
+            <div id="menu-items-section" className="max-w-4xl mx-auto">
+              <Card className="shadow-elegant hover:shadow-golden transition-all duration-300">
+                <CardContent className="p-8">
+                  <div className="text-center mb-6">
+                    <h2 className="text-4xl font-display font-bold text-golden mb-4">MENÚ NAVIDAD</h2>
+                    <div className="text-5xl font-bold text-golden">45€</div>
+                    <p className="text-sm text-muted-foreground mt-1">Por Persona</p>
+                  </div>
+
+                  <div className="space-y-8">
+                    <div>
+                      <h3 className="text-2xl font-display font-semibold text-foreground mb-4 border-b-2 border-golden pb-2">Aperitivo</h3>
+                      <div className="ml-4">
+                        <h4 className="text-lg font-semibold text-card-foreground mb-2">Coulant de batata</h4>
+                        <p className="text-muted-foreground">Suave pastelito de batata con corazón cremoso, servido templado para abrir el apetito con un toque dulce y delicado</p>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-2xl font-display font-semibold text-foreground mb-4 border-b-2 border-golden pb-2">Primer plato</h3>
+                      <div className="ml-4">
+                        <h4 className="text-lg font-semibold text-card-foreground mb-2">Alcachofa con trufa rallada</h4>
+                        <p className="text-muted-foreground">Corazón de alcachofa confitado con gamba salteada, acompañado de una ligera espuma de coco y piña que aporta frescura tropical. Terminado con trufa rallada para un aroma festivo y elegante</p>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-2xl font-display font-semibold text-foreground mb-4 border-b-2 border-golden pb-2">Plato principal a elegir</h3>
+                      <div className="ml-4 space-y-4">
+                        <div>
+                          <h4 className="text-lg font-semibold text-card-foreground mb-2">Paletilla de lechazo con puré de yuca y salsa al Pedro Ximénez</h4>
+                          <p className="text-muted-foreground">Paletilla de cordero lechal confitada lentamente hasta quedar melosa, acompañada de un cremoso puré de yuca y una salsa intensa de Pedro Ximénez</p>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-semibold text-card-foreground mb-2">Corvina a la plancha con espinacas salteadas y bisque de marisco</h4>
+                          <p className="text-muted-foreground">Lomo de corvina marcado a la plancha para resaltar su textura y sabor, acompañado de espinacas salteadas y bisque de marisco aromático y concentrado</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-2xl font-display font-semibold text-foreground mb-4 border-b-2 border-golden pb-2">Postre</h3>
+                      <div className="ml-4">
+                        <h4 className="text-lg font-semibold text-card-foreground mb-2">Mousse de turrón</h4>
+                        <p className="text-muted-foreground">Delicada mousse elaborada con turrón de coco, cremosa y suave, que combina tradición navideña con un toque exótico y fresco</p>
+                      </div>
+                    </div>
+
+                    <div className="bg-muted/50 rounded-lg p-4 mt-6">
+                      <p className="text-center text-card-foreground font-semibold">
+                        Bebidas incluidas: Agua, vino y café incluidos
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
         </Tabs>
 
-        {/* Menu Items */}
+        {/* Menu Items - Solo para Barra y Comedor */}
+        {(selectedSection === "barra" || selectedSection === "comedor") && (
         <div id="menu-items-section" className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {filteredItems.map((item) => (
             <Card 
@@ -892,6 +1077,7 @@ const Menu = () => {
             </Card>
           ))}
         </div>
+        )}
 
         {/* Información de Alérgenos */}
         <div className="mt-16 p-6 bg-card rounded-lg border border-border">
