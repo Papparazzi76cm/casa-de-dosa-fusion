@@ -893,10 +893,13 @@ const Menu = () => {
             {/* Allergen Filters */}
             <div className="mb-8 p-6 bg-card rounded-lg border border-border">
               <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   <h3 className="text-lg font-display font-semibold text-card-foreground">
                     Filtrar por Alérgenos
                   </h3>
+                  <Badge variant="secondary" className="bg-golden/10 text-golden border-golden/20">
+                    {filteredItems.length} {filteredItems.length === 1 ? 'plato disponible' : 'platos disponibles'}
+                  </Badge>
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
@@ -988,10 +991,13 @@ const Menu = () => {
             {/* Allergen Filters */}
             <div className="mb-8 p-6 bg-card rounded-lg border border-border">
               <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   <h3 className="text-lg font-display font-semibold text-card-foreground">
                     Filtrar por Alérgenos
                   </h3>
+                  <Badge variant="secondary" className="bg-golden/10 text-golden border-golden/20">
+                    {filteredItems.length} {filteredItems.length === 1 ? 'plato disponible' : 'platos disponibles'}
+                  </Badge>
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
