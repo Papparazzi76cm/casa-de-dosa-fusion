@@ -777,10 +777,157 @@ const menuItems: MenuItem[] = [
     rating: 4.7,
     allergens: ["huevos"],
   },
+
+  // Vinos - Espumosos
+  {
+    id: 700,
+    name: "Vicaral espumoso",
+    description: "D.O. Rueda - Serrada | 🍇 Verdejo | Método tradicional",
+    price: 18,
+    category: "Vinos",
+    rating: 4.8,
+    allergens: ["sulfitos"],
+  },
+
+  // Vinos - Blancos
+  {
+    id: 701,
+    name: "Vicaral 2024",
+    description: "D.O. Rueda - Serrada | 🍇 Verdejo",
+    price: 15,
+    category: "Vinos",
+    rating: 4.7,
+    allergens: ["sulfitos"],
+  },
+  {
+    id: 702,
+    name: "Martivilli 2024",
+    description: "D.O. Rueda - Pozaldez | 🍇 Verdejo",
+    price: 16,
+    category: "Vinos",
+    rating: 4.7,
+    allergens: ["sulfitos"],
+  },
+  {
+    id: 703,
+    name: "José Pariente 2024",
+    description: "D.O. Rueda - La Seca | 🍇 Verdejo",
+    price: 20,
+    category: "Vinos",
+    rating: 4.9,
+    allergens: ["sulfitos"],
+  },
+  {
+    id: 704,
+    name: "Alan de Val 2024",
+    description: "D.O. Valdehorras - A Rúa Orense | 🍇 Godello",
+    price: 18,
+    category: "Vinos",
+    rating: 4.8,
+    allergens: ["sulfitos"],
+  },
+
+  // Vinos - Rosados
+  {
+    id: 705,
+    name: "Viña Picota 2024",
+    description: "D.O. Cigales - Corcos del Valle | 🍇 Tempranillo, Verdejo y Albillo",
+    price: 14,
+    category: "Vinos",
+    rating: 4.6,
+    allergens: ["sulfitos"],
+  },
+  {
+    id: 706,
+    name: "Salvueros 2024",
+    description: "D.O. Cigales - Mucientes | 🍇 Tempranillo, Verdejo y Albillo",
+    price: 15,
+    category: "Vinos",
+    rating: 4.7,
+    allergens: ["sulfitos"],
+  },
+
+  // Vinos - Tintos Roble
+  {
+    id: 707,
+    name: "Viyuela barrica 2023",
+    description: "D.O. Ribera del Duero - Boada de Roa | 🍇 Tinto Fino",
+    price: 15,
+    category: "Vinos",
+    rating: 4.7,
+    allergens: ["sulfitos"],
+  },
+  {
+    id: 708,
+    name: "Lágrima Negra 2024",
+    description: "D.O. Ribera del Duero - Pesquera | 🍇 Tinto Fino",
+    price: 15,
+    category: "Vinos",
+    rating: 4.7,
+    allergens: ["sulfitos"],
+  },
+  {
+    id: 709,
+    name: "Convento Oreja Roble 2024",
+    description: "D.O. Ribera del Duero - Peñafiel | 🍇 Tinto Fino",
+    price: 16,
+    category: "Vinos",
+    rating: 4.8,
+    allergens: ["sulfitos"],
+  },
+
+  // Vinos - Tintos Crianza
+  {
+    id: 710,
+    name: "Vino de la Casa de Dosa 2022",
+    description: "Valtiendas - Segovia | 🍇 Tempranillo",
+    price: 12,
+    category: "Vinos",
+    rating: 4.5,
+    allergens: ["sulfitos"],
+  },
+  {
+    id: 711,
+    name: "Ajechao 2023",
+    description: "Sierra de Salamanca - Sotoserrano | 🍇 Rufete y Tempranillo",
+    price: 18,
+    category: "Vinos",
+    rating: 4.8,
+    allergens: ["sulfitos"],
+  },
+  {
+    id: 712,
+    name: "Pruno 2022",
+    description: "D.O. Ribera del Duero - Valbuena de Duero | 🍇 Tinto Fino y Cabernet Sauvignon",
+    price: 19,
+    category: "Vinos",
+    rating: 4.9,
+    allergens: ["sulfitos"],
+  },
+  {
+    id: 713,
+    name: "Cruz de Alba 2022",
+    description: "D.O. Ribera del Duero - Finca los Hoyales | 🍇 Tinto Fino",
+    price: 24,
+    category: "Vinos",
+    rating: 4.9,
+    allergens: ["sulfitos"],
+  },
+
+  // Vinos - Dulces
+  {
+    id: 714,
+    name: "4 Rayas Frizzante",
+    description: "La Seca - Valladolid | 🍇 Verdejo",
+    price: 14,
+    category: "Vinos",
+    rating: 4.6,
+    allergens: ["sulfitos"],
+  },
 ];
 
 const barraCategories = ["Todos", "Tapas", "Desayunos"];
-const comedorCategories = ["Todos", "Embutidos y Quesos", "Ensalada y Verduras", "Selección de Dosas", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
+const comedorCategories = ["Todos", "Embutidos y Quesos", "Ensalada y Verduras", "Selección de Dosas", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres", "Vinos"];
 
 const ALLERGEN_PREFERENCES_KEY = 'casa-dosa-allergen-preferences';
 
