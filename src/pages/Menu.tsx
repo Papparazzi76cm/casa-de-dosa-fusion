@@ -30,6 +30,8 @@ import samosasVegetales from "@/assets/menu/samosas-vegetales.png";
 import rabas from "@/assets/menu/rabas.jpg";
 import albondigas from "@/assets/menu/albondigas.jpg";
 import tartaQueso from "@/assets/menu/tarta-queso.jpg";
+import vicaralBrut from "@/assets/wines/vicaral-brut.png";
+import vicaralVerdejo from "@/assets/wines/vicaral-verdejo.jpg";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -1339,7 +1341,14 @@ const Menu = () => {
                   <CardContent className="p-6">
                     <h3 className="text-2xl font-display font-semibold text-foreground mb-6 border-b-2 border-golden pb-2">ESPUMOSOS</h3>
                     <div className="space-y-4">
-                      <div className="flex justify-between items-start border-b border-border pb-4">
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={vicaralBrut} 
+                            alt="Vicaral espumoso" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Vicaral espumoso</h4>
                           <p className="text-sm text-muted-foreground">D.O. Rueda - Serrada</p>
@@ -1357,7 +1366,14 @@ const Menu = () => {
                   <CardContent className="p-6">
                     <h3 className="text-2xl font-display font-semibold text-foreground mb-6 border-b-2 border-golden pb-2">BLANCOS</h3>
                     <div className="space-y-4">
-                      <div className="flex justify-between items-start border-b border-border pb-4">
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={vicaralVerdejo} 
+                            alt="Vicaral 2024" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Vicaral 2024</h4>
                           <p className="text-sm text-muted-foreground">D.O. Rueda - Serrada</p>
