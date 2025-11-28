@@ -30,10 +30,17 @@ import samosasVegetales from "@/assets/menu/samosas-vegetales.png";
 import rabas from "@/assets/menu/rabas.jpg";
 import albondigas from "@/assets/menu/albondigas.jpg";
 import tartaQueso from "@/assets/menu/tarta-queso.jpg";
-import vicaralBrut from "@/assets/wines/vicaral-brut.png";
+import vicaralEspumoso from "@/assets/wines/vicaral-espumoso.jpg";
 import vicaralVerdejo from "@/assets/wines/vicaral-verdejo.jpg";
-import rosado from "@/assets/wines/rosado.jpg";
-import tintoRoble from "@/assets/wines/tinto-roble.jpg";
+import martivilli from "@/assets/wines/martivilli.jpg";
+import josePariente from "@/assets/wines/jose-pariente.png";
+import alanDeVal from "@/assets/wines/alan-de-val.png";
+import vinaPicota from "@/assets/wines/vina-picota.jpg";
+import salvueros from "@/assets/wines/salvueros.jpg";
+import viyuelaBarrica from "@/assets/wines/viyuela-barrica.png";
+import lagrimaNegra from "@/assets/wines/lagrima-negra.jpg";
+import conventoOreja from "@/assets/wines/convento-oreja.png";
+import pruno from "@/assets/wines/pruno.jpg";
 import tintoCrianza from "@/assets/wines/tinto-crianza.jpg";
 import dulce from "@/assets/wines/dulce.jpg";
 
@@ -1348,7 +1355,7 @@ const Menu = () => {
                       <div className="flex gap-4 items-start border-b border-border pb-4">
                         <div className="w-24 h-32 flex-shrink-0">
                           <img 
-                            src={vicaralBrut} 
+                            src={vicaralEspumoso} 
                             alt="Vicaral espumoso" 
                             className="w-full h-full object-contain"
                           />
@@ -1385,7 +1392,14 @@ const Menu = () => {
                         </div>
                         <div className="text-2xl font-bold text-golden ml-4">15€</div>
                       </div>
-                      <div className="flex justify-between items-start border-b border-border pb-4">
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={martivilli} 
+                            alt="Martivilli 2024" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Martivilli 2024</h4>
                           <p className="text-sm text-muted-foreground">D.O. Rueda - Pozaldez</p>
@@ -1393,7 +1407,14 @@ const Menu = () => {
                         </div>
                         <div className="text-2xl font-bold text-golden ml-4">16€</div>
                       </div>
-                      <div className="flex justify-between items-start border-b border-border pb-4">
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={josePariente} 
+                            alt="José Pariente 2024" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">José Pariente 2024</h4>
                           <p className="text-sm text-muted-foreground">D.O. Rueda - La Seca</p>
@@ -1401,7 +1422,14 @@ const Menu = () => {
                         </div>
                         <div className="text-2xl font-bold text-golden ml-4">20€</div>
                       </div>
-                      <div className="flex justify-between items-start border-b border-border pb-4">
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={alanDeVal} 
+                            alt="Alan de Val 2024" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Alan de Val 2024</h4>
                           <p className="text-sm text-muted-foreground">D.O. Valdehorras - A Rúa Orense</p>
@@ -1421,7 +1449,7 @@ const Menu = () => {
                       <div className="flex gap-4 items-start border-b border-border pb-4">
                         <div className="w-24 h-32 flex-shrink-0">
                           <img 
-                            src={rosado} 
+                            src={vinaPicota} 
                             alt="Viña Picota 2024" 
                             className="w-full h-full object-contain"
                           />
@@ -1436,7 +1464,7 @@ const Menu = () => {
                       <div className="flex gap-4 items-start border-b border-border pb-4">
                         <div className="w-24 h-32 flex-shrink-0">
                           <img 
-                            src={rosado} 
+                            src={salvueros} 
                             alt="Salvueros 2024" 
                             className="w-full h-full object-contain"
                           />
@@ -1460,7 +1488,7 @@ const Menu = () => {
                       <div className="flex gap-4 items-start border-b border-border pb-4">
                         <div className="w-24 h-32 flex-shrink-0">
                           <img 
-                            src={tintoRoble} 
+                            src={viyuelaBarrica} 
                             alt="Viyuela barrica 2023" 
                             className="w-full h-full object-contain"
                           />
@@ -1475,7 +1503,7 @@ const Menu = () => {
                       <div className="flex gap-4 items-start border-b border-border pb-4">
                         <div className="w-24 h-32 flex-shrink-0">
                           <img 
-                            src={tintoRoble} 
+                            src={lagrimaNegra} 
                             alt="Lágrima Negra 2024" 
                             className="w-full h-full object-contain"
                           />
@@ -1490,7 +1518,7 @@ const Menu = () => {
                       <div className="flex gap-4 items-start border-b border-border pb-4">
                         <div className="w-24 h-32 flex-shrink-0">
                           <img 
-                            src={tintoRoble} 
+                            src={conventoOreja} 
                             alt="Convento Oreja Roble 2024" 
                             className="w-full h-full object-contain"
                           />
@@ -1544,7 +1572,7 @@ const Menu = () => {
                       <div className="flex gap-4 items-start border-b border-border pb-4">
                         <div className="w-24 h-32 flex-shrink-0">
                           <img 
-                            src={tintoCrianza} 
+                            src={pruno} 
                             alt="Pruno 2022" 
                             className="w-full h-full object-contain"
                           />
