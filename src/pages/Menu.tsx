@@ -933,7 +933,7 @@ const ALLERGEN_PREFERENCES_KEY = 'casa-dosa-allergen-preferences';
 
 const Menu = () => {
   const navigate = useNavigate();
-  const [selectedSection, setSelectedSection] = useState<"barra" | "comedor" | "menu-dia" | "menu-fin-semana" | "menu-navidad">("barra");
+  const [selectedSection, setSelectedSection] = useState<"barra" | "comedor" | "menu-dia" | "menu-fin-semana" | "menu-navidad" | "carta-vinos">("barra");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const [excludedAllergens, setExcludedAllergens] = useState<Allergen[]>(() => {
@@ -992,7 +992,7 @@ const Menu = () => {
 
   const filteredItems = getFilteredItems();
 
-  const handleSectionChange = (section: "barra" | "comedor" | "menu-dia" | "menu-fin-semana" | "menu-navidad") => {
+  const handleSectionChange = (section: "barra" | "comedor" | "carta-vinos" | "menu-dia" | "menu-fin-semana" | "menu-navidad") => {
     setSelectedSection(section);
     setSelectedCategory(null);
     scrollToMenu();
@@ -1058,10 +1058,11 @@ const Menu = () => {
         </div>
 
         {/* Tabs de sección principal */}
-        <Tabs value={selectedSection} onValueChange={(value) => handleSectionChange(value as "barra" | "comedor" | "menu-dia" | "menu-fin-semana" | "menu-navidad")} className="mb-8">
-          <TabsList className={`flex flex-col md:grid w-full max-w-5xl mx-auto gap-2 md:gap-0 mb-8 h-auto md:h-auto bg-transparent md:bg-muted p-0 md:p-1 ${isWeekendMenuVisible() ? 'md:grid-cols-5' : 'md:grid-cols-4'}`}>
+        <Tabs value={selectedSection} onValueChange={(value) => handleSectionChange(value as "barra" | "comedor" | "carta-vinos" | "menu-dia" | "menu-fin-semana" | "menu-navidad")} className="mb-8">
+          <TabsList className={`flex flex-col md:grid w-full max-w-5xl mx-auto gap-2 md:gap-0 mb-8 h-auto md:h-auto bg-transparent md:bg-muted p-0 md:p-1 ${isWeekendMenuVisible() ? 'md:grid-cols-6' : 'md:grid-cols-5'}`}>
             <TabsTrigger value="barra" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Barra</TabsTrigger>
             <TabsTrigger value="comedor" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Comedor</TabsTrigger>
+            <TabsTrigger value="carta-vinos" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Carta de Vinos</TabsTrigger>
             <TabsTrigger value="menu-dia" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Menú del Día</TabsTrigger>
             {isWeekendMenuVisible() && (
               <TabsTrigger value="menu-fin-semana" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Menú de fin de Semana</TabsTrigger>
@@ -1322,6 +1323,199 @@ const Menu = () => {
                   {category}
                 </Button>
               ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="carta-vinos">
+            <div id="menu-items-section" className="max-w-5xl mx-auto">
+              <div className="text-center mb-8">
+                <h2 className="text-4xl font-display font-bold text-golden mb-2">Carta de Vinos</h2>
+                <p className="text-muted-foreground">Selección de vinos de la región</p>
+              </div>
+
+              <div className="space-y-8">
+                {/* ESPUMOSOS */}
+                <Card className="shadow-elegant">
+                  <CardContent className="p-6">
+                    <h3 className="text-2xl font-display font-semibold text-foreground mb-6 border-b-2 border-golden pb-2">ESPUMOSOS</h3>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-start border-b border-border pb-4">
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Vicaral espumoso</h4>
+                          <p className="text-sm text-muted-foreground">D.O. Rueda - Serrada</p>
+                          <p className="text-sm text-muted-foreground">🍇 Verdejo</p>
+                          <p className="text-sm text-muted-foreground italic">Método tradicional</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">18€</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* BLANCOS */}
+                <Card className="shadow-elegant">
+                  <CardContent className="p-6">
+                    <h3 className="text-2xl font-display font-semibold text-foreground mb-6 border-b-2 border-golden pb-2">BLANCOS</h3>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-start border-b border-border pb-4">
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Vicaral 2024</h4>
+                          <p className="text-sm text-muted-foreground">D.O. Rueda - Serrada</p>
+                          <p className="text-sm text-muted-foreground">🍇 Verdejo</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">15€</div>
+                      </div>
+                      <div className="flex justify-between items-start border-b border-border pb-4">
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Martivilli 2024</h4>
+                          <p className="text-sm text-muted-foreground">D.O. Rueda - Pozaldez</p>
+                          <p className="text-sm text-muted-foreground">🍇 Verdejo</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">16€</div>
+                      </div>
+                      <div className="flex justify-between items-start border-b border-border pb-4">
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">José Pariente 2024</h4>
+                          <p className="text-sm text-muted-foreground">D.O. Rueda - La Seca</p>
+                          <p className="text-sm text-muted-foreground">🍇 Verdejo</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">20€</div>
+                      </div>
+                      <div className="flex justify-between items-start border-b border-border pb-4">
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Alan de Val 2024</h4>
+                          <p className="text-sm text-muted-foreground">D.O. Valdehorras - A Rúa Orense</p>
+                          <p className="text-sm text-muted-foreground">🍇 Godello</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">18€</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* ROSADOS */}
+                <Card className="shadow-elegant">
+                  <CardContent className="p-6">
+                    <h3 className="text-2xl font-display font-semibold text-foreground mb-6 border-b-2 border-golden pb-2">ROSADOS</h3>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-start border-b border-border pb-4">
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Viña Picota 2024</h4>
+                          <p className="text-sm text-muted-foreground">D.O. Cigales - Corcos del Valle</p>
+                          <p className="text-sm text-muted-foreground">🍇 Tempranillo, Verdejo y Albillo</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">14€</div>
+                      </div>
+                      <div className="flex justify-between items-start border-b border-border pb-4">
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Salvueros 2024</h4>
+                          <p className="text-sm text-muted-foreground">D.O. Cigales - Mucientes</p>
+                          <p className="text-sm text-muted-foreground">🍇 Tempranillo, Verdejo y Albillo</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">15€</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* TINTOS ROBLE */}
+                <Card className="shadow-elegant">
+                  <CardContent className="p-6">
+                    <h3 className="text-2xl font-display font-semibold text-foreground mb-6 border-b-2 border-golden pb-2">TINTOS ROBLE</h3>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-start border-b border-border pb-4">
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Viyuela barrica 2023</h4>
+                          <p className="text-sm text-muted-foreground">D.O. Ribera del Duero - Boada de Roa</p>
+                          <p className="text-sm text-muted-foreground">🍇 Tinto Fino</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">15€</div>
+                      </div>
+                      <div className="flex justify-between items-start border-b border-border pb-4">
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Lágrima Negra 2024</h4>
+                          <p className="text-sm text-muted-foreground">D.O. Ribera del Duero - Pesquera</p>
+                          <p className="text-sm text-muted-foreground">🍇 Tinto Fino</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">15€</div>
+                      </div>
+                      <div className="flex justify-between items-start border-b border-border pb-4">
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Convento Oreja Roble 2024</h4>
+                          <p className="text-sm text-muted-foreground">D.O. Ribera del Duero - Peñafiel</p>
+                          <p className="text-sm text-muted-foreground">🍇 Tinto Fino</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">16€</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* TINTOS CRIANZA */}
+                <Card className="shadow-elegant">
+                  <CardContent className="p-6">
+                    <h3 className="text-2xl font-display font-semibold text-foreground mb-6 border-b-2 border-golden pb-2">TINTOS CRIANZA</h3>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-start border-b border-border pb-4">
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Vino de la "Casa de Dosa" 2022</h4>
+                          <p className="text-sm text-muted-foreground">Valtiendas - Segovia</p>
+                          <p className="text-sm text-muted-foreground">🍇 Tempranillo</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">12€</div>
+                      </div>
+                      <div className="flex justify-between items-start border-b border-border pb-4">
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Ajechao 2023</h4>
+                          <p className="text-sm text-muted-foreground">Sierra de Salamanca - Sotoserrano</p>
+                          <p className="text-sm text-muted-foreground">🍇 Rufete y Tempranillo</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">18€</div>
+                      </div>
+                      <div className="flex justify-between items-start border-b border-border pb-4">
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Pruno 2022</h4>
+                          <p className="text-sm text-muted-foreground">D.O. Ribera del Duero - Valbuena de Duero</p>
+                          <p className="text-sm text-muted-foreground">🍇 Tinto Fino y Cabernet Sauvignon</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">19€</div>
+                      </div>
+                      <div className="flex justify-between items-start border-b border-border pb-4">
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Cruz de Alba 2022</h4>
+                          <p className="text-sm text-muted-foreground">D.O. Ribera del Duero - Finca los Hoyales</p>
+                          <p className="text-sm text-muted-foreground">🍇 Tinto Fino</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">24€</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* DULCES */}
+                <Card className="shadow-elegant">
+                  <CardContent className="p-6">
+                    <h3 className="text-2xl font-display font-semibold text-foreground mb-6 border-b-2 border-golden pb-2">DULCES</h3>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-start border-b border-border pb-4">
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">4 Rayas Frizzante</h4>
+                          <p className="text-sm text-muted-foreground">La Seca - Valladolid</p>
+                          <p className="text-sm text-muted-foreground">🍇 Verdejo</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">14€</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Nota sobre alérgenos */}
+                <div className="bg-muted/50 rounded-lg p-4 mt-6">
+                  <p className="text-center text-sm text-muted-foreground">
+                    Todos los vinos contienen sulfitos
+                  </p>
+                </div>
+              </div>
             </div>
           </TabsContent>
 
