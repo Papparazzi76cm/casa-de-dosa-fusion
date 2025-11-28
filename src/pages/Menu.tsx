@@ -946,112 +946,133 @@ const comedorCategories = ["Todos", "Embutidos y Quesos", "Ensalada y Verduras",
 
 const ALLERGEN_PREFERENCES_KEY = 'casa-dosa-allergen-preferences';
 
-// Wine pairing recommendations
+// Wine pairing recommendations with images
 const winePairings = [
   {
     dish: "Jamón Ibérico",
     wine: "Vicaral espumoso",
-    reason: "La efervescencia del espumoso limpia el paladar entre bocados del jamón graso, mientras sus notas frescas realzan los matices dulces de la bellota."
+    reason: "La efervescencia del espumoso limpia el paladar entre bocados del jamón graso, mientras sus notas frescas realzan los matices dulces de la bellota.",
+    image: platoJamonIberico
   },
   {
     dish: "Tartar de Atún Rojo Sandía y Ponzu de Tomate",
     wine: "José Pariente 2024",
-    reason: "La mineralidad y frescura del verdejo complementa perfectamente la textura del atún crudo, mientras su acidez equilibra el ponzu."
+    reason: "La mineralidad y frescura del verdejo complementa perfectamente la textura del atún crudo, mientras su acidez equilibra el ponzu.",
+    image: tartarAtun
   },
   {
     dish: "Rodaballo con Puré de Coliflor y Salsa Ponzu",
     wine: "Alan de Val 2024",
-    reason: "El godello aporta estructura y complejidad que eleva el rodaballo, con notas herbáceas que armonizan con la coliflor."
+    reason: "El godello aporta estructura y complejidad que eleva el rodaballo, con notas herbáceas que armonizan con la coliflor.",
+    image: rodaballo
   },
   {
     dish: "Gyoza de Ropa Vieja con Jugo Vegetal",
     wine: "Viña Picota 2024",
-    reason: "El rosado cigaleño equilibra los sabores intensos de la ropa vieja, aportando frescura sin dominar el plato."
+    reason: "El rosado cigaleño equilibra los sabores intensos de la ropa vieja, aportando frescura sin dominar el plato.",
+    image: gyozaRopaVieja
   },
   {
     dish: "Burrata y Tartar de Pitahaya y Manzana",
     wine: "Martivilli 2024",
-    reason: "Un verdejo joven y fresco que no compite con la cremosidad de la burrata, realzando las notas frutales del tartar."
+    reason: "Un verdejo joven y fresco que no compite con la cremosidad de la burrata, realzando las notas frutales del tartar.",
+    image: burrata
   },
   {
     dish: "Ensaladilla de Langostinos",
     wine: "Vicaral 2024",
-    reason: "La acidez del verdejo corta la cremosidad del alioli, mientras su frescura resalta el sabor de los langostinos."
+    reason: "La acidez del verdejo corta la cremosidad del alioli, mientras su frescura resalta el sabor de los langostinos.",
+    image: ensaladilla
   },
   {
     dish: "Entraña de Angus con Irish Champ",
     wine: "Pruno 2022",
-    reason: "Un crianza con cuerpo y estructura tánica que complementa la jugosidad de la entraña, con notas especiadas que dialogan con el curry."
+    reason: "Un crianza con cuerpo y estructura tánica que complementa la jugosidad de la entraña, con notas especiadas que dialogan con el curry.",
+    image: entraña
   },
   {
     dish: "Rulo de Lechazo Relleno de Duxelle",
     wine: "Cruz de Alba 2022",
-    reason: "La elegancia de este crianza eleva el lechazo tierno, con taninos sedosos que no opacan la delicadeza de la carne."
+    reason: "La elegancia de este crianza eleva el lechazo tierno, con taninos sedosos que no opacan la delicadeza de la carne.",
+    image: ruloLechazo
   },
   {
     dish: "Arroz de Mariscos",
     wine: "Salvueros 2024",
-    reason: "El rosado cigaleño con su acidez y frescura es ideal para el sabor intenso del mar y el sofrito tradicional."
+    reason: "El rosado cigaleño con su acidez y frescura es ideal para el sabor intenso del mar y el sofrito tradicional.",
+    image: arrozMariscos
   },
   {
     dish: "Masala Dosa",
     wine: "Vicaral 2024",
-    reason: "Un blanco versátil que refresca el paladar ante las especias del masala, sin perder protagonismo."
+    reason: "Un blanco versátil que refresca el paladar ante las especias del masala, sin perder protagonismo.",
+    image: masalaDosa
   },
   {
     dish: "Croqueta de Mango Kimchi",
     wine: "Martivilli 2024",
-    reason: "La frescura frutal del verdejo equilibra el picante del kimchi y realza el dulzor del mango."
+    reason: "La frescura frutal del verdejo equilibra el picante del kimchi y realza el dulzor del mango.",
+    image: croquetaMangoKimchi
   },
   {
     dish: "Albóndigas de Langostino con Salsa de Coco",
     wine: "Alan de Val 2024",
-    reason: "El godello con su textura sedosa complementa la cremosidad del coco, aportando notas cítricas que refrescan."
+    reason: "El godello con su textura sedosa complementa la cremosidad del coco, aportando notas cítricas que refrescan.",
+    image: albondigas
   },
   {
     dish: "Zamburiñas con Leche de Coco y Anacardo",
     wine: "José Pariente 2024",
-    reason: "Un blanco con estructura que eleva las zamburiñas, equilibrando la cremosidad del coco con su acidez elegante."
+    reason: "Un blanco con estructura que eleva las zamburiñas, equilibrando la cremosidad del coco con su acidez elegante.",
+    image: platoJamonIberico // No hay imagen específica, usando placeholder
   },
   {
     dish: "Hamburguesa de Vergara Beef",
     wine: "Viyuela barrica 2023",
-    reason: "Un roble joven con taninos suaves que complementa la jugosidad de la carne sin dominarla."
+    reason: "Un roble joven con taninos suaves que complementa la jugosidad de la carne sin dominarla.",
+    image: hamburguesa
   },
   {
     dish: "Torrezno de Soria",
     wine: "Lágrima Negra 2024",
-    reason: "El roble con su frescura corta la grasa del torrezno, mientras sus notas frutales aportan complejidad."
+    reason: "El roble con su frescura corta la grasa del torrezno, mientras sus notas frutales aportan complejidad.",
+    image: torreznoSoria
   },
   {
     dish: "Rabas con Alioli",
     wine: "Vicaral 2024",
-    reason: "La acidez del verdejo limpia el paladar del alioli, realzando la textura tierna del calamar."
+    reason: "La acidez del verdejo limpia el paladar del alioli, realzando la textura tierna del calamar.",
+    image: rabas
   },
   {
     dish: "Selección de Quesos",
     wine: "Convento Oreja Roble 2024",
-    reason: "Un roble versátil que se adapta a diferentes quesos, con taninos suaves que no dominan los sabores lácteos."
+    reason: "Un roble versátil que se adapta a diferentes quesos, con taninos suaves que no dominan los sabores lácteos.",
+    image: seleccionQuesos
   },
   {
     dish: "Crema de Batata",
     wine: "Viña Picota 2024",
-    reason: "El rosado con sus notas frutales complementa la dulzura natural de la batata sin añadir pesadez."
+    reason: "El rosado con sus notas frutales complementa la dulzura natural de la batata sin añadir pesadez.",
+    image: cremaBatata
   },
   {
     dish: "Tarta de Queso con Helado de Café",
     wine: "4 Rayas Frizzante",
-    reason: "Las burbujas y el dulzor ligero del frizzante equilibran la cremosidad de la tarta y el amargor del café."
+    reason: "Las burbujas y el dulzor ligero del frizzante equilibran la cremosidad de la tarta y el amargor del café.",
+    image: tartaQueso
   },
   {
     dish: "Torrija con Espuma de Coco",
     wine: "4 Rayas Frizzante",
-    reason: "Un vino dulce que no compite con el postre, sino que aporta frescura y ligereza al final de la comida."
+    reason: "Un vino dulce que no compite con el postre, sino que aporta frescura y ligereza al final de la comida.",
+    image: torrija
   },
   {
     dish: "Pannacotta de Mango",
     wine: "4 Rayas Frizzante",
-    reason: "La efervescencia del frizzante limpia el paladar de la cremosidad, mientras realza las notas frutales del mango."
+    reason: "La efervescencia del frizzante limpia el paladar de la cremosidad, mientras realza las notas frutales del mango.",
+    image: pannacotta
   }
 ];
 
@@ -1761,22 +1782,34 @@ const Menu = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {winePairings.map((pairing, index) => (
-                  <Card key={index} className="shadow-elegant hover:shadow-golden transition-all duration-300">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-golden flex items-center justify-center">
-                          <Star className="h-6 w-6 text-white fill-white" />
+                  <Card key={index} className="shadow-elegant hover:shadow-golden transition-all duration-300 overflow-hidden">
+                    <CardContent className="p-0">
+                      <div className="flex flex-col sm:flex-row">
+                        {/* Imagen del plato */}
+                        <div className="w-full sm:w-40 h-40 flex-shrink-0 overflow-hidden">
+                          <img 
+                            src={pairing.image} 
+                            alt={pairing.dish}
+                            className="w-full h-full object-cover"
+                          />
                         </div>
-                        <div className="flex-1">
-                          <h3 className="text-xl font-display font-semibold text-card-foreground mb-2">
-                            {pairing.dish}
-                          </h3>
-                          <div className="flex items-center gap-2 mb-3">
-                            <Badge variant="secondary" className="bg-golden/20 text-golden border-golden/30">
-                              🍷 {pairing.wine}
-                            </Badge>
+                        
+                        {/* Contenido */}
+                        <div className="flex-1 p-6">
+                          <div className="flex items-start gap-3 mb-3">
+                            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-golden flex items-center justify-center">
+                              <Star className="h-5 w-5 text-white fill-white" />
+                            </div>
+                            <div className="flex-1">
+                              <h3 className="text-lg font-display font-semibold text-card-foreground mb-2">
+                                {pairing.dish}
+                              </h3>
+                              <Badge variant="secondary" className="bg-golden/20 text-golden border-golden/30 mb-3">
+                                🍷 {pairing.wine}
+                              </Badge>
+                            </div>
                           </div>
-                          <p className="text-muted-foreground leading-relaxed">
+                          <p className="text-sm text-muted-foreground leading-relaxed">
                             {pairing.reason}
                           </p>
                         </div>
