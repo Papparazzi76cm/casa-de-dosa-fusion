@@ -946,9 +946,118 @@ const comedorCategories = ["Todos", "Embutidos y Quesos", "Ensalada y Verduras",
 
 const ALLERGEN_PREFERENCES_KEY = 'casa-dosa-allergen-preferences';
 
+// Wine pairing recommendations
+const winePairings = [
+  {
+    dish: "Jamón Ibérico",
+    wine: "Vicaral espumoso",
+    reason: "La efervescencia del espumoso limpia el paladar entre bocados del jamón graso, mientras sus notas frescas realzan los matices dulces de la bellota."
+  },
+  {
+    dish: "Tartar de Atún Rojo Sandía y Ponzu de Tomate",
+    wine: "José Pariente 2024",
+    reason: "La mineralidad y frescura del verdejo complementa perfectamente la textura del atún crudo, mientras su acidez equilibra el ponzu."
+  },
+  {
+    dish: "Rodaballo con Puré de Coliflor y Salsa Ponzu",
+    wine: "Alan de Val 2024",
+    reason: "El godello aporta estructura y complejidad que eleva el rodaballo, con notas herbáceas que armonizan con la coliflor."
+  },
+  {
+    dish: "Gyoza de Ropa Vieja con Jugo Vegetal",
+    wine: "Viña Picota 2024",
+    reason: "El rosado cigaleño equilibra los sabores intensos de la ropa vieja, aportando frescura sin dominar el plato."
+  },
+  {
+    dish: "Burrata y Tartar de Pitahaya y Manzana",
+    wine: "Martivilli 2024",
+    reason: "Un verdejo joven y fresco que no compite con la cremosidad de la burrata, realzando las notas frutales del tartar."
+  },
+  {
+    dish: "Ensaladilla de Langostinos",
+    wine: "Vicaral 2024",
+    reason: "La acidez del verdejo corta la cremosidad del alioli, mientras su frescura resalta el sabor de los langostinos."
+  },
+  {
+    dish: "Entraña de Angus con Irish Champ",
+    wine: "Pruno 2022",
+    reason: "Un crianza con cuerpo y estructura tánica que complementa la jugosidad de la entraña, con notas especiadas que dialogan con el curry."
+  },
+  {
+    dish: "Rulo de Lechazo Relleno de Duxelle",
+    wine: "Cruz de Alba 2022",
+    reason: "La elegancia de este crianza eleva el lechazo tierno, con taninos sedosos que no opacan la delicadeza de la carne."
+  },
+  {
+    dish: "Arroz de Mariscos",
+    wine: "Salvueros 2024",
+    reason: "El rosado cigaleño con su acidez y frescura es ideal para el sabor intenso del mar y el sofrito tradicional."
+  },
+  {
+    dish: "Masala Dosa",
+    wine: "Vicaral 2024",
+    reason: "Un blanco versátil que refresca el paladar ante las especias del masala, sin perder protagonismo."
+  },
+  {
+    dish: "Croqueta de Mango Kimchi",
+    wine: "Martivilli 2024",
+    reason: "La frescura frutal del verdejo equilibra el picante del kimchi y realza el dulzor del mango."
+  },
+  {
+    dish: "Albóndigas de Langostino con Salsa de Coco",
+    wine: "Alan de Val 2024",
+    reason: "El godello con su textura sedosa complementa la cremosidad del coco, aportando notas cítricas que refrescan."
+  },
+  {
+    dish: "Zamburiñas con Leche de Coco y Anacardo",
+    wine: "José Pariente 2024",
+    reason: "Un blanco con estructura que eleva las zamburiñas, equilibrando la cremosidad del coco con su acidez elegante."
+  },
+  {
+    dish: "Hamburguesa de Vergara Beef",
+    wine: "Viyuela barrica 2023",
+    reason: "Un roble joven con taninos suaves que complementa la jugosidad de la carne sin dominarla."
+  },
+  {
+    dish: "Torrezno de Soria",
+    wine: "Lágrima Negra 2024",
+    reason: "El roble con su frescura corta la grasa del torrezno, mientras sus notas frutales aportan complejidad."
+  },
+  {
+    dish: "Rabas con Alioli",
+    wine: "Vicaral 2024",
+    reason: "La acidez del verdejo limpia el paladar del alioli, realzando la textura tierna del calamar."
+  },
+  {
+    dish: "Selección de Quesos",
+    wine: "Convento Oreja Roble 2024",
+    reason: "Un roble versátil que se adapta a diferentes quesos, con taninos suaves que no dominan los sabores lácteos."
+  },
+  {
+    dish: "Crema de Batata",
+    wine: "Viña Picota 2024",
+    reason: "El rosado con sus notas frutales complementa la dulzura natural de la batata sin añadir pesadez."
+  },
+  {
+    dish: "Tarta de Queso con Helado de Café",
+    wine: "4 Rayas Frizzante",
+    reason: "Las burbujas y el dulzor ligero del frizzante equilibran la cremosidad de la tarta y el amargor del café."
+  },
+  {
+    dish: "Torrija con Espuma de Coco",
+    wine: "4 Rayas Frizzante",
+    reason: "Un vino dulce que no compite con el postre, sino que aporta frescura y ligereza al final de la comida."
+  },
+  {
+    dish: "Pannacotta de Mango",
+    wine: "4 Rayas Frizzante",
+    reason: "La efervescencia del frizzante limpia el paladar de la cremosidad, mientras realza las notas frutales del mango."
+  }
+];
+
 const Menu = () => {
   const navigate = useNavigate();
-  const [selectedSection, setSelectedSection] = useState<"barra" | "comedor" | "menu-dia" | "menu-fin-semana" | "menu-navidad" | "carta-vinos">("barra");
+  const [selectedSection, setSelectedSection] = useState<"barra" | "comedor" | "menu-dia" | "menu-fin-semana" | "menu-navidad" | "carta-vinos" | "maridajes">("barra");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const [excludedAllergens, setExcludedAllergens] = useState<Allergen[]>(() => {
@@ -1007,7 +1116,7 @@ const Menu = () => {
 
   const filteredItems = getFilteredItems();
 
-  const handleSectionChange = (section: "barra" | "comedor" | "carta-vinos" | "menu-dia" | "menu-fin-semana" | "menu-navidad") => {
+  const handleSectionChange = (section: "barra" | "comedor" | "carta-vinos" | "menu-dia" | "menu-fin-semana" | "menu-navidad" | "maridajes") => {
     setSelectedSection(section);
     setSelectedCategory(null);
     scrollToMenu();
@@ -1073,11 +1182,12 @@ const Menu = () => {
         </div>
 
         {/* Tabs de sección principal */}
-        <Tabs value={selectedSection} onValueChange={(value) => handleSectionChange(value as "barra" | "comedor" | "carta-vinos" | "menu-dia" | "menu-fin-semana" | "menu-navidad")} className="mb-8">
-          <TabsList className={`flex flex-col md:grid w-full max-w-5xl mx-auto gap-2 md:gap-0 mb-8 h-auto md:h-auto bg-transparent md:bg-muted p-0 md:p-1 ${isWeekendMenuVisible() ? 'md:grid-cols-6' : 'md:grid-cols-5'}`}>
+        <Tabs value={selectedSection} onValueChange={(value) => handleSectionChange(value as "barra" | "comedor" | "carta-vinos" | "menu-dia" | "menu-fin-semana" | "menu-navidad" | "maridajes")} className="mb-8">
+          <TabsList className={`flex flex-col md:grid w-full max-w-5xl mx-auto gap-2 md:gap-0 mb-8 h-auto md:h-auto bg-transparent md:bg-muted p-0 md:p-1 ${isWeekendMenuVisible() ? 'md:grid-cols-7' : 'md:grid-cols-6'}`}>
             <TabsTrigger value="barra" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Barra</TabsTrigger>
             <TabsTrigger value="comedor" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Comedor</TabsTrigger>
             <TabsTrigger value="carta-vinos" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Carta de Vinos</TabsTrigger>
+            <TabsTrigger value="maridajes" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Maridajes</TabsTrigger>
             <TabsTrigger value="menu-dia" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Menú del Día</TabsTrigger>
             {isWeekendMenuVisible() && (
               <TabsTrigger value="menu-fin-semana" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Menú de fin de Semana</TabsTrigger>
@@ -1634,6 +1744,76 @@ const Menu = () => {
                   <p className="text-center text-sm text-muted-foreground">
                     Todos los vinos contienen sulfitos
                   </p>
+                </div>
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="maridajes">
+            <div id="menu-items-section" className="max-w-6xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-display font-bold text-golden mb-4">Maridajes Recomendados</h2>
+                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                  Descubre las combinaciones perfectas entre nuestros platos y nuestra selección de vinos. 
+                  Cada maridaje ha sido cuidadosamente pensado para realzar los sabores de ambos.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {winePairings.map((pairing, index) => (
+                  <Card key={index} className="shadow-elegant hover:shadow-golden transition-all duration-300">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-golden flex items-center justify-center">
+                          <Star className="h-6 w-6 text-white fill-white" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-display font-semibold text-card-foreground mb-2">
+                            {pairing.dish}
+                          </h3>
+                          <div className="flex items-center gap-2 mb-3">
+                            <Badge variant="secondary" className="bg-golden/20 text-golden border-golden/30">
+                              🍷 {pairing.wine}
+                            </Badge>
+                          </div>
+                          <p className="text-muted-foreground leading-relaxed">
+                            {pairing.reason}
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+              {/* Nota informativa */}
+              <div className="mt-12 p-6 bg-card rounded-lg border border-border">
+                <div className="text-center space-y-3">
+                  <h3 className="text-xl font-display font-semibold text-card-foreground">
+                    ¿Necesitas ayuda para elegir?
+                  </h3>
+                  <p className="text-muted-foreground max-w-2xl mx-auto">
+                    Nuestro equipo estará encantado de asesorarte sobre el maridaje perfecto para tu comida. 
+                    Cada plato puede tener múltiples opciones de maridaje según tus preferencias personales.
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-4 mt-4">
+                    <Badge variant="outline" className="text-sm">
+                      <Star className="h-3 w-3 mr-1" />
+                      Blancos frescos con pescados
+                    </Badge>
+                    <Badge variant="outline" className="text-sm">
+                      <Star className="h-3 w-3 mr-1" />
+                      Tintos estructurados con carnes
+                    </Badge>
+                    <Badge variant="outline" className="text-sm">
+                      <Star className="h-3 w-3 mr-1" />
+                      Rosados versátiles con tapas
+                    </Badge>
+                    <Badge variant="outline" className="text-sm">
+                      <Star className="h-3 w-3 mr-1" />
+                      Dulces con postres
+                    </Badge>
+                  </div>
                 </div>
               </div>
             </div>
