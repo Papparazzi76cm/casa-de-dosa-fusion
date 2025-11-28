@@ -42,6 +42,8 @@ import lagrimaNegra from "@/assets/wines/lagrima-negra.jpg";
 import conventoOreja from "@/assets/wines/convento-oreja.png";
 import pruno from "@/assets/wines/pruno.jpg";
 import tintoCrianza from "@/assets/wines/tinto-crianza.jpg";
+import cruzDeAlba from "@/assets/wines/cruz-de-alba.png";
+import cuatroRayasFrizzante from "@/assets/wines/cuatro-rayas-frizzante.png";
 import dulce from "@/assets/wines/dulce.jpg";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
@@ -1587,7 +1589,7 @@ const Menu = () => {
                       <div className="flex gap-4 items-start border-b border-border pb-4">
                         <div className="w-24 h-32 flex-shrink-0">
                           <img 
-                            src={tintoCrianza} 
+                            src={cruzDeAlba} 
                             alt="Cruz de Alba 2022" 
                             className="w-full h-full object-contain"
                           />
@@ -1611,7 +1613,7 @@ const Menu = () => {
                       <div className="flex gap-4 items-start border-b border-border pb-4">
                         <div className="w-24 h-32 flex-shrink-0">
                           <img 
-                            src={dulce} 
+                            src={cuatroRayasFrizzante} 
                             alt="4 Rayas Frizzante" 
                             className="w-full h-full object-contain"
                           />
