@@ -32,6 +32,10 @@ import albondigas from "@/assets/menu/albondigas.jpg";
 import tartaQueso from "@/assets/menu/tarta-queso.jpg";
 import vicaralBrut from "@/assets/wines/vicaral-brut.png";
 import vicaralVerdejo from "@/assets/wines/vicaral-verdejo.jpg";
+import rosado from "@/assets/wines/rosado.jpg";
+import tintoRoble from "@/assets/wines/tinto-roble.jpg";
+import tintoCrianza from "@/assets/wines/tinto-crianza.jpg";
+import dulce from "@/assets/wines/dulce.jpg";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -1414,7 +1418,14 @@ const Menu = () => {
                   <CardContent className="p-6">
                     <h3 className="text-2xl font-display font-semibold text-foreground mb-6 border-b-2 border-golden pb-2">ROSADOS</h3>
                     <div className="space-y-4">
-                      <div className="flex justify-between items-start border-b border-border pb-4">
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={rosado} 
+                            alt="Viña Picota 2024" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Viña Picota 2024</h4>
                           <p className="text-sm text-muted-foreground">D.O. Cigales - Corcos del Valle</p>
@@ -1422,7 +1433,14 @@ const Menu = () => {
                         </div>
                         <div className="text-2xl font-bold text-golden ml-4">14€</div>
                       </div>
-                      <div className="flex justify-between items-start border-b border-border pb-4">
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={rosado} 
+                            alt="Salvueros 2024" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Salvueros 2024</h4>
                           <p className="text-sm text-muted-foreground">D.O. Cigales - Mucientes</p>
@@ -1439,7 +1457,14 @@ const Menu = () => {
                   <CardContent className="p-6">
                     <h3 className="text-2xl font-display font-semibold text-foreground mb-6 border-b-2 border-golden pb-2">TINTOS ROBLE</h3>
                     <div className="space-y-4">
-                      <div className="flex justify-between items-start border-b border-border pb-4">
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={tintoRoble} 
+                            alt="Viyuela barrica 2023" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Viyuela barrica 2023</h4>
                           <p className="text-sm text-muted-foreground">D.O. Ribera del Duero - Boada de Roa</p>
@@ -1447,7 +1472,14 @@ const Menu = () => {
                         </div>
                         <div className="text-2xl font-bold text-golden ml-4">15€</div>
                       </div>
-                      <div className="flex justify-between items-start border-b border-border pb-4">
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={tintoRoble} 
+                            alt="Lágrima Negra 2024" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Lágrima Negra 2024</h4>
                           <p className="text-sm text-muted-foreground">D.O. Ribera del Duero - Pesquera</p>
@@ -1455,7 +1487,14 @@ const Menu = () => {
                         </div>
                         <div className="text-2xl font-bold text-golden ml-4">15€</div>
                       </div>
-                      <div className="flex justify-between items-start border-b border-border pb-4">
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={tintoRoble} 
+                            alt="Convento Oreja Roble 2024" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Convento Oreja Roble 2024</h4>
                           <p className="text-sm text-muted-foreground">D.O. Ribera del Duero - Peñafiel</p>
@@ -1472,7 +1511,14 @@ const Menu = () => {
                   <CardContent className="p-6">
                     <h3 className="text-2xl font-display font-semibold text-foreground mb-6 border-b-2 border-golden pb-2">TINTOS CRIANZA</h3>
                     <div className="space-y-4">
-                      <div className="flex justify-between items-start border-b border-border pb-4">
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={tintoCrianza} 
+                            alt="Vino de la Casa de Dosa 2022" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Vino de la "Casa de Dosa" 2022</h4>
                           <p className="text-sm text-muted-foreground">Valtiendas - Segovia</p>
@@ -1480,7 +1526,14 @@ const Menu = () => {
                         </div>
                         <div className="text-2xl font-bold text-golden ml-4">12€</div>
                       </div>
-                      <div className="flex justify-between items-start border-b border-border pb-4">
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={tintoCrianza} 
+                            alt="Ajechao 2023" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Ajechao 2023</h4>
                           <p className="text-sm text-muted-foreground">Sierra de Salamanca - Sotoserrano</p>
@@ -1488,7 +1541,14 @@ const Menu = () => {
                         </div>
                         <div className="text-2xl font-bold text-golden ml-4">18€</div>
                       </div>
-                      <div className="flex justify-between items-start border-b border-border pb-4">
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={tintoCrianza} 
+                            alt="Pruno 2022" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Pruno 2022</h4>
                           <p className="text-sm text-muted-foreground">D.O. Ribera del Duero - Valbuena de Duero</p>
@@ -1496,7 +1556,14 @@ const Menu = () => {
                         </div>
                         <div className="text-2xl font-bold text-golden ml-4">19€</div>
                       </div>
-                      <div className="flex justify-between items-start border-b border-border pb-4">
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={tintoCrianza} 
+                            alt="Cruz de Alba 2022" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Cruz de Alba 2022</h4>
                           <p className="text-sm text-muted-foreground">D.O. Ribera del Duero - Finca los Hoyales</p>
@@ -1513,7 +1580,14 @@ const Menu = () => {
                   <CardContent className="p-6">
                     <h3 className="text-2xl font-display font-semibold text-foreground mb-6 border-b-2 border-golden pb-2">DULCES</h3>
                     <div className="space-y-4">
-                      <div className="flex justify-between items-start border-b border-border pb-4">
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={dulce} 
+                            alt="4 Rayas Frizzante" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">4 Rayas Frizzante</h4>
                           <p className="text-sm text-muted-foreground">La Seca - Valladolid</p>
