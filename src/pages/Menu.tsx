@@ -866,6 +866,13 @@ const Menu = () => {
     }
   }, [excludedAllergens]);
 
+  // Check if weekend menu should be visible (after January 7, 2026)
+  const isWeekendMenuVisible = () => {
+    const targetDate = new Date('2026-01-07');
+    const currentDate = new Date();
+    return currentDate >= targetDate;
+  };
+
   return (
     <div className="min-h-screen py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -881,11 +888,13 @@ const Menu = () => {
 
         {/* Tabs de sección principal */}
         <Tabs value={selectedSection} onValueChange={(value) => handleSectionChange(value as "barra" | "comedor" | "menu-dia" | "menu-fin-semana" | "menu-navidad")} className="mb-8">
-          <TabsList className="flex flex-col md:grid w-full max-w-5xl mx-auto md:grid-cols-5 gap-2 md:gap-0 mb-8 h-auto md:h-auto bg-transparent md:bg-muted p-0 md:p-1">
+          <TabsList className={`flex flex-col md:grid w-full max-w-5xl mx-auto gap-2 md:gap-0 mb-8 h-auto md:h-auto bg-transparent md:bg-muted p-0 md:p-1 ${isWeekendMenuVisible() ? 'md:grid-cols-5' : 'md:grid-cols-4'}`}>
             <TabsTrigger value="barra" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Barra</TabsTrigger>
             <TabsTrigger value="comedor" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Comedor</TabsTrigger>
             <TabsTrigger value="menu-dia" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Menú del Día</TabsTrigger>
-            <TabsTrigger value="menu-fin-semana" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Menú de fin de Semana</TabsTrigger>
+            {isWeekendMenuVisible() && (
+              <TabsTrigger value="menu-fin-semana" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Menú de fin de Semana</TabsTrigger>
+            )}
             <TabsTrigger value="menu-navidad" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Menú de Navidad</TabsTrigger>
           </TabsList>
 
@@ -1191,72 +1200,74 @@ const Menu = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="menu-fin-semana">
-            <div id="menu-items-section" className="max-w-4xl mx-auto">
-              <Card className="shadow-elegant hover:shadow-golden transition-all duration-300">
-                <CardContent className="p-8">
-                  <div className="text-center mb-6">
-                    <h2 className="text-4xl font-display font-bold text-golden mb-4">MENÚ</h2>
-                    <div className="text-5xl font-bold text-golden">35€</div>
-                    <p className="text-sm text-muted-foreground mt-1">Por Persona</p>
-                  </div>
+          {isWeekendMenuVisible() && (
+            <TabsContent value="menu-fin-semana">
+              <div id="menu-items-section" className="max-w-4xl mx-auto">
+                <Card className="shadow-elegant hover:shadow-golden transition-all duration-300">
+                  <CardContent className="p-8">
+                    <div className="text-center mb-6">
+                      <h2 className="text-4xl font-display font-bold text-golden mb-4">MENÚ</h2>
+                      <div className="text-5xl font-bold text-golden">35€</div>
+                      <p className="text-sm text-muted-foreground mt-1">Por Persona</p>
+                    </div>
 
-                  <div className="space-y-8">
-                    <div>
-                      <h3 className="text-2xl font-display font-semibold text-foreground mb-4 border-b-2 border-golden pb-2">ENTRANTES (A ELEGIR)</h3>
-                      <div className="ml-4 space-y-4">
-                        <div>
-                          <h4 className="text-lg font-semibold text-card-foreground mb-2">Ensalada de pollo con mayonesa de kimchi</h4>
-                          <p className="text-muted-foreground">Pollo desmenuzado con kimchi, mayonesa cremosa, tomate fresco y cebolla</p>
+                    <div className="space-y-8">
+                      <div>
+                        <h3 className="text-2xl font-display font-semibold text-foreground mb-4 border-b-2 border-golden pb-2">ENTRANTES (A ELEGIR)</h3>
+                        <div className="ml-4 space-y-4">
+                          <div>
+                            <h4 className="text-lg font-semibold text-card-foreground mb-2">Ensalada de pollo con mayonesa de kimchi</h4>
+                            <p className="text-muted-foreground">Pollo desmenuzado con kimchi, mayonesa cremosa, tomate fresco y cebolla</p>
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-semibold text-card-foreground mb-2">Crema de calabaza y zanahoria al jengibre con aceite de trufa</h4>
+                            <p className="text-muted-foreground">(ligera y aromático)</p>
+                          </div>
                         </div>
-                        <div>
-                          <h4 className="text-lg font-semibold text-card-foreground mb-2">Crema de calabaza y zanahoria al jengibre con aceite de trufa</h4>
-                          <p className="text-muted-foreground">(ligera y aromático)</p>
+                      </div>
+
+                      <div>
+                        <h3 className="text-2xl font-display font-semibold text-foreground mb-4 border-b-2 border-golden pb-2">PLATO PRINCIPAL (A ELEGIR)</h3>
+                        <div className="ml-4 space-y-4">
+                          <div>
+                            <h4 className="text-lg font-semibold text-card-foreground mb-2">Solomillo de ternera con jugo de trufa</h4>
+                            <p className="text-muted-foreground">Solomillo de ternera al punto, acompañado de un jugo de trufa intenso y aromático</p>
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-semibold text-card-foreground mb-2">Merluza con chutney de tomate y bilbaína</h4>
+                            <p className="text-muted-foreground">Merluza fresca a la plancha con chutney de tomate especiado y salsa bilbaína tradicional</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h3 className="text-2xl font-display font-semibold text-foreground mb-4 border-b-2 border-golden pb-2">POSTRE (A ELEGIR)</h3>
+                        <div className="ml-4 space-y-4">
+                          <div>
+                            <h4 className="text-lg font-semibold text-card-foreground mb-2">Torrija moderna con espuma de coco</h4>
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-semibold text-card-foreground mb-2">Helado</h4>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="bg-muted/50 rounded-lg p-4 mt-6 space-y-2">
+                        <p className="text-center text-card-foreground font-semibold">
+                          Pan, Agua, vino Ribera y café incluidos
+                        </p>
+                        <div className="text-center text-sm text-muted-foreground space-y-1">
+                          <p>*Menu Disponible por fin de Semanas y Festivos</p>
+                          <p>*Grupo Mínimo de 6 personas</p>
+                          <p>*Con Reserva</p>
                         </div>
                       </div>
                     </div>
-
-                    <div>
-                      <h3 className="text-2xl font-display font-semibold text-foreground mb-4 border-b-2 border-golden pb-2">PLATO PRINCIPAL (A ELEGIR)</h3>
-                      <div className="ml-4 space-y-4">
-                        <div>
-                          <h4 className="text-lg font-semibold text-card-foreground mb-2">Solomillo de ternera con jugo de trufa</h4>
-                          <p className="text-muted-foreground">Solomillo de ternera al punto, acompañado de un jugo de trufa intenso y aromático</p>
-                        </div>
-                        <div>
-                          <h4 className="text-lg font-semibold text-card-foreground mb-2">Merluza con chutney de tomate y bilbaína</h4>
-                          <p className="text-muted-foreground">Merluza fresca a la plancha con chutney de tomate especiado y salsa bilbaína tradicional</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div>
-                      <h3 className="text-2xl font-display font-semibold text-foreground mb-4 border-b-2 border-golden pb-2">POSTRE (A ELEGIR)</h3>
-                      <div className="ml-4 space-y-4">
-                        <div>
-                          <h4 className="text-lg font-semibold text-card-foreground mb-2">Torrija moderna con espuma de coco</h4>
-                        </div>
-                        <div>
-                          <h4 className="text-lg font-semibold text-card-foreground mb-2">Helado</h4>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-muted/50 rounded-lg p-4 mt-6 space-y-2">
-                      <p className="text-center text-card-foreground font-semibold">
-                        Pan, Agua, vino Ribera y café incluidos
-                      </p>
-                      <div className="text-center text-sm text-muted-foreground space-y-1">
-                        <p>*Menu Disponible por fin de Semanas y Festivos</p>
-                        <p>*Grupo Mínimo de 6 personas</p>
-                        <p>*Con Reserva</p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+          )}
 
           <TabsContent value="menu-navidad">
             <div id="menu-items-section" className="max-w-4xl mx-auto">
