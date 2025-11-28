@@ -787,7 +787,7 @@ const ALLERGEN_PREFERENCES_KEY = 'casa-dosa-allergen-preferences';
 const Menu = () => {
   const navigate = useNavigate();
   const [selectedSection, setSelectedSection] = useState<"barra" | "comedor" | "menu-dia" | "menu-fin-semana" | "menu-navidad">("barra");
-  const [selectedCategory, setSelectedCategory] = useState("Todos");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const [excludedAllergens, setExcludedAllergens] = useState<Allergen[]>(() => {
     // Load preferences from localStorage on initial render
@@ -801,6 +801,11 @@ const Menu = () => {
   });
 
   const getFilteredItems = () => {
+    // Don't return items if no category is selected
+    if (!selectedCategory) {
+      return [];
+    }
+
     const sectionCategories = selectedSection === "barra" 
       ? ["Tapas", "Desayunos"]
       : ["Embutidos y Quesos", "Ensalada y Verduras", "Selección de Dosas", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
@@ -821,17 +826,36 @@ const Menu = () => {
     return items;
   };
 
+  const getTotalItemsForSection = () => {
+    const sectionCategories = selectedSection === "barra" 
+      ? ["Tapas", "Desayunos"]
+      : ["Embutidos y Quesos", "Ensalada y Verduras", "Selección de Dosas", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
+    
+    let items = menuItems.filter(item => sectionCategories.includes(item.category));
+    
+    // Filter by allergens: exclude items that contain any of the excluded allergens
+    if (excludedAllergens.length > 0) {
+      items = items.filter(item => 
+        !item.allergens?.some(allergen => excludedAllergens.includes(allergen))
+      );
+    }
+    
+    return items.length;
+  };
+
   const filteredItems = getFilteredItems();
 
   const handleSectionChange = (section: "barra" | "comedor" | "menu-dia" | "menu-fin-semana" | "menu-navidad") => {
     setSelectedSection(section);
-    setSelectedCategory("Todos");
+    setSelectedCategory(null);
     scrollToMenu();
   };
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
-    scrollToMenu();
+    if (category !== selectedCategory) {
+      scrollToMenu();
+    }
   };
 
   const scrollToMenu = () => {
@@ -908,7 +932,11 @@ const Menu = () => {
                       Filtrar por Alérgenos
                     </h3>
                     <Badge variant="secondary" className="bg-golden/10 text-golden border-golden/20">
-                      {filteredItems.length} {filteredItems.length === 1 ? 'plato disponible' : 'platos disponibles'}
+                      {selectedCategory ? (
+                        <>{filteredItems.length} {filteredItems.length === 1 ? 'plato disponible' : 'platos disponibles'}</>
+                      ) : (
+                        <>{getTotalItemsForSection()} {getTotalItemsForSection() === 1 ? 'plato disponible' : 'platos disponibles'}</>
+                      )}
                     </Badge>
                     <TooltipProvider>
                       <Tooltip>
@@ -938,7 +966,7 @@ const Menu = () => {
                   )}
                 </div>
                 
-                {excludedAllergens.length > 0 && (
+                {selectedCategory && excludedAllergens.length > 0 && (
                   <div className="flex items-center gap-2 p-3 bg-red-50 dark:bg-red-950/20 rounded-md border border-red-200 dark:border-red-900/30">
                     <span className="text-sm font-medium text-red-700 dark:text-red-300 whitespace-nowrap">
                       Evitando:
@@ -996,7 +1024,7 @@ const Menu = () => {
                   })}
                 </div>
               </TooltipProvider>
-              {excludedAllergens.length > 0 && (
+              {selectedCategory && excludedAllergens.length > 0 && (
                 <p className="text-sm text-muted-foreground mt-4">
                   Mostrando platos sin: <span className="font-semibold text-foreground">
                     {excludedAllergens.map(a => allergenInfo[a].name).join(', ')}
@@ -1032,7 +1060,11 @@ const Menu = () => {
                       Filtrar por Alérgenos
                     </h3>
                     <Badge variant="secondary" className="bg-golden/10 text-golden border-golden/20">
-                      {filteredItems.length} {filteredItems.length === 1 ? 'plato disponible' : 'platos disponibles'}
+                      {selectedCategory ? (
+                        <>{filteredItems.length} {filteredItems.length === 1 ? 'plato disponible' : 'platos disponibles'}</>
+                      ) : (
+                        <>{getTotalItemsForSection()} {getTotalItemsForSection() === 1 ? 'plato disponible' : 'platos disponibles'}</>
+                      )}
                     </Badge>
                     <TooltipProvider>
                       <Tooltip>
@@ -1062,7 +1094,7 @@ const Menu = () => {
                   )}
                 </div>
                 
-                {excludedAllergens.length > 0 && (
+                {selectedCategory && excludedAllergens.length > 0 && (
                   <div className="flex items-center gap-2 p-3 bg-red-50 dark:bg-red-950/20 rounded-md border border-red-200 dark:border-red-900/30">
                     <span className="text-sm font-medium text-red-700 dark:text-red-300 whitespace-nowrap">
                       Evitando:
@@ -1120,7 +1152,7 @@ const Menu = () => {
                   })}
                 </div>
               </TooltipProvider>
-              {excludedAllergens.length > 0 && (
+              {selectedCategory && excludedAllergens.length > 0 && (
                 <p className="text-sm text-muted-foreground mt-4">
                   Mostrando platos sin: <span className="font-semibold text-foreground">
                     {excludedAllergens.map(a => allergenInfo[a].name).join(', ')}
@@ -1331,7 +1363,7 @@ const Menu = () => {
         </Tabs>
 
         {/* Menu Items - Solo para Barra y Comedor */}
-        {(selectedSection === "barra" || selectedSection === "comedor") && (
+        {(selectedSection === "barra" || selectedSection === "comedor") && selectedCategory && (
         <div id="menu-items-section" className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {filteredItems.map((item) => (
             <Card 
