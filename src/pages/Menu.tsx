@@ -1682,7 +1682,7 @@ const Menu = () => {
                       <div className="flex gap-4 items-start border-b border-border pb-4">
                         <div className="w-24 h-32 flex-shrink-0">
                           <img 
-                            src={tintoCrianza} 
+                            src={casaDeDosaTinto} 
                             alt="Vino de la Casa de Dosa 2022" 
                             className="w-full h-full object-contain"
                           />
@@ -1697,7 +1697,7 @@ const Menu = () => {
                       <div className="flex gap-4 items-start border-b border-border pb-4">
                         <div className="w-24 h-32 flex-shrink-0">
                           <img 
-                            src={tintoCrianza} 
+                            src={aliyo} 
                             alt="Ajechao 2023" 
                             className="w-full h-full object-contain"
                           />
