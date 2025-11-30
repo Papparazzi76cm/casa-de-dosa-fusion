@@ -46,6 +46,8 @@ import cruzDeAlba from "@/assets/wines/cruz-de-alba.png";
 import cuatroRayasFrizzante from "@/assets/wines/cuatro-rayas-frizzante.png";
 import dulce from "@/assets/wines/dulce.jpg";
 import zamburinas from "@/assets/menu/zamburinas.jpg";
+import casaDeDosaTinto from "@/assets/wines/casa-de-dosa-tinto.jpg";
+import aliyo from "@/assets/wines/aliyo.jpg";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -903,6 +905,7 @@ const menuItems: MenuItem[] = [
     category: "Vinos",
     rating: 4.5,
     allergens: ["sulfitos"],
+    image: casaDeDosaTinto,
   },
   {
     id: 711,
@@ -912,6 +915,7 @@ const menuItems: MenuItem[] = [
     category: "Vinos",
     rating: 4.8,
     allergens: ["sulfitos"],
+    image: aliyo,
   },
   {
     id: 712,
