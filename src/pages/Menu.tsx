@@ -45,6 +45,7 @@ import tintoCrianza from "@/assets/wines/tinto-crianza.jpg";
 import cruzDeAlba from "@/assets/wines/cruz-de-alba.png";
 import cuatroRayasFrizzante from "@/assets/wines/cuatro-rayas-frizzante.png";
 import dulce from "@/assets/wines/dulce.jpg";
+import zamburinas from "@/assets/menu/zamburinas.jpg";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -297,6 +298,7 @@ const menuItems: MenuItem[] = [
     category: "Tapas",
     rating: 4.8,
     allergens: [],
+    image: zamburinas,
   },
 
   // Embutidos y Quesos
@@ -488,6 +490,7 @@ const menuItems: MenuItem[] = [
     category: "Entrantes",
     rating: 4.8,
     allergens: ["moluscos", "frutos_cascara"],
+    image: zamburinas,
   },
   {
     id: 17,
@@ -1024,7 +1027,7 @@ const winePairings = [
     dish: "Zamburiñas con Leche de Coco y Anacardo",
     wine: "José Pariente 2024",
     reason: "Un blanco con estructura que eleva las zamburiñas, equilibrando la cremosidad del coco con su acidez elegante.",
-    image: platoJamonIberico // No hay imagen específica, usando placeholder
+    image: zamburinas
   },
   {
     dish: "Hamburguesa de Vergara Beef",
