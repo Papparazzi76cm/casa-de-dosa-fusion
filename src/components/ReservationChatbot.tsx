@@ -3,14 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { MessageCircle, X, Send, Loader2, CheckCircle } from "lucide-react";
+import { MessageCircle, X, Send, Loader2, CheckCircle, Mic, MicOff, Volume2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { RealtimeVoiceChat } from "@/utils/RealtimeVoice";
 
 type Message = {
   role: "user" | "assistant";
   content: string;
 };
+
+type ChatMode = "text" | "voice";
 
 const ReservationChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,19 +26,34 @@ const ReservationChatbot = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [reservationSuccess, setReservationSuccess] = useState(false);
+  const [mode, setMode] = useState<ChatMode>("text");
+  const [voiceStatus, setVoiceStatus] = useState<'disconnected' | 'connecting' | 'connected'>('disconnected');
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [transcript, setTranscript] = useState("");
+  
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const voiceChatRef = useRef<RealtimeVoiceChat | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
     if (scrollAreaRef.current) {
       scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
     }
-  }, [messages]);
+  }, [messages, transcript]);
+
+  useEffect(() => {
+    return () => {
+      voiceChatRef.current?.disconnect();
+    };
+  }, []);
 
   const processReservation = async (reservationData: any) => {
     try {
       const response = await supabase.functions.invoke("send-reservation-email", {
-        body: reservationData,
+        body: {
+          ...reservationData,
+          guests: String(reservationData.guests),
+        },
       });
 
       if (response.error) {
@@ -43,6 +61,10 @@ const ReservationChatbot = () => {
       }
 
       setReservationSuccess(true);
+      setMessages(prev => [...prev, {
+        role: "assistant",
+        content: "¡Tu reserva ha sido confirmada! Recibirás un email de confirmación en breve. ¡Gracias por elegir Casa de Dosa! 🎉"
+      }]);
       return true;
     } catch (error) {
       console.error("Error processing reservation:", error);
@@ -142,17 +164,14 @@ const ReservationChatbot = () => {
         }
       }
 
-      // Check if the response contains reservation data
       const reservationData = extractReservationData(assistantContent);
       if (reservationData) {
-        // Ensure guests is a string as expected by the API
         const formattedData = {
           ...reservationData,
           guests: String(reservationData.guests),
         };
         const success = await processReservation(formattedData);
         if (success) {
-          // Clean up the message to remove the JSON block
           const cleanContent = assistantContent
             .replace(/###RESERVA_JSON###[\s\S]*?###FIN_RESERVA###/g, "")
             .trim();
@@ -186,7 +205,83 @@ const ReservationChatbot = () => {
     }
   };
 
+  const startVoiceMode = async () => {
+    setMode("voice");
+    setVoiceStatus('connecting');
+    
+    try {
+      voiceChatRef.current = new RealtimeVoiceChat({
+        onStatusChange: (status) => {
+          setVoiceStatus(status);
+          if (status === 'connected') {
+            setMessages(prev => [...prev, {
+              role: "assistant",
+              content: "🎤 Modo voz activado. ¡Habla cuando quieras! Te escucho..."
+            }]);
+          }
+        },
+        onSpeakingChange: (speaking) => {
+          setIsSpeaking(speaking);
+        },
+        onTranscript: (text, isFinal) => {
+          if (isFinal) {
+            setMessages(prev => [...prev, { role: "user", content: text }]);
+            setTranscript("");
+          } else {
+            setTranscript(text);
+          }
+        },
+        onResponse: (text) => {
+          setMessages(prev => {
+            const last = prev[prev.length - 1];
+            if (last?.role === "assistant" && !last.content.includes("🎤")) {
+              return prev.map((m, i) =>
+                i === prev.length - 1 ? { ...m, content: m.content + text } : m
+              );
+            }
+            return [...prev, { role: "assistant", content: text }];
+          });
+        },
+        onFunctionCall: async (name, args) => {
+          if (name === "confirm_reservation") {
+            await processReservation(args);
+          }
+        },
+        onError: (error) => {
+          console.error("Voice error:", error);
+          toast({
+            title: "Error de voz",
+            description: "Hubo un problema con el asistente de voz. Intenta de nuevo.",
+            variant: "destructive",
+          });
+          stopVoiceMode();
+        },
+      });
+
+      await voiceChatRef.current.connect();
+    } catch (error) {
+      console.error("Error starting voice mode:", error);
+      toast({
+        title: "Error",
+        description: "No se pudo activar el modo voz. Verifica los permisos del micrófono.",
+        variant: "destructive",
+      });
+      setMode("text");
+      setVoiceStatus('disconnected');
+    }
+  };
+
+  const stopVoiceMode = () => {
+    voiceChatRef.current?.disconnect();
+    voiceChatRef.current = null;
+    setMode("text");
+    setVoiceStatus('disconnected');
+    setIsSpeaking(false);
+    setTranscript("");
+  };
+
   const resetChat = () => {
+    stopVoiceMode();
     setMessages([
       {
         role: "assistant",
@@ -217,8 +312,17 @@ const ReservationChatbot = () => {
         <CardHeader className="bg-gradient-hero text-white rounded-t-lg p-4">
           <div className="flex items-center justify-between">
             <CardTitle className="text-lg font-display flex items-center gap-2">
-              <MessageCircle className="h-5 w-5 text-golden" />
-              Asistente de Reservas
+              {mode === "voice" && voiceStatus === 'connected' ? (
+                <>
+                  <Volume2 className={`h-5 w-5 text-golden ${isSpeaking ? 'animate-pulse' : ''}`} />
+                  Modo Voz
+                </>
+              ) : (
+                <>
+                  <MessageCircle className="h-5 w-5 text-golden" />
+                  Asistente de Reservas
+                </>
+              )}
             </CardTitle>
             <Button
               variant="ghost"
@@ -252,10 +356,29 @@ const ReservationChatbot = () => {
                   </div>
                 </div>
               ))}
+              
+              {/* Live transcript while speaking */}
+              {transcript && (
+                <div className="flex justify-end">
+                  <div className="max-w-[85%] rounded-2xl px-4 py-2 bg-golden/50 text-blue-grey-dark">
+                    <p className="text-sm whitespace-pre-wrap italic">{transcript}...</p>
+                  </div>
+                </div>
+              )}
+              
               {isLoading && messages[messages.length - 1]?.role === "user" && (
                 <div className="flex justify-start">
                   <div className="bg-muted rounded-2xl px-4 py-2">
                     <Loader2 className="h-4 w-4 animate-spin" />
+                  </div>
+                </div>
+              )}
+              
+              {voiceStatus === 'connecting' && (
+                <div className="flex justify-center">
+                  <div className="bg-muted rounded-2xl px-4 py-2 flex items-center gap-2">
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <span className="text-sm">Conectando modo voz...</span>
                   </div>
                 </div>
               )}
@@ -273,25 +396,79 @@ const ReservationChatbot = () => {
               </Button>
             </div>
           ) : (
-            <div className="p-4 border-t border-border">
-              <div className="flex gap-2">
-                <Input
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                  placeholder="Escribe tu mensaje..."
-                  disabled={isLoading}
-                  className="flex-1"
-                />
+            <div className="p-4 border-t border-border space-y-3">
+              {/* Mode toggle */}
+              <div className="flex justify-center gap-2">
                 <Button
-                  onClick={sendMessage}
-                  disabled={!input.trim() || isLoading}
-                  size="icon"
-                  className="bg-golden hover:bg-golden-dark text-blue-grey-dark"
+                  variant={mode === "text" ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => {
+                    if (mode === "voice") stopVoiceMode();
+                    setMode("text");
+                  }}
+                  className={mode === "text" ? "bg-golden hover:bg-golden-dark text-blue-grey-dark" : ""}
                 >
-                  <Send className="h-4 w-4" />
+                  <MessageCircle className="h-4 w-4 mr-1" />
+                  Texto
+                </Button>
+                <Button
+                  variant={mode === "voice" ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => {
+                    if (mode === "text") startVoiceMode();
+                  }}
+                  disabled={voiceStatus === 'connecting'}
+                  className={mode === "voice" && voiceStatus === 'connected' ? "bg-golden hover:bg-golden-dark text-blue-grey-dark" : ""}
+                >
+                  {voiceStatus === 'connecting' ? (
+                    <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                  ) : mode === "voice" && voiceStatus === 'connected' ? (
+                    <MicOff className="h-4 w-4 mr-1" />
+                  ) : (
+                    <Mic className="h-4 w-4 mr-1" />
+                  )}
+                  Voz
                 </Button>
               </div>
+
+              {/* Text input (shown in text mode) */}
+              {mode === "text" && (
+                <div className="flex gap-2">
+                  <Input
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyPress={handleKeyPress}
+                    placeholder="Escribe tu mensaje..."
+                    disabled={isLoading}
+                    className="flex-1"
+                  />
+                  <Button
+                    onClick={sendMessage}
+                    disabled={!input.trim() || isLoading}
+                    size="icon"
+                    className="bg-golden hover:bg-golden-dark text-blue-grey-dark"
+                  >
+                    <Send className="h-4 w-4" />
+                  </Button>
+                </div>
+              )}
+
+              {/* Voice indicator (shown in voice mode) */}
+              {mode === "voice" && voiceStatus === 'connected' && (
+                <div className="text-center text-sm text-muted-foreground">
+                  {isSpeaking ? (
+                    <div className="flex items-center justify-center gap-2">
+                      <Volume2 className="h-4 w-4 animate-pulse text-golden" />
+                      <span>El asistente está hablando...</span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-center gap-2">
+                      <Mic className="h-4 w-4 text-green-500 animate-pulse" />
+                      <span>Te escucho, habla cuando quieras</span>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           )}
         </CardContent>
