@@ -145,7 +145,12 @@ const ReservationChatbot = () => {
       // Check if the response contains reservation data
       const reservationData = extractReservationData(assistantContent);
       if (reservationData) {
-        const success = await processReservation(reservationData);
+        // Ensure guests is a string as expected by the API
+        const formattedData = {
+          ...reservationData,
+          guests: String(reservationData.guests),
+        };
+        const success = await processReservation(formattedData);
         if (success) {
           // Clean up the message to remove the JSON block
           const cleanContent = assistantContent
