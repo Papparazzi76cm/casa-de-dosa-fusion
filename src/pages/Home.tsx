@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Star, Utensils, MapPin } from "lucide-react";
+import ReservationChatbot from "@/components/ReservationChatbot";
 
 // Import all menu images for carousel
 import albondigas from "@/assets/menu/albondigas.jpg";
@@ -144,6 +145,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Reservation Chatbot */}
+      <ReservationChatbot />
     </div>
   );
 };
