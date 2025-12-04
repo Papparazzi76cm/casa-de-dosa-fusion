@@ -1080,6 +1080,54 @@ const winePairings = [
     wine: "4 Rayas Frizzante",
     reason: "La efervescencia del frizzante limpia el paladar de la cremosidad, mientras realza las notas frutales del mango.",
     image: pannacotta
+  },
+  {
+    dish: "Samosa de Verdura",
+    wine: "Caraballas 2022 (Ecológico)",
+    reason: "El sauvignon blanc ecológico aporta frescura y notas herbáceas que complementan las especias suaves de la samosa vegetariana.",
+    image: samosasVegetales
+  },
+  {
+    dish: "Croquetón de Pollo Malai",
+    wine: "Astobiza 2024",
+    reason: "El txakoli vasco con su acidez vibrante corta la cremosidad del pollo malai, aportando un final limpio y refrescante.",
+    image: croquetaMangoKimchi
+  },
+  {
+    dish: "Mini Burger de Atún",
+    wine: "Alta Pavina 2023",
+    reason: "El pinot noir castellano con su elegancia y taninos sedosos realza el atún sin dominarlo, creando un maridaje sofisticado.",
+    image: miniBurguer
+  },
+  {
+    dish: "Selección de Ibéricos",
+    wine: "Robatie 2022",
+    reason: "El tempranillo riojano con su estructura y notas de fruta madura complementa perfectamente los sabores intensos del ibérico curado.",
+    image: platoEmbutidosIbericos
+  },
+  {
+    dish: "Entraña de Angus con Irish Champ",
+    wine: "Vizcarra 2022",
+    reason: "Un ribera del duero con cuerpo y taninos maduros que se funden con la jugosidad de la entraña, aportando notas especiadas.",
+    image: entraña
+  },
+  {
+    dish: "Rulo de Lechazo Relleno de Duxelle",
+    wine: "Descarte 2018",
+    reason: "La potencia y profundidad del tinta de toro reserva eleva la delicadeza del lechazo con sus notas de fruta negra y especias.",
+    image: ruloLechazo
+  },
+  {
+    dish: "Fingers de Pollo con Miel y Mostaza",
+    wine: "Queulat 2021",
+    reason: "El gran reserva chileno con su complejidad de carmenere, syrah y petit verdot crea un contraste sofisticado con el dulce de la miel.",
+    image: hamburguesa
+  },
+  {
+    dish: "Tarta de Queso con Helado de Café",
+    wine: "La Casona de la Vid 5.5 2024",
+    reason: "El moscato italiano con su dulzura aromática y burbujas delicadas realza la cremosidad de la tarta y equilibra el amargor del café.",
+    image: tartaQueso
   }
 ];
 
