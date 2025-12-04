@@ -1548,6 +1548,34 @@ const Menu = () => {
                         <div className="text-2xl font-bold text-golden ml-4">16€</div>
                       </div>
                       <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0 flex items-center justify-center bg-muted/20 rounded">
+                          <span className="text-4xl">🍷</span>
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <h4 className="text-lg font-semibold text-card-foreground">Caraballas 2022</h4>
+                            <Badge className="bg-green-600 hover:bg-green-700 text-white text-xs px-2 py-0.5">
+                              <Leaf className="w-3 h-3 mr-1" />
+                              Ecológico
+                            </Badge>
+                          </div>
+                          <p className="text-sm text-muted-foreground">V.T. Castilla y León - Medina del Campo</p>
+                          <p className="text-sm text-muted-foreground">🍇 Sauvignon Blanc</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">16€</div>
+                      </div>
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0 flex items-center justify-center bg-muted/20 rounded">
+                          <span className="text-4xl">🍷</span>
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Astobiza 2024</h4>
+                          <p className="text-sm text-muted-foreground">D.O. Txakoli de Álava - Okondo</p>
+                          <p className="text-sm text-muted-foreground">🍇 Hondarrabi Zuri</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">18€</div>
+                      </div>
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
                         <div className="w-24 h-32 flex-shrink-0">
                           <img 
                             src={josePariente} 
@@ -1670,6 +1698,17 @@ const Menu = () => {
                         </div>
                         <div className="text-2xl font-bold text-golden ml-4">16€</div>
                       </div>
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0 flex items-center justify-center bg-muted/20 rounded">
+                          <span className="text-4xl">🍷</span>
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Alta Pavina 2023</h4>
+                          <p className="text-sm text-muted-foreground">V.T. Castilla y León - La Parrilla</p>
+                          <p className="text-sm text-muted-foreground">🍇 Pinot Noir</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">18€</div>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -1710,6 +1749,17 @@ const Menu = () => {
                         <div className="text-2xl font-bold text-golden ml-4">18€</div>
                       </div>
                       <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0 flex items-center justify-center bg-muted/20 rounded">
+                          <span className="text-4xl">🍷</span>
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Robatie 2022</h4>
+                          <p className="text-sm text-muted-foreground">D.O.Ca. Rioja - Baños de Ebro - Álava</p>
+                          <p className="text-sm text-muted-foreground">🍇 Tempranillo</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">18€</div>
+                      </div>
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
                         <div className="w-24 h-32 flex-shrink-0">
                           <img 
                             src={pruno} 
@@ -1725,6 +1775,17 @@ const Menu = () => {
                         <div className="text-2xl font-bold text-golden ml-4">19€</div>
                       </div>
                       <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0 flex items-center justify-center bg-muted/20 rounded">
+                          <span className="text-4xl">🍷</span>
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Vizcarra 2022</h4>
+                          <p className="text-sm text-muted-foreground">D.O. Ribera del Duero - Mambrilla de Castrejón</p>
+                          <p className="text-sm text-muted-foreground">🍇 Tinto Fino</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">22€</div>
+                      </div>
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
                         <div className="w-24 h-32 flex-shrink-0">
                           <img 
                             src={cruzDeAlba} 
@@ -1738,6 +1799,46 @@ const Menu = () => {
                           <p className="text-sm text-muted-foreground">🍇 Tinto Fino</p>
                         </div>
                         <div className="text-2xl font-bold text-golden ml-4">24€</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* TINTOS RESERVA */}
+                <Card className="shadow-elegant">
+                  <CardContent className="p-6">
+                    <h3 className="text-2xl font-display font-semibold text-foreground mb-6 border-b-2 border-golden pb-2">TINTOS RESERVA</h3>
+                    <div className="space-y-4">
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0 flex items-center justify-center bg-muted/20 rounded">
+                          <span className="text-4xl">🍷</span>
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Descarte 2018</h4>
+                          <p className="text-sm text-muted-foreground">D.O. Toro - San Román de Hornija</p>
+                          <p className="text-sm text-muted-foreground">🍇 Tinta de Toro</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">28€</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* TINTOS GRAN RESERVA */}
+                <Card className="shadow-elegant">
+                  <CardContent className="p-6">
+                    <h3 className="text-2xl font-display font-semibold text-foreground mb-6 border-b-2 border-golden pb-2">TINTOS GRAN RESERVA</h3>
+                    <div className="space-y-4">
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0 flex items-center justify-center bg-muted/20 rounded">
+                          <span className="text-4xl">🍷</span>
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">Queulat 2021</h4>
+                          <p className="text-sm text-muted-foreground">Valle del Maipo - Chile</p>
+                          <p className="text-sm text-muted-foreground">🍇 Carmenere, Syrah y Petit Verdot</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">32€</div>
                       </div>
                     </div>
                   </CardContent>
@@ -1762,6 +1863,17 @@ const Menu = () => {
                           <p className="text-sm text-muted-foreground">🍇 Verdejo</p>
                         </div>
                         <div className="text-2xl font-bold text-golden ml-4">14€</div>
+                      </div>
+                      <div className="flex gap-4 items-start border-b border-border pb-4">
+                        <div className="w-24 h-32 flex-shrink-0 flex items-center justify-center bg-muted/20 rounded">
+                          <span className="text-4xl">🍷</span>
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-lg font-semibold text-card-foreground mb-1">La Casona de la Vid 5.5 2024</h4>
+                          <p className="text-sm text-muted-foreground">D.O.C.G. Moscato D'Asti - Piamonte - Italia</p>
+                          <p className="text-sm text-muted-foreground">🍇 Moscato Bianco</p>
+                        </div>
+                        <div className="text-2xl font-bold text-golden ml-4">18€</div>
                       </div>
                     </div>
                   </CardContent>
