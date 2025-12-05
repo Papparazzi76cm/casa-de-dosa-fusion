@@ -13,6 +13,25 @@ const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 // Token validation schema
 const tokenSchema = z.string().uuid("Invalid token format");
 
+// Helper function to generate error HTML
+const getErrorHtml = (message: string): string => `
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Error - Casa de Dosa</title>
+    <style>
+      body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; text-align: center; }
+      .error { color: #ef4444; }
+    </style>
+  </head>
+  <body>
+    <h1 class="error">❌ Error</h1>
+    <p>${message}</p>
+  </body>
+</html>
+`;
+
 const handler = async (req: Request): Promise<Response> => {
   const url = new URL(req.url);
   const token = url.searchParams.get("token");
@@ -21,7 +40,7 @@ const handler = async (req: Request): Promise<Response> => {
   const tokenValidation = tokenSchema.safeParse(token);
   if (!tokenValidation.success) {
     return new Response(
-      getErrorHtml("Invalid or missing cancellation link. Please use the link from your confirmation email."),
+      getErrorHtml("Enlace de cancelación inválido. Por favor, use el enlace de su email de confirmación."),
       { status: 400, headers: { "Content-Type": "text/html" } }
     );
   }
