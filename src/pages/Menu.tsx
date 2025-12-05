@@ -48,6 +48,14 @@ import dulce from "@/assets/wines/dulce.jpg";
 import zamburinas from "@/assets/menu/zamburinas.jpg";
 import casaDeDosaTinto from "@/assets/wines/casa-de-dosa-tinto.jpg";
 import aliyo from "@/assets/wines/aliyo.jpg";
+import laCasonaVid from "@/assets/wines/la-casona-vid-5v.jpg";
+import queulat from "@/assets/wines/queulat.webp";
+import descarte from "@/assets/wines/descarte.webp";
+import vizcarra from "@/assets/wines/vizcarra.jpg";
+import robatie from "@/assets/wines/robatie.webp";
+import altaPavina from "@/assets/wines/alta-pavina.webp";
+import astobiza from "@/assets/wines/astobiza.jpg";
+import caraballas from "@/assets/wines/caraballas.jpg";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -1596,8 +1604,12 @@ const Menu = () => {
                         <div className="text-2xl font-bold text-golden ml-4">16€</div>
                       </div>
                       <div className="flex gap-4 items-start border-b border-border pb-4">
-                        <div className="w-24 h-32 flex-shrink-0 flex items-center justify-center bg-muted/20 rounded">
-                          <span className="text-4xl">🍷</span>
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={caraballas} 
+                            alt="Caraballas 2022" 
+                            className="w-full h-full object-contain"
+                          />
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
@@ -1613,8 +1625,12 @@ const Menu = () => {
                         <div className="text-2xl font-bold text-golden ml-4">16€</div>
                       </div>
                       <div className="flex gap-4 items-start border-b border-border pb-4">
-                        <div className="w-24 h-32 flex-shrink-0 flex items-center justify-center bg-muted/20 rounded">
-                          <span className="text-4xl">🍷</span>
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={astobiza} 
+                            alt="Astobiza 2024" 
+                            className="w-full h-full object-contain"
+                          />
                         </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Astobiza 2024</h4>
@@ -1747,8 +1763,12 @@ const Menu = () => {
                         <div className="text-2xl font-bold text-golden ml-4">16€</div>
                       </div>
                       <div className="flex gap-4 items-start border-b border-border pb-4">
-                        <div className="w-24 h-32 flex-shrink-0 flex items-center justify-center bg-muted/20 rounded">
-                          <span className="text-4xl">🍷</span>
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={altaPavina} 
+                            alt="Alta Pavina 2023" 
+                            className="w-full h-full object-contain"
+                          />
                         </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Alta Pavina 2023</h4>
@@ -1797,8 +1817,12 @@ const Menu = () => {
                         <div className="text-2xl font-bold text-golden ml-4">18€</div>
                       </div>
                       <div className="flex gap-4 items-start border-b border-border pb-4">
-                        <div className="w-24 h-32 flex-shrink-0 flex items-center justify-center bg-muted/20 rounded">
-                          <span className="text-4xl">🍷</span>
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={robatie} 
+                            alt="Robatie 2022" 
+                            className="w-full h-full object-contain"
+                          />
                         </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Robatie 2022</h4>
@@ -1823,8 +1847,12 @@ const Menu = () => {
                         <div className="text-2xl font-bold text-golden ml-4">19€</div>
                       </div>
                       <div className="flex gap-4 items-start border-b border-border pb-4">
-                        <div className="w-24 h-32 flex-shrink-0 flex items-center justify-center bg-muted/20 rounded">
-                          <span className="text-4xl">🍷</span>
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={vizcarra} 
+                            alt="Vizcarra 2022" 
+                            className="w-full h-full object-contain"
+                          />
                         </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Vizcarra 2022</h4>
@@ -1858,8 +1886,12 @@ const Menu = () => {
                     <h3 className="text-2xl font-display font-semibold text-foreground mb-6 border-b-2 border-golden pb-2">TINTOS RESERVA</h3>
                     <div className="space-y-4">
                       <div className="flex gap-4 items-start border-b border-border pb-4">
-                        <div className="w-24 h-32 flex-shrink-0 flex items-center justify-center bg-muted/20 rounded">
-                          <span className="text-4xl">🍷</span>
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={descarte} 
+                            alt="Descarte 2018" 
+                            className="w-full h-full object-contain"
+                          />
                         </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Descarte 2018</h4>
@@ -1878,8 +1910,12 @@ const Menu = () => {
                     <h3 className="text-2xl font-display font-semibold text-foreground mb-6 border-b-2 border-golden pb-2">TINTOS GRAN RESERVA</h3>
                     <div className="space-y-4">
                       <div className="flex gap-4 items-start border-b border-border pb-4">
-                        <div className="w-24 h-32 flex-shrink-0 flex items-center justify-center bg-muted/20 rounded">
-                          <span className="text-4xl">🍷</span>
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={queulat} 
+                            alt="Queulat 2021" 
+                            className="w-full h-full object-contain"
+                          />
                         </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">Queulat 2021</h4>
@@ -1913,8 +1949,12 @@ const Menu = () => {
                         <div className="text-2xl font-bold text-golden ml-4">14€</div>
                       </div>
                       <div className="flex gap-4 items-start border-b border-border pb-4">
-                        <div className="w-24 h-32 flex-shrink-0 flex items-center justify-center bg-muted/20 rounded">
-                          <span className="text-4xl">🍷</span>
+                        <div className="w-24 h-32 flex-shrink-0">
+                          <img 
+                            src={laCasonaVid} 
+                            alt="La Casona de la Vid 5.5 2024" 
+                            className="w-full h-full object-contain"
+                          />
                         </div>
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-card-foreground mb-1">La Casona de la Vid 5.5 2024</h4>
