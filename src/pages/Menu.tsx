@@ -56,6 +56,8 @@ import robatie from "@/assets/wines/robatie.webp";
 import altaPavina from "@/assets/wines/alta-pavina.webp";
 import astobiza from "@/assets/wines/astobiza.jpg";
 import caraballas from "@/assets/wines/caraballas.jpg";
+import cachopo from "@/assets/menu/cachopo.jpeg";
+import postreMenuNavidad from "@/assets/menu/postre-menu-navidad.jpeg";
 
 type Allergen = "gluten" | "crustaceos" | "huevos" | "pescado" | "lacteos" | "frutos_cascara" | "soja" | "apio" | "mostaza" | "sesamo" | "sulfitos" | "moluscos";
 
@@ -2085,6 +2087,7 @@ const Menu = () => {
                         <div>
                           <h4 className="text-lg font-semibold text-card-foreground mb-2">Cachopo de Ternera</h4>
                           <p className="text-muted-foreground">Con Jamón y Queso fundido acompañado de patatas fritas, tradicional crujiente y sabroso</p>
+                          <img src={cachopo} alt="Cachopo de Ternera" className="mt-3 rounded-lg w-full max-w-md mx-auto shadow-md" />
                         </div>
                         <div className="text-center text-muted-foreground font-semibold">o</div>
                         <div>
@@ -2228,6 +2231,7 @@ const Menu = () => {
                       <div className="ml-4">
                         <h4 className="text-lg font-semibold text-card-foreground mb-2">Mousse de turrón</h4>
                         <p className="text-muted-foreground">Delicada mousse elaborada con turrón de coco, cremosa y suave, que combina tradición navideña con un toque exótico y fresco</p>
+                        <img src={postreMenuNavidad} alt="Mousse de turrón" className="mt-3 rounded-lg w-full max-w-md mx-auto shadow-md" />
                       </div>
                     </div>
 
