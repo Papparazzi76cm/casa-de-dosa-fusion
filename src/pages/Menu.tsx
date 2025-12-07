@@ -1624,7 +1624,7 @@ const Menu = () => {
                           <p className="text-sm text-muted-foreground">V.T. Castilla y León - Medina del Campo</p>
                           <p className="text-sm text-muted-foreground">🍇 Sauvignon Blanc</p>
                         </div>
-                        <div className="text-2xl font-bold text-golden ml-4">16€</div>
+                        <div className="text-2xl font-bold text-golden ml-4">22€</div>
                       </div>
                       <div className="flex gap-4 items-start border-b border-border pb-4">
                         <div className="w-24 h-32 flex-shrink-0">
