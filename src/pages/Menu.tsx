@@ -1613,18 +1613,18 @@ const Menu = () => {
                             className="w-full h-full object-contain"
                           />
                         </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-1">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap items-center gap-1 mb-1">
                             <h4 className="text-lg font-semibold text-card-foreground">Caraballas 2022</h4>
-                            <Badge className="bg-green-600 hover:bg-green-700 text-white text-xs px-2 py-0.5">
-                              <Leaf className="w-3 h-3 mr-1" />
-                              Ecológico
+                            <Badge className="bg-green-600 hover:bg-green-700 text-white text-[10px] px-1.5 py-0">
+                              <Leaf className="w-2.5 h-2.5 mr-0.5" />
+                              Eco
                             </Badge>
                           </div>
                           <p className="text-sm text-muted-foreground">V.T. Castilla y León - Medina del Campo</p>
                           <p className="text-sm text-muted-foreground">🍇 Sauvignon Blanc</p>
                         </div>
-                        <div className="text-2xl font-bold text-golden ml-4">22€</div>
+                        <div className="text-2xl font-bold text-golden ml-4 flex-shrink-0">22€</div>
                       </div>
                       <div className="flex gap-4 items-start border-b border-border pb-4">
                         <div className="w-24 h-32 flex-shrink-0">
