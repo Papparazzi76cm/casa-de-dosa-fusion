@@ -168,10 +168,14 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Cancel the reservation
+    // Cancel the reservation and invalidate token to prevent reuse
     const { error: cancelError } = await supabase
       .from('reservations')
-      .update({ status: 'cancelled' })
+      .update({ 
+        status: 'cancelled',
+        edit_token: null,
+        token_expires_at: null
+      })
       .eq('id', reservation.id);
 
     if (cancelError) {
