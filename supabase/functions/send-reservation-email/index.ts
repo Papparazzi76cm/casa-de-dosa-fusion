@@ -193,11 +193,12 @@ const handler = async (req: Request): Promise<Response> => {
     const functionHost = Deno.env.get("SUPABASE_URL")?.replace('/rest/v1', '') || ''; // Get base URL correctly
     const cancelUrl = `${functionHost}/functions/v1/cancel-reservation?token=${editToken}`;
 
-    // Enviar email al restaurante
+    // Enviar email al restaurante (usando noreply para evitar problemas de spam al enviar a la misma dirección)
     const restaurantEmail = await resend.emails.send({
-      from: "Casa de Dosa <reservas@casadedosa.com>",
-      to: ["reservas@casadedosa.com"], // Send to restaurant
-      subject: `Nueva Reserva - ${name} (${date} ${time})`,
+      from: "Casa de Dosa Reservas <noreply@casadedosa.com>",
+      to: ["reservas@casadedosa.com"],
+      replyTo: email, // Reply-to del cliente para facilitar respuesta
+      subject: `🍽️ Nueva Reserva - ${name} (${date} ${time})`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h1 style="color: #D4AF37; border-bottom: 2px solid #D4AF37; padding-bottom: 10px;">
@@ -214,9 +215,12 @@ const handler = async (req: Request): Promise<Response> => {
             <p><strong>Comensales:</strong> ${guests}</p>
             ${requests ? `<p><strong>Peticiones:</strong> ${requests}</p>` : ''}
           </div>
+          <p style="font-size: 12px; color: #666;">Puedes responder directamente a este email para contactar con el cliente.</p>
         </div>
       `,
     });
+
+    console.log("Restaurant email result:", JSON.stringify(restaurantEmail));
 
     // Enviar email de confirmación al cliente
     const customerEmail = await resend.emails.send({
