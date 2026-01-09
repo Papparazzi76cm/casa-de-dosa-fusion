@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Star, Flame, Leaf, Wheat, Fish, Egg, Milk, Shell, Nut, X, Info } from "lucide-react";
+import { Star, Flame, Leaf, Wheat, Fish, Egg, Milk, Shell, Nut, X, Info, Download } from "lucide-react";
 import platoJamonIberico from "@/assets/plato-jamon-iberico.png";
 import platoEmbutidosIbericos from "@/assets/plato-embutidos-ibericos.png";
 import tartarAtun from "@/assets/menu/tartar-atun.jpg";
@@ -1277,8 +1277,9 @@ const Menu = () => {
             <TabsTrigger value="maridajes" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Maridajes</TabsTrigger>
             <button 
               onClick={openMenuDelMes}
-              className="text-base md:text-lg w-full py-3 bg-muted hover:bg-gradient-golden transition-all rounded-md font-medium"
+              className="text-base md:text-lg w-full py-3 bg-muted hover:bg-gradient-golden transition-all rounded-md font-medium flex items-center justify-center gap-2"
             >
+              <Download className="h-4 w-4" />
               Menú del Mes
             </button>
           </TabsList>
