@@ -1207,7 +1207,14 @@ const Menu = () => {
   };
 
   const openMenuDelMes = () => {
-    window.open('/menu-del-mes.pdf', '_blank');
+    // Using a link click to avoid popup blockers and adblockers
+    const link = document.createElement('a');
+    link.href = '/menu-del-mes.pdf';
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const handleCategoryChange = (category: string) => {
