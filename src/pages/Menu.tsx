@@ -6,7 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Star, Flame, Leaf, Wheat, Fish, Egg, Milk, Shell, Nut, X, Info, Download } from "lucide-react";
+import { Star, Flame, Leaf, Wheat, Fish, Egg, Milk, Shell, Nut, X, Info, Eye } from "lucide-react";
+import menuDelMesImage from "@/assets/menu/menu-del-mes.jpg";
 import platoJamonIberico from "@/assets/plato-jamon-iberico.png";
 import platoEmbutidosIbericos from "@/assets/plato-embutidos-ibericos.png";
 import tartarAtun from "@/assets/menu/tartar-atun.jpg";
@@ -1206,14 +1207,7 @@ const Menu = () => {
     scrollToMenu();
   };
 
-  const openMenuDelMes = () => {
-    const link = document.createElement('a');
-    link.href = '/menu-del-mes.pdf';
-    link.download = 'Menu-del-Mes-Casa-de-Dosa.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  const [showMenuDelMes, setShowMenuDelMes] = useState(false);
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
@@ -1276,10 +1270,10 @@ const Menu = () => {
             <TabsTrigger value="carta-vinos" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Carta de Vinos</TabsTrigger>
             <TabsTrigger value="maridajes" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Maridajes</TabsTrigger>
             <button 
-              onClick={openMenuDelMes}
+              onClick={() => setShowMenuDelMes(true)}
               className="text-base md:text-lg w-full py-3 bg-muted hover:bg-gradient-golden transition-all rounded-md font-medium flex items-center justify-center gap-2"
             >
-              <Download className="h-4 w-4" />
+              <Eye className="h-4 w-4" />
               Menú del Mes
             </button>
           </TabsList>
@@ -2269,6 +2263,25 @@ const Menu = () => {
                 </div>
               </>
             )}
+          </DialogContent>
+        </Dialog>
+
+        {/* Modal Menú del Mes */}
+        <Dialog open={showMenuDelMes} onOpenChange={setShowMenuDelMes}>
+          <DialogContent className="max-w-[95vw] md:max-w-4xl max-h-[95vh] p-0 overflow-hidden bg-background/95 backdrop-blur-sm">
+            <button
+              onClick={() => setShowMenuDelMes(false)}
+              className="absolute right-3 top-3 z-50 rounded-full bg-background/80 p-2 hover:bg-background transition-colors"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            <div className="overflow-auto max-h-[95vh]">
+              <img 
+                src={menuDelMesImage} 
+                alt="Menú del Mes - Casa de Dosa" 
+                className="w-full h-auto"
+              />
+            </div>
           </DialogContent>
         </Dialog>
       </div>
