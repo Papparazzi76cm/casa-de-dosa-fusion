@@ -6,9 +6,15 @@ const WHATSAPP_MESSAGE = encodeURIComponent("¡Hola! Me gustaría hacer una rese
 const ReservationChatbot = () => {
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
 
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <a
       href={whatsappUrl}
+      onClick={handleClick}
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-[#25D366] hover:bg-[#1ebe57] text-white shadow-lg transition-all duration-300 flex items-center justify-center"
