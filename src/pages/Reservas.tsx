@@ -1,399 +1,76 @@
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Calendar, Clock, Users, Phone, Mail, CheckCircle, AlertCircle } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { Clock, Users, Phone, Mail } from "lucide-react";
 
 const Reservas = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [availableSpots, setAvailableSpots] = useState<{ morning: number; evening: number } | null>(null);
-  const { toast } = useToast();
-
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    date: "",
-    time: "",
-    guests: "",
-    requests: "",
-  });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      // Basic check for Sunday evening
-      const selectedDate = new Date(formData.date + 'T00:00:00'); // Ensure date is parsed correctly
-      const selectedDay = selectedDate.getDay(); // 0 for Sunday, 1 for Monday, etc.
-      const selectedHour = parseInt(formData.time.split(':')[0]);
-
-      if (selectedDay === 0 && selectedHour >= 17) { // Sunday and time is 17:00 or later
-          toast({
-              title: "Horario no disponible",
-              description: "Lo sentimos, el restaurante cierra los domingos por la tarde a partir de las 16:30.",
-              variant: "destructive",
-          });
-          setIsLoading(false);
-          return;
-      }
-
-
-      const { error } = await supabase.functions.invoke('send-reservation-email', {
-        body: formData
-      });
-
-      if (error) {
-        // Check if error message contains availability info
-        if (error.message?.includes('No hay suficiente capacidad')) {
-          throw new Error(error.message);
-        }
-        throw error;
-      }
-
-      setIsSubmitted(true);
-      toast({
-        title: "¡Reserva Confirmada!",
-        description: "Hemos recibido tu reserva. Te contactaremos pronto para confirmar.",
-      });
-    } catch (error: any) {
-      console.error("Error al enviar la reserva:", error);
-      toast({
-        title: "Error",
-        description: error.message || "No se pudo procesar la reserva. Por favor, intenta de nuevo.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-
-    // Reset time if date changes, to re-evaluate available times
-    if (field === 'date') {
-      setFormData(prev => ({ ...prev, time: "" }));
-    }
-  };
-
-  // Check availability when date changes
-  useEffect(() => {
-    const checkAvailability = async () => {
-      if (!formData.date) {
-        setAvailableSpots(null);
-        return;
-      }
-
-      try {
-        // Check for blocked slots
-        const { data: blockedSlots, error: blockedError } = await supabase
-          .from('blocked_slots')
-          .select('session')
-          .eq('date', formData.date);
-
-        if (blockedError) throw blockedError;
-
-        // Check existing reservations
-        const { data, error } = await supabase
-          .from('reservations')
-          .select('guests, session')
-          .eq('date', formData.date)
-          .neq('status', 'cancelled');
-
-        if (error) throw error;
-
-        const morningGuests = data
-          ?.filter(r => r.session === 'morning')
-          .reduce((sum, r) => sum + r.guests, 0) || 0;
-
-        const eveningGuests = data
-          ?.filter(r => r.session === 'evening')
-          .reduce((sum, r) => sum + r.guests, 0) || 0;
-
-        // Restaurant capacity is 30 per session
-        const morningCapacity = 30;
-        const eveningCapacity = 30;
-
-        // Check if sessions are blocked
-        const isMorningBlocked = blockedSlots?.some(slot => slot.session === 'morning');
-        const isEveningBlocked = blockedSlots?.some(slot => slot.session === 'evening');
-
-        setAvailableSpots({
-          morning: isMorningBlocked ? 0 : Math.max(0, morningCapacity - morningGuests),
-          evening: isEveningBlocked ? 0 : Math.max(0, eveningCapacity - eveningGuests)
-        });
-      } catch (error) {
-        console.error("Error checking availability:", error);
-        setAvailableSpots(null); // Reset on error
-      }
-    };
-
-    checkAvailability();
-  }, [formData.date]);
-
-  // Determine available times based on selected date
-  const getAvailableTimes = () => {
-    const allTimes = [
-      "10:00", "10:30", "11:00", "11:30", "12:00", "12:30",
-      "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00",
-      "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30",
-      "23:00", "23:30"
-    ];
-
-    if (!formData.date) return allTimes; // Return all times if no date is selected
-
-    try {
-        const selectedDate = new Date(formData.date + 'T00:00:00'); // Ensure correct date parsing, avoid timezone issues
-        const dayOfWeek = selectedDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-
-        if (dayOfWeek === 0) { // Sunday
-          // Only allow times up to 16:00 on Sundays
-          return allTimes.filter(time => {
-            const hour = parseInt(time.split(':')[0]);
-            return hour < 17; // Allows up to 16:30 which starts at 16
-          });
-        }
-
-        return allTimes; // Return all times for other days
-     } catch (e) {
-         console.error("Error parsing date for time filtering:", e);
-         return allTimes; // Fallback to all times on error
-     }
-  };
-
-  const availableTimes = getAvailableTimes();
-
-
-  if (isSubmitted) {
-    return (
-      <div className="min-h-screen py-20">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Card className="shadow-elegant text-center">
-            <CardContent className="p-12">
-              <CheckCircle className="h-20 w-20 text-golden mx-auto mb-6" />
-              <h1 className="text-4xl font-display font-bold text-foreground mb-4">
-                ¡Reserva Confirmada!
-              </h1>
-              <p className="text-lg text-muted-foreground mb-8">
-                Gracias por elegir Casa de Dosa. Hemos recibido tu reserva y te
-                contactaremos pronto para confirmar todos los detalles.
-              </p>
-              <div className="bg-muted rounded-lg p-6 mb-8">
-                <h3 className="font-semibold text-foreground mb-4">Detalles de tu reserva:</h3>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span>Nombre:</span>
-                    <span>{formData.name}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Fecha:</span>
-                    <span>{formData.date}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Hora:</span>
-                    <span>{formData.time}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Comensales:</span>
-                    <span>{formData.guests}</span>
-                  </div>
-                </div>
-              </div>
-              <Button
-                onClick={() => {
-                  setIsSubmitted(false);
-                  // Reset form data for a new reservation
-                  setFormData({ name: "", email: "", phone: "", date: "", time: "", guests: "", requests: ""});
-                  setAvailableSpots(null);
-                }}
-                className="bg-gradient-golden hover:opacity-90"
-              >
-                Hacer Otra Reserva
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen py-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-5xl font-display font-bold text-foreground mb-6">
             Reserva tu <span className="text-golden">Mesa</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Asegura tu lugar en Casa de Dosa y prepárate para una experiencia
-            gastronómica única que fusiona India y España
+            Para reservar mesa en Casa de Dosa, contacta con nosotros directamente
+            por teléfono, WhatsApp o email
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Formulario de Reserva */}
-          <div className="lg:col-span-2">
-            <Card className="shadow-elegant">
-              <CardHeader>
-                <CardTitle className="text-2xl font-display text-foreground">
-                  Información de Reserva
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Información Personal */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Nombre Completo *</Label>
-                      <Input
-                        id="name"
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={(e) => handleInputChange("name", e.target.value)}
-                        placeholder="Tu nombre completo"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email *</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => handleInputChange("email", e.target.value)}
-                        placeholder="tu@email.com"
-                      />
-                    </div>
-                  </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Contacto para Reservas */}
+          <Card className="shadow-elegant">
+            <CardHeader>
+              <CardTitle className="text-xl font-display text-foreground flex items-center">
+                <Phone className="h-5 w-5 text-golden mr-2" />
+                Contacto para Reservas
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <a
+                href="tel:983642392"
+                className="flex items-center space-x-3 p-3 rounded-lg bg-muted hover:bg-muted/80 transition-colors"
+              >
+                <Phone className="h-5 w-5 text-golden" />
+                <div>
+                  <p className="font-semibold text-foreground">Teléfono</p>
+                  <p className="text-muted-foreground">983 64 23 92</p>
+                </div>
+              </a>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">Teléfono *</Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      required
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange("phone", e.target.value)}
-                      placeholder="+34 600 000 000"
-                    />
-                  </div>
+              <a
+                href="https://wa.me/34642357876?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20hacer%20una%20reserva%20en%20Casa%20de%20Dosa%20%F0%9F%8D%BD%EF%B8%8F"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-3 p-3 rounded-lg bg-[#25D366]/10 hover:bg-[#25D366]/20 transition-colors"
+              >
+                <svg viewBox="0 0 24 24" className="h-5 w-5 fill-[#25D366]">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                <div>
+                  <p className="font-semibold text-foreground">WhatsApp</p>
+                  <p className="text-muted-foreground">642 357 876</p>
+                </div>
+              </a>
 
-                  {/* Detalles de la Reserva */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                     <div className="space-y-2">
-                      <Label htmlFor="date">Fecha *</Label>
-                      <Input
-                        id="date"
-                        type="date"
-                        required
-                        value={formData.date}
-                        onChange={(e) => handleInputChange("date", e.target.value)}
-                        min={new Date().toISOString().split('T')[0]} // Prevent past dates
-                      />
-                      {availableSpots && formData.date && (
-                        <div className="text-xs space-y-1 mt-2">
-                          <div className="flex items-center justify-between p-2 bg-muted rounded">
-                            <span>Mañana (10:00-16:30)</span>
-                            <span className={availableSpots.morning <= 0 ? "text-red-500 font-semibold" : "text-green-600 font-semibold"}>
-                              {availableSpots.morning <= 0 ? "Completo" : "Disponible"}
-                            </span>
-                          </div>
-                          { new Date(formData.date + 'T00:00:00').getDay() !== 0 && ( // Hide evening availability on Sunday
-                            <div className="flex items-center justify-between p-2 bg-muted rounded">
-                              <span>Tarde (19:30-00:00)</span>
-                              <span className={availableSpots.evening <= 0 ? "text-red-500 font-semibold" : "text-green-600 font-semibold"}>
-                                {availableSpots.evening <= 0 ? "Completo" : "Disponible"}
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      )}
-                      {!formData.date && (
-                           <p className="text-xs text-muted-foreground mt-1">Selecciona una fecha para ver la disponibilidad y las horas.</p>
-                       )}
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="time">Hora *</Label>
-                      <Select
-                        onValueChange={(value) => handleInputChange("time", value)}
-                        value={formData.time}
-                        disabled={!formData.date} // Disable time until date is selected
-                        required
-                       >
-                        <SelectTrigger>
-                          <SelectValue placeholder={!formData.date ? "Selecciona fecha primero" : "Selecciona hora"} />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {availableTimes.length > 0 ? (
-                            availableTimes.map((time) => (
-                              <SelectItem key={time} value={time}>
-                                {time}
-                              </SelectItem>
-                            ))
-                           ) : (
-                             <SelectItem value="no-times" disabled>
-                               No hay horas disponibles
-                              </SelectItem>
-                            )}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="guests">Comensales *</Label>
-                      <Select
-                        onValueChange={(value) => handleInputChange("guests", value)}
-                        value={formData.guests}
-                        required
-                        >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Nº personas" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
-                            <SelectItem key={num} value={num.toString()}>
-                              {num} {num === 1 ? "persona" : "personas"}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
+              <a
+                href="mailto:reservas@casadedosa.com"
+                className="flex items-center space-x-3 p-3 rounded-lg bg-muted hover:bg-muted/80 transition-colors"
+              >
+                <Mail className="h-5 w-5 text-golden" />
+                <div>
+                  <p className="font-semibold text-foreground">Email</p>
+                  <p className="text-muted-foreground">reservas@casadedosa.com</p>
+                </div>
+              </a>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="requests">Peticiones Especiales</Label>
-                    <Textarea
-                      id="requests"
-                      value={formData.requests}
-                      onChange={(e) => handleInputChange("requests", e.target.value)}
-                      placeholder="Alergias, dietas especiales, celebraciones..."
-                      rows={3}
-                    />
-                  </div>
+              <p className="text-sm text-muted-foreground mt-4">
+                Para reservas de más de 10 personas o eventos especiales,
+                por favor contacta directamente.
+              </p>
+            </CardContent>
+          </Card>
 
-                  <Button
-                    type="submit"
-                    size="lg"
-                    disabled={isLoading || !formData.date || !formData.time || !formData.guests} // Also disable if required fields are missing
-                    className="w-full bg-gradient-golden hover:opacity-90 text-blue-grey-dark font-semibold"
-                  >
-                    {isLoading ? "Enviando..." : "Confirmar Reserva"}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Información Adicional */}
+          {/* Info lateral */}
           <div className="space-y-6">
             <Card className="shadow-elegant">
               <CardHeader>
@@ -419,36 +96,12 @@ const Reservas = () => {
             <Card className="shadow-elegant">
               <CardHeader>
                 <CardTitle className="text-xl font-display text-foreground flex items-center">
-                  <Phone className="h-5 w-5 text-golden mr-2" />
-                  Contacto Directo
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center space-x-2">
-                  <Phone className="h-4 w-4 text-golden" />
-                  <a href="tel:983642392" className="text-muted-foreground hover:text-golden">983 64 23 92</a>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Mail className="h-4 w-4 text-golden" />
-                   <a href="mailto:reservas@casadedosa.com" className="text-muted-foreground hover:text-golden break-all">reservas@casadedosa.com</a>
-                </div>
-                <p className="text-sm text-muted-foreground mt-4">
-                  Para reservas de más de 10 personas o eventos especiales,
-                  por favor contacta directamente.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-elegant">
-              <CardHeader>
-                <CardTitle className="text-xl font-display text-foreground flex items-center">
                   <Users className="h-5 w-5 text-golden mr-2" />
                   Política de Reservas
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="text-sm text-muted-foreground space-y-2 list-disc pl-5">
-                  <li>Capacidad máxima por sesión: 30 comensales (Mañana: 10:00-16:30, Tarde: 19:30-00:00, excepto domingos tarde).</li>
                   <li>Las reservas se guardan durante 15 minutos.</li>
                   <li>Agradecemos cancelaciones con 24 horas de antelación.</li>
                   <li>Grupos de más de 10 personas requieren confirmación telefónica o por email.</li>
