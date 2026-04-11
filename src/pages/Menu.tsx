@@ -2022,6 +2022,114 @@ const Menu = () => {
         </div>
         )}
 
+        {/* Allergen Filter - After dishes for tapas, desayunos and comedor */}
+        {(selectedSection === "tapas" || selectedSection === "desayunos" || (selectedSection === "comedor" && selectedCategory)) && (
+        <div className="mt-8 p-6 bg-card rounded-lg border border-border">
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <h3 className="text-lg font-display font-semibold text-card-foreground">
+                  Filtrar por Alérgenos
+                </h3>
+                <Badge variant="secondary" className="bg-golden/10 text-golden border-golden/20">
+                  {filteredItems.length} {filteredItems.length === 1 ? 'plato disponible' : 'platos disponibles'}
+                </Badge>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button className="text-muted-foreground hover:text-foreground transition-colors">
+                        <Info className="h-4 w-4" />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs">
+                      <p className="text-sm">
+                        Selecciona los alérgenos que deseas evitar. Los platos que los contengan serán ocultados.
+                      </p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+              {excludedAllergens.length > 0 && (
+                <Button 
+                  variant="ghost" 
+                  size="sm"
+                  onClick={clearAllFilters}
+                  className="text-golden hover:text-golden-dark"
+                >
+                  <X className="h-4 w-4 mr-1" />
+                  Limpiar filtros
+                </Button>
+              )}
+            </div>
+            
+            {excludedAllergens.length > 0 && (
+              <div className="flex items-center gap-2 p-3 bg-red-50 dark:bg-red-950/20 rounded-md border border-red-200 dark:border-red-900/30">
+                <span className="text-sm font-medium text-red-700 dark:text-red-300 whitespace-nowrap">
+                  Evitando:
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {excludedAllergens.map((allergen) => {
+                    const info = allergenInfo[allergen];
+                    const Icon = info.icon;
+                    return (
+                      <Badge
+                        key={allergen}
+                        variant="secondary"
+                        className="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 border-red-300 dark:border-red-800 flex items-center gap-1.5"
+                      >
+                        <Icon className="h-3.5 w-3.5" />
+                        {info.name}
+                      </Badge>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+          <p className="text-sm text-muted-foreground mb-4 mt-3">
+            Selecciona los alérgenos que deseas evitar. Tus preferencias se guardarán automáticamente para futuras visitas.
+          </p>
+          <TooltipProvider>
+            <div className="flex flex-wrap gap-2">
+              {Object.entries(allergenInfo).map(([key, info]) => {
+                const Icon = info.icon;
+                const isSelected = excludedAllergens.includes(key as Allergen);
+                return (
+                  <Tooltip key={key}>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant={isSelected ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => toggleAllergen(key as Allergen)}
+                        className={isSelected 
+                          ? "bg-red-500 hover:bg-red-600 text-white" 
+                          : "border-border hover:bg-muted"
+                        }
+                      >
+                        <Icon className="h-4 w-4 mr-2" />
+                        {info.name}
+                        {isSelected && <X className="h-3 w-3 ml-2" />}
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs">
+                      <p className="text-sm font-semibold mb-1">{info.name}</p>
+                      <p className="text-xs text-muted-foreground">{info.description}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                );
+              })}
+            </div>
+          </TooltipProvider>
+          {excludedAllergens.length > 0 && (
+            <p className="text-sm text-muted-foreground mt-4">
+              Mostrando platos sin: <span className="font-semibold text-foreground">
+                {excludedAllergens.map(a => allergenInfo[a].name).join(', ')}
+              </span>
+            </p>
+          )}
+        </div>
+        )}
+
         {/* Información de Alérgenos */}
         <div className="mt-16 p-6 bg-card rounded-lg border border-border">
           <h3 className="text-xl font-display font-semibold text-card-foreground mb-4">
