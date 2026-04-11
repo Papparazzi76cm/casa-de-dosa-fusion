@@ -957,7 +957,7 @@ const menuItems: MenuItem[] = [
   },
 ];
 
-const barraCategories = ["Todos", "Tapas", "Desayunos"];
+// barraCategories removed - Tapas and Desayunos are now direct tabs
 const comedorCategories = ["Todos", "Embutidos y Quesos", "Ensalada y Verduras", "Selección de Dosas", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres", "Vinos"];
 
 const ALLERGEN_PREFERENCES_KEY = 'casa-dosa-allergen-preferences';
@@ -1142,7 +1142,7 @@ const winePairings = [
 
 const Menu = () => {
   const navigate = useNavigate();
-  const [selectedSection, setSelectedSection] = useState<"barra" | "comedor" | "carta-vinos" | "maridajes">("barra");
+  const [selectedSection, setSelectedSection] = useState<"tapas" | "desayunos" | "comedor" | "carta-vinos" | "maridajes">("tapas");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const [excludedAllergens, setExcludedAllergens] = useState<Allergen[]>(() => {
@@ -1157,18 +1157,22 @@ const Menu = () => {
   });
 
   const getFilteredItems = () => {
-    // Don't return items if no category is selected
-    if (!selectedCategory) {
+    let sectionCategories: string[];
+    
+    if (selectedSection === "tapas") {
+      sectionCategories = ["Tapas"];
+    } else if (selectedSection === "desayunos") {
+      sectionCategories = ["Desayunos"];
+    } else if (selectedSection === "comedor") {
+      if (!selectedCategory) return [];
+      sectionCategories = ["Embutidos y Quesos", "Ensalada y Verduras", "Selección de Dosas", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
+    } else {
       return [];
     }
-
-    const sectionCategories = selectedSection === "barra" 
-      ? ["Tapas", "Desayunos"]
-      : ["Embutidos y Quesos", "Ensalada y Verduras", "Selección de Dosas", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
     
     let items = menuItems.filter(item => sectionCategories.includes(item.category));
     
-    if (selectedCategory !== "Todos") {
+    if (selectedSection === "comedor" && selectedCategory && selectedCategory !== "Todos") {
       items = items.filter(item => item.category === selectedCategory);
     }
     
@@ -1183,9 +1187,10 @@ const Menu = () => {
   };
 
   const getTotalItemsForSection = () => {
-    const sectionCategories = selectedSection === "barra" 
-      ? ["Tapas", "Desayunos"]
-      : ["Embutidos y Quesos", "Ensalada y Verduras", "Selección de Dosas", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
+    let sectionCategories: string[];
+    if (selectedSection === "tapas") sectionCategories = ["Tapas"];
+    else if (selectedSection === "desayunos") sectionCategories = ["Desayunos"];
+    else sectionCategories = ["Embutidos y Quesos", "Ensalada y Verduras", "Selección de Dosas", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres"];
     
     let items = menuItems.filter(item => sectionCategories.includes(item.category));
     
@@ -1201,7 +1206,7 @@ const Menu = () => {
 
   const filteredItems = getFilteredItems();
 
-  const handleSectionChange = (section: "barra" | "comedor" | "carta-vinos" | "maridajes") => {
+  const handleSectionChange = (section: "tapas" | "desayunos" | "comedor" | "carta-vinos" | "maridajes") => {
     setSelectedSection(section);
     setSelectedCategory(null);
     scrollToMenu();
