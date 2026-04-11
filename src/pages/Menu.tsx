@@ -1946,8 +1946,8 @@ const Menu = () => {
 
         </Tabs>
 
-        {/* Menu Items - Solo para Barra y Comedor */}
-        {(selectedSection === "barra" || selectedSection === "comedor") && selectedCategory && (
+        {/* Menu Items - Para Tapas, Desayunos y Comedor */}
+        {(selectedSection === "tapas" || selectedSection === "desayunos" || (selectedSection === "comedor" && selectedCategory)) && (
         <div id="menu-items-section" className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {filteredItems.map((item) => (
             <Card 
