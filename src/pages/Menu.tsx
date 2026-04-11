@@ -1268,9 +1268,10 @@ const Menu = () => {
         </div>
 
         {/* Tabs de sección principal */}
-        <Tabs value={selectedSection} onValueChange={(value) => handleSectionChange(value as "barra" | "comedor" | "carta-vinos" | "maridajes")} className="mb-8">
-          <TabsList className="flex flex-col md:grid w-full max-w-4xl mx-auto gap-2 md:gap-0 mb-8 h-auto md:h-auto bg-transparent md:bg-muted p-0 md:p-1 md:grid-cols-5">
-            <TabsTrigger value="barra" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Barra</TabsTrigger>
+        <Tabs value={selectedSection} onValueChange={(value) => handleSectionChange(value as "tapas" | "desayunos" | "comedor" | "carta-vinos" | "maridajes")} className="mb-8">
+          <TabsList className="flex flex-col md:grid w-full max-w-4xl mx-auto gap-2 md:gap-0 mb-8 h-auto md:h-auto bg-transparent md:bg-muted p-0 md:p-1 md:grid-cols-6">
+            <TabsTrigger value="tapas" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Tapas</TabsTrigger>
+            <TabsTrigger value="desayunos" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Desayunos</TabsTrigger>
             <TabsTrigger value="comedor" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Comedor</TabsTrigger>
             <TabsTrigger value="carta-vinos" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Carta de Vinos</TabsTrigger>
             <TabsTrigger value="maridajes" className="text-base md:text-lg w-full py-3 data-[state=active]:bg-gradient-golden">Maridajes</TabsTrigger>
@@ -1283,132 +1284,12 @@ const Menu = () => {
             </button>
           </TabsList>
 
-          <TabsContent value="barra">
-            {/* Allergen Filters */}
-            <div className="mb-8 p-6 bg-card rounded-lg border border-border">
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <h3 className="text-lg font-display font-semibold text-card-foreground">
-                      Filtrar por Alérgenos
-                    </h3>
-                    <Badge variant="secondary" className="bg-golden/10 text-golden border-golden/20">
-                      {selectedCategory ? (
-                        <>{filteredItems.length} {filteredItems.length === 1 ? 'plato disponible' : 'platos disponibles'}</>
-                      ) : (
-                        <>{getTotalItemsForSection()} {getTotalItemsForSection() === 1 ? 'plato disponible' : 'platos disponibles'}</>
-                      )}
-                    </Badge>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <button className="text-muted-foreground hover:text-foreground transition-colors">
-                            <Info className="h-4 w-4" />
-                          </button>
-                        </TooltipTrigger>
-                        <TooltipContent className="max-w-xs">
-                          <p className="text-sm">
-                            Pasa el cursor sobre cada alérgeno para ver información detallada. Los alérgenos seleccionados se excluirán de los resultados y se guardarán automáticamente para futuras visitas.
-                          </p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
-                  {excludedAllergens.length > 0 && (
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={clearAllFilters}
-                      className="text-golden hover:text-golden-dark"
-                    >
-                      <X className="h-4 w-4 mr-1" />
-                      Limpiar filtros
-                    </Button>
-                  )}
-                </div>
-                
-                {selectedCategory && excludedAllergens.length > 0 && (
-                  <div className="flex items-center gap-2 p-3 bg-red-50 dark:bg-red-950/20 rounded-md border border-red-200 dark:border-red-900/30">
-                    <span className="text-sm font-medium text-red-700 dark:text-red-300 whitespace-nowrap">
-                      Evitando:
-                    </span>
-                    <div className="flex flex-wrap gap-2">
-                      {excludedAllergens.map((allergen) => {
-                        const info = allergenInfo[allergen];
-                        const Icon = info.icon;
-                        return (
-                          <Badge
-                            key={allergen}
-                            variant="secondary"
-                            className="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 border-red-300 dark:border-red-800 flex items-center gap-1.5"
-                          >
-                            <Icon className="h-3.5 w-3.5" />
-                            {info.name}
-                          </Badge>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-              </div>
-              <p className="text-sm text-muted-foreground mb-4">
-                Selecciona los alérgenos que deseas evitar. Tus preferencias se guardarán automáticamente para futuras visitas.
-              </p>
-              <TooltipProvider>
-                <div className="flex flex-wrap gap-2">
-                  {Object.entries(allergenInfo).map(([key, info]) => {
-                    const Icon = info.icon;
-                    const isSelected = excludedAllergens.includes(key as Allergen);
-                    return (
-                      <Tooltip key={key}>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant={isSelected ? "default" : "outline"}
-                            size="sm"
-                            onClick={() => toggleAllergen(key as Allergen)}
-                            className={isSelected 
-                              ? "bg-red-500 hover:bg-red-600 text-white" 
-                              : "border-border hover:bg-muted"
-                            }
-                          >
-                            <Icon className="h-4 w-4 mr-2" />
-                            {info.name}
-                            {isSelected && <X className="h-3 w-3 ml-2" />}
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent className="max-w-xs">
-                          <p className="text-sm font-semibold mb-1">{info.name}</p>
-                          <p className="text-xs text-muted-foreground">{info.description}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    );
-                  })}
-                </div>
-              </TooltipProvider>
-              {selectedCategory && excludedAllergens.length > 0 && (
-                <p className="text-sm text-muted-foreground mt-4">
-                  Mostrando platos sin: <span className="font-semibold text-foreground">
-                    {excludedAllergens.map(a => allergenInfo[a].name).join(', ')}
-                  </span>
-                </p>
-              )}
-            </div>
+          <TabsContent value="tapas">
+            {/* Items shown directly, allergen filter after */}
+          </TabsContent>
 
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
-              {barraCategories.map((category) => (
-                <Button
-                  key={category}
-                  variant={selectedCategory === category ? "default" : "outline"}
-                  onClick={() => handleCategoryChange(category)}
-                  className={selectedCategory === category 
-                    ? "bg-gradient-golden hover:opacity-90" 
-                    : "border-golden text-golden hover:bg-golden hover:text-blue-grey-dark"
-                  }
-                >
-                  {category}
-                </Button>
-              ))}
-            </div>
+          <TabsContent value="desayunos">
+            {/* Items shown directly, allergen filter after */}
           </TabsContent>
 
           <TabsContent value="comedor">
