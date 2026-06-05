@@ -10,22 +10,17 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section with Carousel */}
+      {/* Hero Section with Video */}
       <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* Carousel Images */}
-        {carouselImages.map((image, index) => (
-          <div
-            key={index}
-            className="absolute inset-0 w-full h-full transition-opacity duration-1000"
-            style={{
-              opacity: index === currentImageIndex ? 0.5 : 0,
-              backgroundImage: `url(${image})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-            }}
-          />
-        ))}
+        <video
+          src={heroVideo.url}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+        />
+
         
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-elegant"></div>
