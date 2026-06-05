@@ -1051,7 +1051,7 @@ const menuItems: MenuItem[] = [
 ];
 
 // barraCategories removed - Tapas and Desayunos are now direct tabs
-const comedorCategories = ["Todos", "Embutidos y Quesos", "Ensalada y Verduras", "Selección de Dosas", "Entrantes", "Pescados", "Arroz", "Carne", "Guarniciones", "Postres", "Vinos"];
+const comedorCategories = ["Todos", "Entrantes", "Ensaladas", "Dosas en Taco", "Arroz", "Pescado", "Carne", "Parrilla", "Guarnición", "Postre"];
 
 const ALLERGEN_PREFERENCES_KEY = 'casa-dosa-allergen-preferences';
 
