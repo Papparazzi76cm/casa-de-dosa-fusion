@@ -1,59 +1,12 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Star, Utensils, MapPin } from "lucide-react";
 import ReservationChatbot from "@/components/ReservationChatbot";
-
-// Import all menu images for carousel
-import albondigas from "@/assets/menu/albondigas.jpg";
-import arrozMarisco from "@/assets/menu/arroz-marisco.jpg";
-import arrozMariscos from "@/assets/menu/arroz-mariscos.jpg";
-import burrata from "@/assets/menu/burrata.jpg";
-import cremaBatata from "@/assets/menu/crema-batata.png";
-import croquetasKimchiMango from "@/assets/menu/croquetas-kimchi-mango.jpg";
-import croquetasKimchi from "@/assets/menu/croquetas-kimchi.jpg";
-import ensaladilla from "@/assets/menu/ensaladilla.jpg";
-import entrañaAngus from "@/assets/menu/entraña-angus.jpg";
-import entraña from "@/assets/menu/entraña.jpg";
-import gyozaRopaVieja from "@/assets/menu/gyoza-ropa-vieja.jpg";
-import hamburguesa from "@/assets/menu/hamburguesa.png";
-import lagrimasPollo from "@/assets/menu/lagrimas-pollo.jpg";
-import masalaDosa from "@/assets/menu/masala-dosa.jpg";
-import miniBurguer from "@/assets/menu/mini-burguer.jpeg";
-import pannacotta from "@/assets/menu/pannacotta.png";
-import patatasBravas from "@/assets/menu/patatas-bravas.jpg";
-import rabas from "@/assets/menu/rabas.jpg";
-import rodaballo from "@/assets/menu/rodaballo.jpg";
-import ruloLechazo from "@/assets/menu/rulo-lechazo.png";
-import samosasVegetales from "@/assets/menu/samosas-vegetales.png";
-import seleccionQuesos from "@/assets/menu/seleccion-quesos.png";
-import tartaQueso from "@/assets/menu/tarta-queso.jpg";
-import tartarAtun from "@/assets/menu/tartar-atun.jpg";
-import torreznoSoria from "@/assets/menu/torrezno-soria.png";
-import torrija from "@/assets/menu/torrija.png";
-
-const carouselImages = [
-  albondigas, arrozMarisco, arrozMariscos, burrata, cremaBatata,
-  croquetasKimchiMango, croquetasKimchi, ensaladilla, entrañaAngus,
-  entraña, gyozaRopaVieja, hamburguesa, lagrimasPollo, masalaDosa,
-  miniBurguer, pannacotta, patatasBravas, rabas, rodaballo,
-  ruloLechazo, samosasVegetales, seleccionQuesos, tartaQueso,
-  tartarAtun, torreznoSoria, torrija
-];
+import heroVideo from "@/assets/hero-video.mp4.asset.json";
 
 const Home = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => 
-        (prevIndex + 1) % carouselImages.length
-      );
-    }, 2000); // Change image every 2 seconds
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <div className="min-h-screen">
